@@ -43,8 +43,8 @@ grow_horizontal = 2
 
 [node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Game Name"
+theme_override_font_sizes/font_size = 64
+text = "Living Board"
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
