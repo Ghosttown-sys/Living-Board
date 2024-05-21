@@ -5,7 +5,7 @@ extends Control
 
 func _on_NewGameBtn_pressed():
 	GameStateService.new_game()
-	TransitionMgr.transition_to("res://scenes/rooms/room_main.tscn")
+	TransitionMgr.transition_to("res://scenes/gameplay/gameplay.tscn")
 
 
 func _on_LoadGameBtn_pressed():

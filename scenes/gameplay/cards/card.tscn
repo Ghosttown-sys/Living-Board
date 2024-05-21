@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://sdqjtkrthitb"]
+
+[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Resource_Arts/Resources/cards_atlas.tres" id="1_llahu"]
+[ext_resource type="Script" path="res://scripts/draggable.gd" id="1_n3330"]
+[ext_resource type="Script" path="res://scripts/Utils/lerp_follow.gd" id="3_aoomi"]
+[ext_resource type="Script" path="res://scripts/draggable_debug.gd" id="4_vhv3l"]
+[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://themes/main_theme.tres" id="5_2tv6b"]
+
+[node name="Card" type="Node2D"]
+scale = Vector2(3, 3)
+
+[node name="Draggable" type="Node2D" parent="." node_paths=PackedStringArray("visual_node")]
+script = ExtResource("1_n3330")
+hoverSize = 1.2
+transition_type = 11
+visual_node = NodePath("VisualNode/Visual")
+
+[node name="VisualNode" type="Node" parent="Draggable"]
+
+[node name="Visual" type="Sprite2D" parent="Draggable/VisualNode" node_paths=PackedStringArray("to_follow")]
+scale = Vector2(3, 3)
+texture = ExtResource("1_llahu")
+script = ExtResource("3_aoomi")
+to_follow = NodePath("../..")
+follow_position_speed = 12.0
+follow_rotation_speed = 6.0
+
+[node name="Debug_UI" type="Control" parent="Draggable/VisualNode/Visual"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -25.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_vhv3l")
+
+[node name="Label" type="Label" parent="Draggable/VisualNode/Visual/Debug_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_2tv6b")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+text = "Debug"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Click_Signaler" type="Control" parent="Draggable"]
+custom_minimum_size = Vector2(25, 36)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="Draggable/Click_Signaler" to="Draggable" method="_on_collider_input_event"]
+[connection signal="mouse_entered" from="Draggable/Click_Signaler" to="Draggable" method="_on_hover_start"]
+[connection signal="mouse_exited" from="Draggable/Click_Signaler" to="Draggable" method="_on_hover_end"]
