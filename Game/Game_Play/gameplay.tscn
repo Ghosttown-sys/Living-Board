@@ -6,10 +6,17 @@
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
-board_height = 9
-board_width = 9
+board_height = 5
+board_width = 5
 room_template = ExtResource("1_evmpu")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2152.0
+offset_top = -2061.0
+offset_right = 3848.0
+offset_bottom = 3939.0
+color = Color(0.105882, 0.0627451, 0.0901961, 1)
+
 [node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
-offset = Vector2(1200, 2.08165e-12)
-zoom = Vector2(0.29, 0.29)
+limit_offset = 2
+camera_speed = 3

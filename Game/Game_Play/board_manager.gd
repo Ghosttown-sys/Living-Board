@@ -17,6 +17,7 @@ func _ready():
 func create_new_room(room_scene,x, y):
 	# Create the room
 	var room_instance = room_scene.instantiate();
+	room_instance.visible = false
 	add_child(room_instance)
 	room_instance.coordinates = Vector2i(x,y)
 	# Position it on the grid
@@ -36,8 +37,7 @@ func initialize_board():
 func find_connected_rooms(room, visited_rooms):
 	
 	visited_rooms.append(room)
-	room.modulate = Color.AQUA
-	
+	room.visible = true
 	for direction in room.openings:
 		var next_room_coordinates = room.coordinates + Game_Manager.d2v[direction];
 		# Check if it's out of bound
@@ -46,6 +46,12 @@ func find_connected_rooms(room, visited_rooms):
 			return
 		
 		var next_room = rooms[next_room_coordinates];
-		# if both ways are connected and was not visited yet, perform the recursion
-		if not visited_rooms.has(next_room) && next_room.openings.has(Game_Manager.opposite_direction[direction]):
-			find_connected_rooms(next_room, visited_rooms)
+		
+		if next_room.openings.has(Game_Manager.opposite_direction[direction]):
+			# Disable fog between corridors if both ways are connected
+			room.enable_corridor_fog(direction, false)
+			next_room.enable_corridor_fog(Game_Manager.opposite_direction[direction], false)
+			# if it was not visited yet, perform the recursion
+			if not visited_rooms.has(next_room):
+				find_connected_rooms(next_room, visited_rooms)
+			
