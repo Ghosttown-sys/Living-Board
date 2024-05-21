@@ -1,0 +1,75 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ducfept6pmkkm"]
+
+[ext_resource type="FontFile" uid="uid://eb5fc10vsvyh" path="res://assets/fonts/daydream_3/Daydream.ttf" id="1_nx7xy"]
+[ext_resource type="StyleBox" uid="uid://dn4nj8o6db0s8" path="res://resources/theme/Button_normal.tres" id="2_exo1r"]
+[ext_resource type="Texture2D" uid="uid://c81yr682pi4ug" path="res://assets/Resource_Arts/Sprite_Sheets/UI_Arts.png" id="2_jgcoc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd1n0"]
+atlas = ExtResource("2_jgcoc")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ovoyr"]
+texture = SubResource("AtlasTexture_vd1n0")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+expand_margin_top = 16.0
+expand_margin_bottom = 16.0
+region_rect = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdknq"]
+atlas = ExtResource("2_jgcoc")
+region = Rect2(192, 96, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbxjr"]
+texture = SubResource("AtlasTexture_sdknq")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+expand_margin_top = 16.0
+expand_margin_bottom = 16.0
+region_rect = Rect2(0, 0, 48, 48)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ias7m"]
+
+[resource]
+default_font = ExtResource("1_nx7xy")
+default_font_size = 8
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_nx7xy")
+Button/styles/disabled = ExtResource("2_exo1r")
+Button/styles/focus = ExtResource("2_exo1r")
+Button/styles/hover = SubResource("StyleBoxTexture_ovoyr")
+Button/styles/normal = ExtResource("2_exo1r")
+Button/styles/pressed = SubResource("StyleBoxTexture_nbxjr")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_nx7xy")
+Label/styles/normal = SubResource("StyleBoxEmpty_ias7m")
+LabelSmall/base_type = &"Label"
+LabelSmall/font_sizes/font_size = 8
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
