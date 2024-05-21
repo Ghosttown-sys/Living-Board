@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu1qxrv7bksx3"]
+
+[ext_resource type="Script" path="res://scenes/Camera/Camera.gd" id="1_6m2x8"]
+
+[node name="Camera" type="Camera2D"]
+limit_left = -370
+limit_top = -220
+limit_right = 1500
+limit_bottom = 900
+script = ExtResource("1_6m2x8")
+zoom_invert = true
+min_zoom = 0.7
+move_relative_to_zoom = true

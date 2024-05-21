@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=3 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://sf7spbdqpfvy" path="res://Game/Core/cards/hand.tscn" id="1_0m7ht"]
+[ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
 
 [node name="Board" type="Node2D"]
 
 [node name="Hand" parent="." instance=ExtResource("1_0m7ht")]
 position = Vector2(323, 472)
+
+[node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
