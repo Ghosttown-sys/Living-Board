@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://sdqjtkrthitb"]
 
 [ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Resource_Arts/Resources/cards_atlas.tres" id="1_llahu"]
-[ext_resource type="Script" path="res://scripts/draggable.gd" id="1_n3330"]
-[ext_resource type="Script" path="res://scripts/Utils/lerp_follow.gd" id="3_aoomi"]
-[ext_resource type="Script" path="res://scripts/draggable_debug.gd" id="4_vhv3l"]
-[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://themes/main_theme.tres" id="5_2tv6b"]
+[ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable.gd" id="1_n3330"]
+[ext_resource type="Script" path="res://Game/Core/utils/lerp_follow.gd" id="3_aoomi"]
+[ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable_debug.gd" id="4_vhv3l"]
+[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_2tv6b"]
 
 [node name="Card" type="Node2D"]
 scale = Vector2(3, 3)
