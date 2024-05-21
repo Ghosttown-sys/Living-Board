@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://sf7spbdqpfvy"]
 
-[ext_resource type="PackedScene" uid="uid://sdqjtkrthitb" path="res://scenes/cards/card.tscn" id="1_e588g"]
+[ext_resource type="PackedScene" uid="uid://sdqjtkrthitb" path="res://Game/Core/cards/card.tscn" id="1_e588g"]
 [ext_resource type="Script" path="res://scripts/Utils/h_layout_group.gd" id="3_c5exq"]
+
 
 [node name="Hand" type="Node2D"]
 position = Vector2(430, 576)

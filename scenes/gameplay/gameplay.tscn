@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdk2ksgvsl00o"]
-
-[ext_resource type="PackedScene" uid="uid://sf7spbdqpfvy" path="res://scenes/gameplay/cards/hand.tscn" id="2_wrp5n"]
-
-[node name="Board" type="Node2D"]
-
-[node name="Hand" parent="." instance=ExtResource("2_wrp5n")]
-position = Vector2(323, 472)
