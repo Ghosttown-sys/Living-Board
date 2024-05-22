@@ -1,7 +1,9 @@
 extends Node2D
 class_name room
 
-var active : bool
+var active : bool :
+	set(value):
+		light.visible = value		
 # rotation/ facing towards
 var direction : Game_Manager.DIRECTION
 # which directions have a corridor
@@ -10,7 +12,7 @@ var openings : Array[Game_Manager.DIRECTION]
 var connections = {}
 # coordinates in the grid
 var coordinates : Vector2i;
-
+@onready var light : Light2D = $light
 @onready var tilemap : TileMap = $Room_Tilemap
 """
 Tilemap layers are:

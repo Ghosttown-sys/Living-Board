@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2cfb0p8w4c1n"]
+[gd_scene load_steps=4 format=3 uid="uid://c2cfb0p8w4c1n"]
 
 [ext_resource type="TileSet" uid="uid://d1u81x66j67j7" path="res://assets/Resource_Arts/Resources/dungeon_tiles.tres" id="1_6p2qs"]
 [ext_resource type="Script" path="res://Game/Core/rooms/room.gd" id="1_ew3o0"]
+[ext_resource type="Texture2D" uid="uid://b6kf63xd4kmw0" path="res://assets/images/light.png" id="3_6m736"]
 
 [node name="room" type="Node2D"]
 script = ExtResource("1_ew3o0")
@@ -27,3 +28,7 @@ layer_7/name = "Top_Fog"
 layer_7/tile_data = PackedInt32Array(-327681, 524289, 7, -262145, 524289, 8, -393216, 589825, 7, -327680, 589825, 8)
 layer_8/name = "Bottom_Fog"
 layer_8/tile_data = PackedInt32Array(327679, 917505, 7, 393215, 917505, 8, 262144, 983041, 7, 327680, 983041, 8)
+
+[node name="light" type="PointLight2D" parent="."]
+color = Color(0.950359, 0.804054, 0.619357, 1)
+texture = ExtResource("3_6m736")
