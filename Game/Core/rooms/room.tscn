@@ -32,3 +32,13 @@ layer_8/tile_data = PackedInt32Array(327679, 917505, 7, 393215, 917505, 8, 26214
 [node name="light" type="PointLight2D" parent="."]
 color = Color(0.950359, 0.804054, 0.619357, 1)
 texture = ExtResource("3_6m736")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

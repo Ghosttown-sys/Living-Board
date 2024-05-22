@@ -23,6 +23,7 @@ FullScreenMgr="*res://utils/full_screen_mgr/full_screen_mgr.tscn"
 GameStateService="*res://addons/game_state_helper/game_state_service.gd"
 TransitionMgr="*res://addons/transition_mgr/transition_mgr.tscn"
 Game_Manager="*res://Global/Game_Manager.gd"
+BoardManipulator="*res://Game/Core/rooms/board_manipulator.gd"
 
 [debug]
 
@@ -158,5 +159,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.419369, 0.222995, 0.352315, 1)
 environment/defaults/default_environment="res://Music/default_env.tres"

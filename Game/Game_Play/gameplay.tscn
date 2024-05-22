@@ -6,7 +6,7 @@
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
-board_height = 5
+board_height = 3
 board_width = 5
 room_template = ExtResource("1_evmpu")
 
@@ -24,3 +24,20 @@ camera_speed = 3
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 291.0
+offset_bottom = 83.0
+text = "Row 1 Left"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 690.0
+offset_right = 981.0
+offset_bottom = 83.0
+text = "Row 1 Right"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="push"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="Push_Right"]

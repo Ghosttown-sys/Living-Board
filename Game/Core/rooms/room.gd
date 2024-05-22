@@ -1,9 +1,15 @@
 extends Node2D
 class_name room
 
+static var static_id : int
+var room_id : int : 
+	set(value):
+		room_id = value;
+		static_id += 1
 var active : bool :
 	set(value):
-		light.visible = value		
+		light.visible = value
+		pass
 # rotation/ facing towards
 var direction : Game_Manager.DIRECTION
 # which directions have a corridor
@@ -28,7 +34,7 @@ Tilemap layers are:
 	7 : Top_Fog
 	8 : Bottom_Fog
 """
-
+@onready var debug_label = $Label
 
 func _ready():
 	assign_random_openings()
@@ -38,6 +44,8 @@ func update_visuals():
 	# for layers 1 to 4 (corridor layers)
 	for direction in range(1,5):
 		tilemap.set_layer_enabled(direction, openings.has(direction - 1));
+	debug_label.text = str(room_id);
+
 
 func get_room_pixel_size():
 	return tilemap.get_used_rect().size * tilemap.rendering_quadrant_size
