@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=5 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
+[ext_resource type="PackedScene" uid="uid://sf7spbdqpfvy" path="res://Game/Core/cards/hand.tscn" id="4_t7ivt"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
@@ -18,9 +19,9 @@ offset_bottom = 3939.0
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
 [node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
-zoom = Vector2(0.91, 0.91)
+zoom = Vector2(0.92, 0.92)
 limit_offset = 2
-camera_speed = 3
+camera_speed = 5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
@@ -37,6 +38,9 @@ offset_left = 690.0
 offset_right = 981.0
 offset_bottom = 83.0
 text = "Row 1 Right"
+
+[node name="Hand" parent="CanvasLayer" instance=ExtResource("4_t7ivt")]
+position = Vector2(346, 508)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="push"]

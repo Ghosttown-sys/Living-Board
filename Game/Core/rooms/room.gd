@@ -36,6 +36,8 @@ Tilemap layers are:
 """
 @onready var debug_label = $Label
 
+@onready var rng = RandomNumberGenerator.new()
+
 func _ready():
 	assign_random_openings()
 	update_visuals()
@@ -53,8 +55,8 @@ func get_room_pixel_size():
 # At start, assign random openings to the room
 func assign_random_openings():
 	var directions : Array[Game_Manager.DIRECTION] = Game_Manager.ALL_DIRECTIONS.duplicate()
-	for i in range(randi() % directions.size()):
-		var index = randi() % directions.size()
+	for i in range(Game_Manager.RNG.randi() % directions.size()):
+		var index = Game_Manager.RNG.randi() % directions.size()
 		directions.remove_at(index)
 	
 	openings = directions;

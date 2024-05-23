@@ -1,5 +1,8 @@
 extends Node
 
+var seed = hash("help_me")
+var RNG : RandomNumberGenerator;
+
 enum DIRECTION {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3}
 
 const ALL_DIRECTIONS : Array[Game_Manager.DIRECTION] = [\
@@ -24,3 +27,7 @@ const opposite_direction = {
 }
 
 signal camera_relocate(pos:Vector2)
+
+func _ready():
+	RNG = RandomNumberGenerator.new()
+	RNG.seed = seed;
