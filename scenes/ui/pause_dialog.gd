@@ -46,12 +46,15 @@ func _show() -> void:
 func _input(event):
 	if !event.is_action("pause") or event.is_echo() or !event.is_pressed():
 		return
+	pause_menu_requested()
+
+func pause_menu_requested():
+	print("hmm")
 	if visible:
 		_on_ResumeBtn_pressed()
 	else:
 		_show()
-
-
+	
 func _get_screenshot() -> Image:
 	var image = get_viewport().get_texture().get_image()
 	return image

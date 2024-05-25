@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
-[ext_resource type="PackedScene" uid="uid://sf7spbdqpfvy" path="res://Game/Core/cards/hand.tscn" id="4_t7ivt"]
+[ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
@@ -16,6 +16,7 @@ offset_left = -2152.0
 offset_top = -2061.0
 offset_right = 3848.0
 offset_bottom = 3939.0
+mouse_filter = 2
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
 [node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
@@ -28,19 +29,22 @@ color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
+
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_right = 291.0
-offset_bottom = 83.0
+offset_bottom = 64.0
 text = "Row 1 Left"
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 690.0
-offset_right = 981.0
-offset_bottom = 83.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -291.0
+offset_bottom = 64.0
+grow_horizontal = 0
+size_flags_horizontal = 8
 text = "Row 1 Right"
-
-[node name="Hand" parent="CanvasLayer" instance=ExtResource("4_t7ivt")]
-position = Vector2(346, 508)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="push"]

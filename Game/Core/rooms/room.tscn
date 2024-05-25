@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2cfb0p8w4c1n"]
+[gd_scene load_steps=5 format=3 uid="uid://c2cfb0p8w4c1n"]
 
 [ext_resource type="TileSet" uid="uid://d1u81x66j67j7" path="res://assets/Resource_Arts/Resources/dungeon_tiles.tres" id="1_6p2qs"]
 [ext_resource type="Script" path="res://Game/Core/rooms/room.gd" id="1_ew3o0"]
 [ext_resource type="Texture2D" uid="uid://b6kf63xd4kmw0" path="res://assets/images/light.png" id="3_6m736"]
 
-[node name="room" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fev20"]
+size = Vector2(192, 192)
+
+[node name="room" type="Area2D"]
 script = ExtResource("1_ew3o0")
 
 [node name="Room_Tilemap" type="TileMap" parent="."]
@@ -42,3 +45,8 @@ grow_vertical = 2
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fev20")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

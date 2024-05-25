@@ -11,6 +11,7 @@ extends CanvasLayer
 
 func _ready():
 	_auto_save_icon.visible = false
+	
 
 
 func show_info_dlg(info_text: String) -> void:

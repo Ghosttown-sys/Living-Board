@@ -65,3 +65,8 @@ func assign_random_openings():
 func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
 	var fog_layer = direction + 5;
 	tilemap.set_layer_enabled(fog_layer, enabled);
+	
+func _on_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed and \
+			event.button_index == MOUSE_BUTTON_LEFT:
+		print(self)

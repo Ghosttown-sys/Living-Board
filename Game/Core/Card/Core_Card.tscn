@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://t8h8ev5w8iud"]
+
+[ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
+[ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
+[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Resource_Arts/Resources/cards_atlas.tres" id="3_w8njb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctp5i"]
+size = Vector2(150, 200)
+
+[sub_resource type="Animation" id="Animation_fpo18"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_bpy3q"]
+resource_name = "focus"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2o6qs"]
+_data = {
+"RESET": SubResource("Animation_fpo18"),
+"focus": SubResource("Animation_bpy3q")
+}
+
+[node name="CoreCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_artrx")
+rotation_curve = ExtResource("2_4iv8s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(124, 180)
+layout_mode = 0
+offset_left = -62.0
+offset_top = -90.0
+offset_right = 62.0
+offset_bottom = 90.0
+texture = ExtResource("3_w8njb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 42.0
+offset_right = 6.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "STATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hover_control" type="Control" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_right = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+shape = SubResource("RectangleShape2D_ctp5i")
+
+[node name="card_anime" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2o6qs")
+}
+speed_scale = 10.0
+
+[connection signal="mouse_entered" from="TextureRect/hover_control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect/hover_control" to="." method="_on_control_mouse_exited"]

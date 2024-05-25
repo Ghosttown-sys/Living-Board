@@ -11,6 +11,9 @@
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("6")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -114,6 +117,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("5_5b82o")
 
 [node name="PauseDialog" parent="Control" instance=ExtResource("3")]
@@ -123,6 +127,7 @@ layout_mode = 1
 [node name="RawGameStateDlg" parent="Control" instance=ExtResource("5")]
 
 [node name="DebugMarginContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -162,6 +167,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="AutoSaveMarginContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

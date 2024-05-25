@@ -36,7 +36,7 @@ func initialize_board():
 	# Recursively find all rooms connected to the centre
 	find_connected_rooms(central_room,visited_rooms)
 	
-	BoardManipulator.grid = rooms;
+	Board_Manipulator.grid = rooms;
 	
 
 func find_connected_rooms(room, visited_rooms):
@@ -77,11 +77,11 @@ func update_rooms_positions():
 			tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD)
 
 func Push_Left():
-	BoardManipulator.push_row(0,Game_Manager.DIRECTION.LEFT)
-	BoardManipulator.print_grid()
+	Board_Manipulator.push_row(0,Game_Manager.DIRECTION.LEFT)
+	Board_Manipulator.print_grid()
 	update_board()
 
 func Push_Right():
-	BoardManipulator.push_row(0,Game_Manager.DIRECTION.RIGHT)
-	BoardManipulator.print_grid()
+	Board_Manipulator.push_row(0,Game_Manager.DIRECTION.RIGHT)
+	Board_Manipulator.print_grid()
 	update_board()
