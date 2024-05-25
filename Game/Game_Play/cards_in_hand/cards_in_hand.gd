@@ -15,7 +15,7 @@ const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
 func _ready():
-	add_cards(1)
+	add_cards(5)
 	rearrange_cards()
 
 func _process(_delta):
@@ -25,11 +25,6 @@ func add_cards(card_amount: int) -> void:
 	for child_index in range(card_amount):
 		var card = CARD.instantiate()
 		add_child(card)
-
-func _input(_event):
-	if Input.is_action_just_pressed("test"):
-		add_cards(1)
-		rearrange_cards()
 
 func calculate_position(card: CardUI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
@@ -47,9 +42,9 @@ func calculate_card_destination(card: CardUI, ratio: float, width: float, height
 	mouse_pos = 0.0
 
 	# Add your mouse position logic here if needed
-	# var mouse_in_range = get_viewport_rect().has_point(get_global_mouse_position())
-	# if mouse_in_range:
-	#     mouse_pos = 0.5 - ((get_global_mouse_position().x - global_position.x) / get_viewport_rect().size.x)
+	#var mouse_in_range = get_viewport_rect().has_point(get_global_mouse_position())
+	#if mouse_in_range:
+		#mouse_pos = 0.5 - ((get_global_mouse_position().x - global_position.x) / get_viewport_rect().size.x)
 
 	position.x += spread_curve.sample(ratio) * width
 	position += height_curve.sample(ratio + mouse_pos) * Vector2.UP * height
@@ -61,6 +56,8 @@ func calculate_rotation(ratio: float, base_rotation: int) -> float:
 
 func rearrange_cards() -> void:
 	for card in get_children():
+		if card.dragging: 
+			continue
 		current_card = card
 		card_index = card.get_index()
 

@@ -30,6 +30,7 @@ color = Color(0, 0, 0, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
+scale = Vector2(0.6, 0.6)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_right = 291.0

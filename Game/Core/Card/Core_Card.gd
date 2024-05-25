@@ -10,6 +10,13 @@ var disabled := false
 var card_anime = null
 var card_rotation :float;
 
+var dragging :
+	get: 
+		if $Draggable_Item == null:
+			return false
+		else:
+			return $Draggable_Item.dragging
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	card_anime = get_node("card_anime")
