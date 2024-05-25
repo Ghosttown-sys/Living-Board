@@ -8,7 +8,6 @@
 [node name="Cards_in_hand" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-scale = Vector2(0.8, 0.8)
 script = ExtResource("1_b4w66")
 spread_curve = ExtResource("2_65dbr")
 height_curve = ExtResource("3_7tn2a")

@@ -30,7 +30,6 @@ color = Color(0, 0, 0, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
-scale = Vector2(0.6, 0.6)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_right = 291.0
@@ -47,6 +46,6 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 text = "Row 1 Right"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="push"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="Push_Right"]

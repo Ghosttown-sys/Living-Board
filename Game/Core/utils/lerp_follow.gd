@@ -13,8 +13,8 @@ func  _ready():
 func _process(delta):
 	global_position = global_position.lerp(to_follow.global_position, delta * follow_position_speed)
 
-	#var movement = global_position - to_follow.global_position
+	var movement = global_position - to_follow.global_position
 
-	#rotationDelta = rotationDelta.lerp(movement, delta * follow_rotation_speed)
-#
-	#rotation_degrees = -clamp(rotationDelta.x,-60,60)
+	rotationDelta = rotationDelta.lerp(movement, delta * follow_rotation_speed)
+
+	rotation_degrees = -clamp(rotationDelta.x,-60,60)

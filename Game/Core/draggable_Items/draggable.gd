@@ -1,5 +1,5 @@
 extends Control
-class_name  draggable
+class_name  Draggable
 
 @export var hoverSize : float = 1.3
 @export var transition_type : Tween.TransitionType
@@ -11,17 +11,18 @@ var initial_rot : float
 
 var dragging : bool = false
 
-@onready var parent = get_parent()
+@onready var parent :Card_UI = get_parent()
 
 var tween;
 
 
 func _ready():
-	initial_size = visual_node.scale;
+	initial_size = visual_node.scale
+	
 	
 func _on_collider_input_event(event):
 	if Input.is_action_just_pressed("select_card"):
-		
+		#Events.remove_me.emit(parent)
 		initial_pos = position
 		initial_rot = rotation
 		
@@ -30,7 +31,7 @@ func _on_collider_input_event(event):
 		dragging = false
 		position = initial_pos
 		rotation = initial_rot
-		
+		#
 func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position() - size/2;

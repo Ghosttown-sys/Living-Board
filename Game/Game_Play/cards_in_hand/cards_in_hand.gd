@@ -6,7 +6,7 @@ const CARD = preload("res://Game/Core/Card/Core_Card.tscn")
 @export var height_curve: Curve
 @export var rotation_curve: Curve
 
-var current_card: CardUI
+var current_card: Card_UI
 var card_index: int = 0
 var hand_ratio: float = 0.5
 var destination: Vector2
@@ -15,8 +15,9 @@ const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
 func _ready():
-	add_cards(5)
+	add_cards(10)
 	rearrange_cards()
+	Events.remove_me.connect(remove_card)
 
 func _process(_delta):
 	rearrange_cards()
@@ -26,7 +27,13 @@ func add_cards(card_amount: int) -> void:
 		var card = CARD.instantiate()
 		add_child(card)
 
-func calculate_position(card: CardUI) -> Vector2:
+func remove_card(card:Card_UI)->void:
+	for i in get_children():
+		if i == card:
+			reparent(i)
+
+
+func calculate_position(card: Card_UI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
 	var y_position = get_viewport_rect().size.y - bottom_offset - card.get_rect().size.y
 
@@ -36,7 +43,7 @@ func calculate_position(card: CardUI) -> Vector2:
 	)
 
 
-func calculate_card_destination(card: CardUI, ratio: float, width: float, height: float, new_position: Vector2 = Vector2.ZERO) -> Vector2:
+func calculate_card_destination(card: Card_UI, ratio: float, width: float, height: float, new_position: Vector2 = Vector2.ZERO) -> Vector2:
 	if new_position == Vector2.ZERO:
 		position = calculate_position(card)
 	mouse_pos = 0.0
@@ -78,7 +85,7 @@ func calculate_hand_parameters(child_count: int) -> Vector3:
 	elif child_count == 3:
 		return Vector3(80, 8, 8)
 	elif child_count <= 10:
-		return Vector3(child_count * 35, 12, 25)
+		return Vector3(child_count * 24, 12, 20)
 	else:
 		# Handle other cases or provide default values
-		return Vector3(350, 12, 25)
+		return Vector3(350, 12, 60)

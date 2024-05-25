@@ -1,4 +1,4 @@
-class_name CardUI
+class_name Card_UI
 extends Control
 @onready var hand = get_parent() 
 @export var rotation_curve : Curve;
