@@ -31,7 +31,7 @@ func _on_collider_input_event(event):
 		dragging = false
 		position = initial_pos
 		rotation = initial_rot
-		#
+		
 func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position() - size/2;
@@ -39,3 +39,8 @@ func _process(_delta):
 		visual_node.z_index = 10
 	else:
 		visual_node.z_index = 0
+
+
+func _on_drop_point_detector_body_entered(body):
+	print("body")
+	pass # Replace with function body.

@@ -8,8 +8,10 @@ var room_id : int :
 		static_id += 1
 var active : bool :
 	set(value):
-		light.visible = value
-		pass
+		var tween = get_tree().create_tween()
+		var target = 1 if value else 0
+		tween.tween_property(light, "energy", target, 0.2).set_trans(Tween.TRANS_QUAD)
+		
 # rotation/ facing towards
 var direction : Game_Manager.DIRECTION
 # which directions have a corridor

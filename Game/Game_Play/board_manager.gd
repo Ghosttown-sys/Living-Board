@@ -4,15 +4,45 @@ extends Node2D
 @export var board_width : int
 
 @export var room_template: Resource
+@export var card_slot: Resource
 var rooms = []
 
 func _ready():
+	Events.board_move_begin.connect(board_moved)
 	var room_scene = load(room_template.resource_path)
+	# Create rooms
 	for x in board_width:
 		rooms.append([])
 		for y in board_height:
 			create_new_room(room_scene,x,y)
+
 	initialize_board();
+	create_card_drop_slots()
+	
+
+func create_card_drop_slots():
+	# Create tiles to drop cards
+	var room_size = rooms[0][0].get_room_pixel_size()
+	for row_index in range(board_height):
+		var room = rooms[0][row_index]
+		create_card_drop_slot(true, Game_Manager.DIRECTION.RIGHT,row_index, room.position - Vector2(room_size.x,0), room_size)
+	for row_index in range(board_height):
+		var room = rooms[board_width - 1][row_index]
+		create_card_drop_slot(true, Game_Manager.DIRECTION.LEFT,row_index,room.position + Vector2(room_size.x,0), room_size)
+	for column_index in range(board_width):
+		var room = Board_Manipulator.get_column(0)[column_index]
+		create_card_drop_slot(false, Game_Manager.DIRECTION.DOWN,column_index,room.position - Vector2(0,room_size.y), room_size)
+	for column_index in range(board_width):
+		var room = Board_Manipulator.get_column(board_height -1)[column_index]
+		create_card_drop_slot(false, Game_Manager.DIRECTION.UP,column_index,room.position + Vector2(0,room_size.y), room_size)
+		
+func create_card_drop_slot(is_row, direction, index, position, room_size):
+	var slot_instance : Draggable_Drop_Slot = card_slot.instantiate();
+	slot_instance.position = position
+	slot_instance.initialize(is_row, direction, index, room_size)
+	add_child(slot_instance)
+	
+	return slot_instance
 
 func create_new_room(room_scene,x, y):
 	# Create the room
@@ -25,23 +55,25 @@ func create_new_room(room_scene,x, y):
 	# Position it on the grid
 	var room_size = room_instance.get_room_pixel_size()
 	room_instance.position = Vector2(room_size.x * x,room_size.y * y);
-	
 
 func initialize_board():
-	var visited_rooms = []
+	
 	var central_room = rooms[board_width/2][board_height/2]
 	central_room.openings = Game_Manager.ALL_DIRECTIONS.duplicate();
 	central_room.update_visuals()
 	
-	# Recursively find all rooms connected to the centre
-	find_connected_rooms(central_room,visited_rooms)
+	update_rooms_activation()
 	
 	Board_Manipulator.grid = rooms;
-	
 
-func find_connected_rooms(room, visited_rooms):
+func find_connected_rooms(room):
+	var visited_rooms = []
+	# Recursively find all rooms connected to the centre
+	find_connected_rooms_recursive(room,visited_rooms)
+	return visited_rooms
+
+func find_connected_rooms_recursive(room, visited_rooms):
 	visited_rooms.append(room)
-	room.active = true
 	for direction in room.openings:
 		var next_room_coordinates = room.coordinates + Game_Manager.d2v[direction];
 		# Check if it's out of bound
@@ -56,17 +88,19 @@ func find_connected_rooms(room, visited_rooms):
 
 			# if it was not visited yet, perform the recursion
 			if not visited_rooms.has(next_room):
-				find_connected_rooms(next_room, visited_rooms)
+				find_connected_rooms_recursive(next_room, visited_rooms)
 
 func update_board():
 	for x in rooms.size():
 		for y in rooms[0].size():
 			rooms[x][y].coordinates = Vector2i(x,y);
 			rooms[x][y].update_visuals()
-	update_rooms_positions()
+	await update_rooms_positions()
+	update_rooms_activation()
 	pass
 	
 func update_rooms_positions():
+	var tweens = []
 	for x in rooms.size():
 		for y in rooms[0].size():
 			var tween = get_tree().create_tween()
@@ -74,14 +108,17 @@ func update_rooms_positions():
 			var room = rooms[x][y]
 			var room_size = room.get_room_pixel_size();
 			var new_position :Vector2 = Vector2(room_size.x * room.coordinates.x,room_size.y * room.coordinates.y);
-			tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD)
+			tweens.append(tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD))
+			 
+	await Tween_Utilities.await_all(tweens);
 
-func Push_Left():
-	Board_Manipulator.push_row(0,Game_Manager.DIRECTION.LEFT)
-	Board_Manipulator.print_grid()
-	update_board()
+func update_rooms_activation():
+	var central_room = rooms[board_width/2][board_height/2]
+	var active_rooms = find_connected_rooms(central_room)
+	
+	for row in rooms:
+		for room in row:
+			room.active = active_rooms.has(room)
 
-func Push_Right():
-	Board_Manipulator.push_row(0,Game_Manager.DIRECTION.RIGHT)
-	Board_Manipulator.print_grid()
+func board_moved():
 	update_board()

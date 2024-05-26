@@ -56,3 +56,25 @@ func push_row(row_index, direction : Game_Manager.DIRECTION):
 		for column in range(grid_height - 1):
 			grid[column][row_index] = grid[column + 1][row_index]
 		grid[grid_height - 1][row_index] = head
+
+func get_row(index):
+	return grid[index]
+
+func get_column(index):
+	var column = []
+	for row_index in grid_height:
+		column.append(grid[row_index][index])
+	return column
+
+func get_all_columns() -> Array:
+	print("columns")
+	var columns = []
+	var num_columns = grid_width
+
+	for col in range(num_columns):
+		var column = []
+		for row in range(grid.size()):
+			column.append(grid[row][col])
+		columns.append(column)
+	print(columns)
+	return columns

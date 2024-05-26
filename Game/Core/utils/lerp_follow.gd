@@ -11,10 +11,7 @@ func  _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position = global_position.lerp(to_follow.global_position, delta * follow_position_speed)
-
-	var movement = global_position - to_follow.global_position
-
-	rotationDelta = rotationDelta.lerp(movement, delta * follow_rotation_speed)
-
+	position = position.lerp(to_follow.position, delta * follow_position_speed)
+	var movement = position - to_follow.position
+	rotationDelta = rotationDelta.lerp(movement , delta * follow_rotation_speed)
 	rotation_degrees = -clamp(rotationDelta.x,-60,60)

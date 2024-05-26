@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=6 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
+[ext_resource type="PackedScene" uid="uid://785k8edtnq54" path="res://Game/Core/draggable_Items/draggable_drop_slot.tscn" id="3_cj31y"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 
 [node name="Board" type="Node2D"]
@@ -10,6 +11,7 @@ script = ExtResource("1_lwgv5")
 board_height = 3
 board_width = 5
 room_template = ExtResource("1_evmpu")
+card_slot = ExtResource("3_cj31y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -2152.0
@@ -20,9 +22,9 @@ mouse_filter = 2
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
 [node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
-zoom = Vector2(0.92, 0.92)
+zoom = Vector2(0.79, 0.79)
 limit_offset = 2
-camera_speed = 5
+camera_speed = 10
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
@@ -30,22 +32,3 @@ color = Color(0, 0, 0, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
-
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_right = 291.0
-offset_bottom = 64.0
-text = "Row 1 Left"
-
-[node name="Button2" type="Button" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -291.0
-offset_bottom = 64.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-text = "Row 1 Right"
-
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="push"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="Push_Left"]
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="Push_Right"]

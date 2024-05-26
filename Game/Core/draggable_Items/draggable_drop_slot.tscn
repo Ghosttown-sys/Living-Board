@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://785k8edtnq54"]
+
+[ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable_drop_slot.gd" id="1_nrvpn"]
+[ext_resource type="Texture2D" uid="uid://boh5gg8if3vgy" path="res://assets/images/icon.png" id="2_qli4x"]
+[ext_resource type="FontFile" uid="uid://ktn001fldc7a" path="res://assets/fonts/Minimal5x7.ttf" id="3_qwryx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kfj6v"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ay31g"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lki50"]
+size = Vector2(150, 200)
+
+[node name="DraggableDropSlot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1024.0
+offset_bottom = -600.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(96, 96)
+script = ExtResource("1_nrvpn")
+
+[node name="Visuals" type="TextureRect" parent="."]
+light_mask = 0
+material = SubResource("CanvasItemMaterial_kfj6v")
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_qli4x")
+
+[node name="Label" type="Label" parent="."]
+material = SubResource("CanvasItemMaterial_ay31g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_qwryx")
+theme_override_font_sizes/font_size = 50
+text = "Debug"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+shape = SubResource("RectangleShape2D_lki50")
+
+[connection signal="body_entered" from="DropPointDetector" to="." method="_on_drop_point_detector_body_entered"]

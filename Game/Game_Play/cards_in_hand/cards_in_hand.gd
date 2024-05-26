@@ -15,7 +15,7 @@ const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
 func _ready():
-	add_cards(10)
+	add_cards(5)
 	rearrange_cards()
 	Events.remove_me.connect(remove_card)
 
@@ -31,7 +31,6 @@ func remove_card(card:Card_UI)->void:
 	for i in get_children():
 		if i == card:
 			reparent(i)
-
 
 func calculate_position(card: Card_UI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
