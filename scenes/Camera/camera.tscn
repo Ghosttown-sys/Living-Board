@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://scenes/Camera/Camera.gd" id="1_6m2x8"]
 
 [node name="Camera" type="Camera2D"]
-limit_left = -370
-limit_top = -220
-limit_right = 1500
-limit_bottom = 900
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 script = ExtResource("1_6m2x8")
 zoom_invert = true
 min_zoom = 0.7

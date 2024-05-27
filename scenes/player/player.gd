@@ -1,4 +1,4 @@
-class_name Player
+class_name Player_temp
 extends CharacterBody2D
 
 

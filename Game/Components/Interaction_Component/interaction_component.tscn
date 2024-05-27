@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf6wvf00nqved"]
+
+[ext_resource type="Script" path="res://Game/Components/Interaction_Component/Interaction_Component.gd" id="1_ek2ex"]
+
+[node name="Interaction_Component" type="RayCast2D"]
+position = Vector2(0, 0.273618)
+target_position = Vector2(30, 0)
+collision_mask = 256
+script = ExtResource("1_ek2ex")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 22.0
+offset_top = 117.0
+offset_right = 162.0
+offset_bottom = 140.0
+size_flags_horizontal = 4
+text = "Press E to interact"

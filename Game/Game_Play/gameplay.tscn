@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=4 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
-[ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 
 [node name="Board" type="Node2D"]
@@ -19,15 +18,10 @@ offset_bottom = 4103.0
 mouse_filter = 2
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
-[node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
-offset = Vector2(100, 2.08165e-12)
-zoom = Vector2(0.69, 0.69)
-limit_offset = 2
-camera_speed = 10
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
