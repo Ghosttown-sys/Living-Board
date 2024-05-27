@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=10 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
@@ -9,9 +9,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qe4x"]
 atlas = ExtResource("4_bgvcg")
 region = Rect2(2.08165e-12, 2.08165e-12, 66, 96)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctp5i"]
-size = Vector2(150, 200)
 
 [sub_resource type="Animation" id="Animation_fpo18"]
 length = 0.001
@@ -41,6 +38,7 @@ _data = {
 [node name="CoreCard" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_artrx")
 rotation_curve = ExtResource("2_4iv8s")
 
@@ -56,6 +54,7 @@ offset_right = 62.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_jo6ar")
 visual_node = NodePath("../TextureRect")
 
@@ -66,6 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="Draggable_Item"]
 visible = false
@@ -119,12 +119,6 @@ text = "STATE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DropPointDetector" type="Area2D" parent="." groups=["card"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
-shape = SubResource("RectangleShape2D_ctp5i")
-one_way_collision_margin = 0.0
-
 [node name="card_anime" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2o6qs")
@@ -134,4 +128,3 @@ speed_scale = 10.0
 [connection signal="gui_input" from="Draggable_Item/hover_control" to="Draggable_Item" method="_on_collider_input_event"]
 [connection signal="mouse_entered" from="Draggable_Item/hover_control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Draggable_Item/hover_control" to="." method="_on_control_mouse_exited"]
-[connection signal="body_entered" from="DropPointDetector" to="Draggable_Item" method="_on_drop_point_detector_body_entered"]

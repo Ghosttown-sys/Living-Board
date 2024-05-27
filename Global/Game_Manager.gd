@@ -28,6 +28,10 @@ const opposite_direction = {
 
 signal camera_relocate(pos:Vector2)
 
+const z_index_idle_card = 0
+const z_index_dragging_card = 10
+const z_index_rooms = 20
+
 func _ready():
 	RNG = RandomNumberGenerator.new()
 	RNG.seed = seed;

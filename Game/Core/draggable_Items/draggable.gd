@@ -26,8 +26,14 @@ func _on_collider_input_event(event):
 		initial_pos = position
 		initial_rot = rotation
 		
+		var tween = get_tree().create_tween()
+		tween.tween_property(visual_node, "scale", Vector2(0.2,0.2), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		
 		dragging = true
 	if Input.is_action_just_released("select_card"):
+		
+		var tween = get_tree().create_tween()
+		tween.tween_property(visual_node, "scale", Vector2(1,1), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 		dragging = false
 		position = initial_pos
 		rotation = initial_rot
@@ -36,6 +42,6 @@ func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position() - size/2;
 		rotation = -parent.rotation
-		visual_node.z_index = 10
+		visual_node.z_index = Game_Manager.z_index_dragging_card
 	else:
-		visual_node.z_index = 0
+		visual_node.z_index = Game_Manager.z_index_idle_card
