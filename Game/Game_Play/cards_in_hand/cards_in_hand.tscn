@@ -13,3 +13,5 @@ script = ExtResource("1_b4w66")
 spread_curve = ExtResource("2_65dbr")
 height_curve = ExtResource("3_7tn2a")
 rotation_curve = ExtResource("4_hgagt")
+
+[node name="draggable_items" type="Node2D" parent="."]

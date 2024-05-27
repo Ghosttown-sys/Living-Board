@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://demjdly2hsm2d"]
+
+[ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable.gd" id="1_n1n8o"]
+[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Resource_Arts/Resources/cards_atlas.tres" id="2_axp0i"]
+[ext_resource type="Script" path="res://Game/Core/utils/lerp_follow.gd" id="3_86lgs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e1ra"]
+size = Vector2(122, 173)
+
+[node name="Draggable_Card" type="Node2D"]
+script = ExtResource("1_n1n8o")
+
+[node name="Draggable_Target" type="Node2D" parent="."]
+
+[node name="Visual" type="Sprite2D" parent="." node_paths=PackedStringArray("to_follow")]
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("2_axp0i")
+script = ExtResource("3_86lgs")
+to_follow = NodePath("../Draggable_Target")
+
+[node name="Area2D" type="Area2D" parent="Visual"]
+scale = Vector2(0.555556, 0.555556)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visual/Area2D"]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_2e1ra")
+
+[connection signal="input_event" from="Visual/Area2D" to="." method="_on_area_2d_input_event"]

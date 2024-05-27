@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b6gmnjfn5qopy"]
 
-[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/cards_sheet.png" id="1_lwfia"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/images/spritesheets/cards_sheet.png" id="1_lwfia"]
 
 [resource]
 atlas = ExtResource("1_lwfia")
-region = Rect2(0, 0, 25, 36)
+region = Rect2(0, 0, 66, 96)
