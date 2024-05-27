@@ -12,4 +12,4 @@ func _on_mouse_hover_enter_room(room):
 	position = room.position - size/2
 
 func _on_mouse_hover_exit_room(room):
-	pass
+	visible = false

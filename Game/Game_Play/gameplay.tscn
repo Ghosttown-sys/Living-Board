@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=5 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
-[ext_resource type="PackedScene" uid="uid://djayemhdj8ydd" path="res://Game/Core/rooms/selection.tscn" id="5_vek4h"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
@@ -32,7 +31,3 @@ color = Color(0, 0, 0, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Cards_in_hand" parent="CanvasLayer" instance=ExtResource("4_exeyq")]
-
-[node name="Selection" parent="." instance=ExtResource("5_vek4h")]
-offset_right = 40.0
-offset_bottom = 40.0
