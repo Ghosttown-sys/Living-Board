@@ -4,7 +4,6 @@ extends Node2D
 @export var board_width : int
 
 @export var room_template: Resource
-@export var card_slot: Resource
 var rooms = []
 
 func _ready():
@@ -17,32 +16,6 @@ func _ready():
 			create_new_room(room_scene,x,y)
 
 	initialize_board();
-	create_card_drop_slots()
-	
-
-func create_card_drop_slots():
-	# Create tiles to drop cards
-	var room_size = rooms[0][0].get_room_pixel_size()
-	for row_index in range(board_height):
-		var room = rooms[0][row_index]
-		create_card_drop_slot(true, Game_Manager.DIRECTION.RIGHT,row_index, room.position - Vector2(room_size.x,0), room_size)
-	for row_index in range(board_height):
-		var room = rooms[board_width - 1][row_index]
-		create_card_drop_slot(true, Game_Manager.DIRECTION.LEFT,row_index,room.position + Vector2(room_size.x,0), room_size)
-	for column_index in range(board_width):
-		var room = Board_Manipulator.get_column(0)[column_index]
-		create_card_drop_slot(false, Game_Manager.DIRECTION.DOWN,column_index,room.position - Vector2(0,room_size.y), room_size)
-	for column_index in range(board_width):
-		var room = Board_Manipulator.get_column(board_height -1)[column_index]
-		create_card_drop_slot(false, Game_Manager.DIRECTION.UP,column_index,room.position + Vector2(0,room_size.y), room_size)
-		
-func create_card_drop_slot(is_row, direction, index, position, room_size):
-	var slot_instance : Draggable_Drop_Slot = card_slot.instantiate();
-	slot_instance.position = position
-	slot_instance.initialize(is_row, direction, index, room_size)
-	add_child(slot_instance)
-	
-	return slot_instance
 
 func create_new_room(room_scene,x, y):
 	# Create the room

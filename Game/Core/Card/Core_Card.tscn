@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=11 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
-[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Resource_Arts/Resources/cards_atlas.tres" id="3_w8njb"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/images/spritesheets/cards_sheet.png" id="4_bgvcg"]
 [ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable.gd" id="4_jo6ar"]
 [ext_resource type="Script" path="res://Game/Core/utils/lerp_follow.gd" id="5_l66e4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qe4x"]
+atlas = ExtResource("4_bgvcg")
+region = Rect2(2.08165e-12, 2.08165e-12, 66, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctp5i"]
 size = Vector2(150, 200)
@@ -64,6 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Draggable_Item"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,7 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(62, 90)
 mouse_filter = 2
-texture = ExtResource("3_w8njb")
+texture = SubResource("AtlasTexture_8qe4x")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_l66e4")

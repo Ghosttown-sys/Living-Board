@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=5 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="2_u2pjn"]
-[ext_resource type="PackedScene" uid="uid://785k8edtnq54" path="res://Game/Core/draggable_Items/draggable_drop_slot.tscn" id="3_cj31y"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 
 [node name="Board" type="Node2D"]
@@ -11,7 +10,6 @@ script = ExtResource("1_lwgv5")
 board_height = 3
 board_width = 5
 room_template = ExtResource("1_evmpu")
-card_slot = ExtResource("3_cj31y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -2152.0
@@ -22,7 +20,8 @@ mouse_filter = 2
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
 [node name="Camera" parent="." instance=ExtResource("2_u2pjn")]
-zoom = Vector2(0.79, 0.79)
+offset = Vector2(100, 2.08165e-12)
+zoom = Vector2(0.69, 0.69)
 limit_offset = 2
 camera_speed = 10
 

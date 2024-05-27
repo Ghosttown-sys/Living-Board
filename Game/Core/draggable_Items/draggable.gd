@@ -39,8 +39,3 @@ func _process(_delta):
 		visual_node.z_index = 10
 	else:
 		visual_node.z_index = 0
-
-
-func _on_drop_point_detector_body_entered(body):
-	print("body")
-	pass # Replace with function body.
