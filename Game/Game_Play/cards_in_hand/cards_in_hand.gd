@@ -14,8 +14,6 @@ var rot_angle: int = 15
 const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
-@onready var draggable_items_parent = $draggable_items
-
 func _ready():
 	add_cards(5)
 	rearrange_cards()
@@ -37,7 +35,7 @@ func remove_card(card:Card_UI)->void:
 func calculate_position(card: Card_UI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
 	var y_position = get_viewport_rect().size.y - bottom_offset - card.get_rect().size.y
-	
+
 	return Vector2(
 		get_viewport_rect().get_center().x - card.get_rect().size.x / 2,
 		y_position
@@ -53,29 +51,28 @@ func calculate_card_destination(card: Card_UI, ratio: float, width: float, heigh
 	#var mouse_in_range = get_viewport_rect().has_point(get_global_mouse_position())
 	#if mouse_in_range:
 		#mouse_pos = 0.5 - ((get_global_mouse_position().x - global_position.x) / get_viewport_rect().size.x)
-	
+
 	position.x += spread_curve.sample(ratio) * width
 	position += height_curve.sample(ratio + mouse_pos) * Vector2.UP * height
+
 	return position
 
 func calculate_rotation(ratio: float, base_rotation: int) -> float:
 	return rotation_curve.sample(ratio) * deg_to_rad(base_rotation)
 
 func rearrange_cards() -> void:
-	move_child(draggable_items_parent, get_child_count() - 1)
 	for card in get_children():
-		if not card is Card_UI:
-			continue
 		if card.dragging: 
 			continue
 		current_card = card
 		card_index = card.get_index()
 
-		if get_cards_count()  > 1:
-			hand_ratio = float(card_index) / float(get_cards_count()  - 1)
+		if get_child_count() > 1:
+			hand_ratio = float(card_index) / float(get_child_count() - 1)
 		else:
 			hand_ratio = 0.5
-		var hand_params = calculate_hand_parameters(get_cards_count())
+
+		var hand_params = calculate_hand_parameters(get_child_count())
 		destination = calculate_card_destination(card, hand_ratio, hand_params[0], hand_params[2])
 		var new_rotation = calculate_rotation(hand_ratio, hand_params[1])
 
@@ -91,6 +88,3 @@ func calculate_hand_parameters(child_count: int) -> Vector3:
 	else:
 		# Handle other cases or provide default values
 		return Vector3(350, 12, 60)
-
-func get_cards_count() -> int:
-	return get_tree().get_nodes_in_group("card_in_hand").size()

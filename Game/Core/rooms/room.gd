@@ -86,9 +86,11 @@ func _on_mouse_exited():
 	tween.tween_property(self, "scale", Vector2(1,1), 0.2).set_trans(Tween.TRANS_BOUNCE)
 	Events.on_hover_room_exit.emit(self)
 
+
 func _on_area_entered(area):
 	print(area)
 	targeted.show()
+
 
 func _on_area_exited(area):
 	targeted.hide()
