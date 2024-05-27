@@ -14,6 +14,7 @@ var rot_angle: int = 15
 const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
+var position_offset: Vector2;
 func _ready():
 	add_cards(5)
 	rearrange_cards()
@@ -21,6 +22,8 @@ func _ready():
 
 func _process(_delta):
 	rearrange_cards()
+	# Add an offset to keep the hand fixed in screenspace without using canvas layers
+	position_offset = get_canvas_transform().affine_inverse() * Vector2.ZERO
 
 func add_cards(card_amount: int) -> void:
 	for child_index in range(card_amount):
@@ -54,8 +57,8 @@ func calculate_card_destination(card: Card_UI, ratio: float, width: float, heigh
 
 	position.x += spread_curve.sample(ratio) * width
 	position += height_curve.sample(ratio + mouse_pos) * Vector2.UP * height
-
-	return position
+	
+	return position + position_offset
 
 func calculate_rotation(ratio: float, base_rotation: int) -> float:
 	return rotation_curve.sample(ratio) * deg_to_rad(base_rotation)

@@ -88,7 +88,7 @@ func _on_mouse_exited():
 
 
 func _on_area_entered(area):
-	print(area)
+	print(room_id, "  ", area.get_parent().get_parent())
 	targeted.show()
 
 

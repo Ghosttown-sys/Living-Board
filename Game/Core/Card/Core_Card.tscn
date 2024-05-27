@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=12 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
 [ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/images/spritesheets/cards_sheet.png" id="4_bgvcg"]
 [ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable.gd" id="4_jo6ar"]
 [ext_resource type="Script" path="res://Game/Core/utils/lerp_follow.gd" id="5_l66e4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rqmyc"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qe4x"]
 atlas = ExtResource("4_bgvcg")
@@ -82,6 +85,7 @@ mouse_filter = 2
 color = Color(1, 1, 0.164706, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("to_follow")]
+material = SubResource("CanvasItemMaterial_rqmyc")
 custom_minimum_size = Vector2(124, 180)
 layout_mode = 1
 anchors_preset = 8
