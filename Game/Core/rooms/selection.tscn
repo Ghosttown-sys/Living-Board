@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djayemhdj8ydd"]
 
-[ext_resource type="Texture2D" uid="uid://dp25rtkftejdk" path="res://assets/images/spritesheets/ui.png" id="1_65cdb"]
+[ext_resource type="Texture2D" uid="uid://dp25rtkftejdk" path="res://assets/Arts/spritesheets/ui.png" id="1_65cdb"]
 [ext_resource type="Script" path="res://Game/Core/rooms/selection.gd" id="2_rnxlt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hb26y"]

@@ -88,6 +88,8 @@ func _on_mouse_exited():
 
 
 func _on_area_entered(area):
+	if area is Player:
+		return
 	print(room_id, "  ", area.get_parent().get_parent())
 	targeted.show()
 

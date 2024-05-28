@@ -44,7 +44,6 @@ func calculate_position(card: Card_UI) -> Vector2:
 		y_position
 	)
 
-
 func calculate_card_destination(card: Card_UI, ratio: float, width: float, height: float, new_position: Vector2 = Vector2.ZERO) -> Vector2:
 	if new_position == Vector2.ZERO:
 		position = calculate_position(card)
@@ -91,3 +90,11 @@ func calculate_hand_parameters(child_count: int) -> Vector3:
 	else:
 		# Handle other cases or provide default values
 		return Vector3(350, 12, 60)
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		if Input.is_action_pressed("drag_camera"):
+			hide()
+		else:
+			show()
+	

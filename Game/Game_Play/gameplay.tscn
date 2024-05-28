@@ -22,4 +22,4 @@ color = Color(0.105882, 0.0627451, 0.0901961, 1)
 color = Color(0, 0, 0, 1)
 
 [node name="Cards_in_hand" parent="." instance=ExtResource("4_exeyq")]
-z_index = 30
+z_index = 2

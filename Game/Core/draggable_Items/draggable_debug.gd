@@ -1,6 +1,6 @@
 extends Control
 
-@onready var draggable_item : draggable = $"../../.."
+@onready var draggable_item : Draggable = $"../../.."
 @onready var label :Label= $Label
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

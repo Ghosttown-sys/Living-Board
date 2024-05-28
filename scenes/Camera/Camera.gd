@@ -7,20 +7,24 @@ extends Camera2D
 @export var limit_offset := 1
 @export var move_relative_to_zoom := false
 @export var camera_speed := 100
+@export var is_dragging := false
+
 
 
 func _ready():
 	Game_Manager.camera_relocate.connect(relocate_camera)
 	
 func _unhandled_input(event) -> void:
-	zoom_handler(event)
 	drag_handler(event)
+
+
 func _process(_delta):
 	keys_handler()
 
 func drag_handler(event) -> void:
 	if event is InputEventMouseMotion:
 		if Input.is_action_pressed("drag_camera"):
+			is_dragging = true
 			if move_relative_to_zoom:
 				position -= event.relative * (zoom * 0.8)
 			else:
@@ -37,6 +41,8 @@ func drag_handler(event) -> void:
 					limit_bottom-get_viewport_rect().size.y/2
 				)
 			)
+		else :
+			is_dragging = false
 
 #Camera control with keys
 func keys_handler() -> void:

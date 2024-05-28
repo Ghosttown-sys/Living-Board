@@ -12,8 +12,9 @@ var initial_rot : float
 var dragging : bool = false
 
 @onready var parent :Card_UI = get_parent()
+@onready var detector = $"../TextureRect/Detector"
 
-var tween;
+var tween
 
 
 func _ready():
@@ -40,8 +41,10 @@ func _on_collider_input_event(event):
 		
 func _process(_delta):
 	if dragging:
+		detector.set_collision_layer_value(1,true)
 		global_position = get_global_mouse_position() - size/2;
 		rotation = -parent.rotation
 		visual_node.z_index = Game_Manager.z_index_dragging_card
 	else:
+		detector.set_collision_layer_value(1,false)
 		visual_node.z_index = Game_Manager.z_index_idle_card
