@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=4 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_80pgd"]
 [ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="3_gbia6"]
-[ext_resource type="PackedScene" uid="uid://cl54r7scqb8x2" path="res://Game/Scenes/Player/Player.tscn" id="4_ddh84"]
 
 [node name="Run" type="Node2D"]
 
@@ -34,6 +33,3 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Hud" parent="." instance=ExtResource("3_gbia6")]
-
-[node name="Player" parent="." instance=ExtResource("4_ddh84")]
-position = Vector2(196, 207)

@@ -4,9 +4,16 @@ extends Node2D
 @export var board_width : int
 
 @export var room_template: Resource
+@onready var player_token = $Player_Token
 
 var hovered_room : Room
 var rooms = []
+
+@export_category("pLAYER_DIRECTION")
+@export var player_position : Vector2
+@export var new_position : Vector2
+
+@export var player_room : Room
 
 func _ready():
 	Events.board_moved.connect(board_moved)
@@ -21,6 +28,7 @@ func _ready():
 			create_new_room(room_scene,x,y)
 
 	initialize_board();
+	set_up_player()
 
 func create_new_room(room_scene,x, y):
 	# Create the room
@@ -109,7 +117,10 @@ func update_rooms_positions():
 				else:
 					room.position = Vector2(- room_size.x,room.position.y)
 						
-				
+			
+			if rooms[x][y].is_hosting_player:
+				force_update_player_room(x,y)
+			
 			tweens.append(tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD))
 			 
 	await Tween_Utilities.await_all(tweens);
@@ -130,3 +141,49 @@ func _on_mouse_hover_enter_room(room : Room):
 	
 func _on_mouse_hover_exit_room(room : Room):
 	hovered_room = null
+
+func set_up_player():
+	player_position = Vector2.ZERO
+	new_position = player_position
+	update_player_token_room()
+
+func force_update_player_room(x:int , y:int):
+	player_position = Vector2(x,y)
+	new_position = player_position
+	update_player_token_room()
+	
+func update_player_token_room():
+	if new_position.x >= 0 and new_position.x < rooms.size() and new_position.y >= 0 and new_position.y < rooms[new_position.x].size():
+		rooms[player_position.x][player_position.y].is_hosting_player = false
+		player_position = new_position
+		player_token.reparent(rooms[player_position.x][player_position.y])
+		player_token.global_position = rooms[player_position.x][player_position.y].global_position
+		player_room = rooms[player_position.x][player_position.y]
+		rooms[player_position.x][player_position.y].is_hosting_player = true
+	else :
+		new_position = player_position
+	
+	Game_Manager.camera_relocate.emit(player_token.global_position)
+
+func _on_up_pressed():
+	new_position = player_position
+	new_position += Vector2.UP
+	update_player_token_room()
+
+
+func _on_left_pressed():
+	new_position = player_position
+	new_position +=Vector2.LEFT
+	update_player_token_room()
+
+
+func _on_r_ight_pressed():
+	new_position = player_position
+	new_position += Vector2.RIGHT
+	update_player_token_room()
+
+
+func _on_down_pressed():
+	new_position = player_position
+	new_position += Vector2.DOWN
+	update_player_token_room()

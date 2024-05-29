@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpeccip4koobu"]
+
+[ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="1_eti4r"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="1_o7045"]
+[ext_resource type="Texture2D" uid="uid://b6kf63xd4kmw0" path="res://assets/images/light.png" id="3_sdhed"]
+
+[node name="Player_Token" type="CharacterBody2D"]
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+texture = ExtResource("1_o7045")
+hframes = 2
+vframes = 5
+
+[node name="Player_Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_eti4r")
+hframes = 4
+vframes = 12
+
+[node name="light" type="PointLight2D" parent="."]
+color = Color(0.941176, 0.831373, 0.203922, 1)
+texture = ExtResource("3_sdhed")

@@ -4,6 +4,7 @@ class_name Room
 
 static var static_id : int
 
+var is_hosting_player := false
 var room_id : int : 
 	set(value):
 		room_id = value;
@@ -49,6 +50,7 @@ var hovering : bool:
 			targeted.show();
 		else:
 			targeted.hide();
+
 
 func _ready():
 	assign_random_openings()
