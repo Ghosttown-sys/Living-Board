@@ -71,7 +71,6 @@ func get_column(index):
 	return column
 
 func get_all_columns() -> Array:
-	print("columns")
 	var columns = []
 	var num_columns = grid_width
 
@@ -80,5 +79,4 @@ func get_all_columns() -> Array:
 		for row in range(grid.size()):
 			column.append(grid[row][col])
 		columns.append(column)
-	print(columns)
 	return columns

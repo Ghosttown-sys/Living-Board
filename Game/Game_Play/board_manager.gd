@@ -81,11 +81,35 @@ func update_rooms_positions():
 	var tweens = []
 	for x in rooms.size():
 		for y in rooms[0].size():
-			var tween = get_tree().create_tween()
 			# update position
 			var room = rooms[x][y]
 			var room_size = room.get_room_pixel_size();
 			var new_position :Vector2 = Vector2(room_size.x * room.coordinates.x,room_size.y * room.coordinates.y);
+			# skip if not moved
+			if room.position == new_position:
+				continue
+			
+			var tween = get_tree().create_tween()
+			
+			#wrap around in Y axis
+			if abs(room.coordinates.y - room.position.y/room_size.y) > 1:
+				var up = room.coordinates.y - room.position.y/room_size.y > 0
+				
+				if up:
+					room.position = Vector2(room.position.x, room_size.y * board_height)
+				else:
+					room.position = Vector2(room.position.x, - room_size.y)
+			
+			#wrap around in X axis
+			if abs(room.coordinates.x - room.position.x/room_size.x) > 1:
+				var left = room.coordinates.x - room.position.x/room_size.x > 0
+				
+				if left:
+					room.position = Vector2(room_size.x * board_width, room.position.y)
+				else:
+					room.position = Vector2(- room_size.x,room.position.y)
+						
+				
 			tweens.append(tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD))
 			 
 	await Tween_Utilities.await_all(tweens);

@@ -23,7 +23,7 @@ func _ready():
 	
 	
 func _on_collider_input_event(event):
-	if Input.is_action_just_pressed("select_card"):
+	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
 		initial_pos = position
 		initial_rot = rotation
 		
@@ -31,12 +31,12 @@ func _on_collider_input_event(event):
 		tween.tween_property(visual_node, "scale", Vector2(0.2,0.2), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		
 		dragging = true
-	if Input.is_action_just_released("select_card"):
+	if event.is_action("select_card") and event.is_released() and not event.is_echo():
 		
 		var target_room : Room = board.hovered_room
 		if target_room != null:
 			get_parent().queue_free()
-			Board_Manipulator.push_column(target_room.coordinates.x, Game_Manager.DIRECTION.UP)
+			Board_Manipulator.push_row(target_room.coordinates.y, Game_Manager.DIRECTION.RIGHT)
 		else:
 			position = initial_pos
 			rotation = initial_rot

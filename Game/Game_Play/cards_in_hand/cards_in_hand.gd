@@ -17,7 +17,7 @@ var mouse_pos: float
 var position_offset: Vector2;
 
 func _ready():
-	add_cards(5)
+	add_cards(15)
 	rearrange_cards()
 
 func _process(_delta):
