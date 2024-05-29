@@ -1,6 +1,6 @@
 extends Node
 
-signal board_move_begin;
+signal board_moved;
 
-signal on_hover_room_enter(room:room)
-signal on_hover_room_exit(room:room)
+signal on_card_hovering_room_enter(room:Room)
+signal on_card_hovering_room_exit(room:Room)

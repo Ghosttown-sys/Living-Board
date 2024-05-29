@@ -1,14 +1,18 @@
-
 extends Node2D
 
 @export var board_height : int
 @export var board_width : int
 
 @export var room_template: Resource
+
+var hovered_room : Room
 var rooms = []
 
 func _ready():
-	Events.board_move_begin.connect(board_moved)
+	Events.board_moved.connect(board_moved)
+	Events.on_card_hovering_room_enter.connect(_on_mouse_hover_enter_room)
+	Events.on_card_hovering_room_exit.connect(_on_mouse_hover_exit_room)
+	
 	var room_scene = load(room_template.resource_path)
 	# Create rooms
 	for x in board_width:
@@ -96,3 +100,9 @@ func update_rooms_activation():
 
 func board_moved():
 	update_board()
+
+func _on_mouse_hover_enter_room(room : Room):
+	hovered_room = room
+	
+func _on_mouse_hover_exit_room(room : Room):
+	hovered_room = null

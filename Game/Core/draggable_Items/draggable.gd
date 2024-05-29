@@ -13,6 +13,7 @@ var dragging : bool = false
 
 @onready var parent :Card_UI = get_parent()
 @onready var detector = $"../TextureRect/Detector"
+@onready var board = $"/root/Run/Board"
 
 var tween
 
@@ -31,12 +32,18 @@ func _on_collider_input_event(event):
 		
 		dragging = true
 	if Input.is_action_just_released("select_card"):
-		var tween = get_tree().create_tween()
-		tween.tween_property(visual_node, "scale", Vector2(1,1), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
-		dragging = false
-		position = initial_pos
-		rotation = initial_rot
 		
+		var target_room : Room = board.hovered_room
+		if target_room != null:
+			get_parent().queue_free()
+			Board_Manipulator.push_column(target_room.coordinates.x, Game_Manager.DIRECTION.UP)
+		else:
+			position = initial_pos
+			rotation = initial_rot
+			
+		var tween = get_tree().create_tween()
+		tween.tween_property(visual_node, "scale", Vector2(1,1), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)	
+		dragging = false
 		
 func _process(_delta):
 	if dragging:

@@ -34,6 +34,8 @@ func push_column(col_index, direction : Game_Manager.DIRECTION):
 	else:# direction == DIRECTION.UP
 		var head = column.pop_front();
 		column.push_back(head);
+		
+	Events.board_moved.emit();
 
 func push_row(row_index, direction : Game_Manager.DIRECTION):
 	print(" Pushing row ", row_index, " to the ", Game_Manager.DIRECTION.keys()[direction])
@@ -56,6 +58,8 @@ func push_row(row_index, direction : Game_Manager.DIRECTION):
 		for column in range(grid_height - 1):
 			grid[column][row_index] = grid[column + 1][row_index]
 		grid[grid_height - 1][row_index] = head
+	
+	Events.board_moved.emit();
 
 func get_row(index):
 	return grid[index]

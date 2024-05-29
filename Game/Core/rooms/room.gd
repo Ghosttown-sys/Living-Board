@@ -1,5 +1,5 @@
 extends Node2D
-class_name room
+class_name Room
 
 
 static var static_id : int
@@ -81,18 +81,18 @@ func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
 func _on_mouse_entered():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_BOUNCE)
-	Events.on_hover_room_enter.emit(self)
-
+	
 func _on_mouse_exited():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1,1), 0.2).set_trans(Tween.TRANS_BOUNCE)
-	Events.on_hover_room_exit.emit(self)
-
+	
 func _on_area_entered(area):
 	if area is Player:
 		return
 	targeted.show()
 	hovering = true
+	Events.on_card_hovering_room_enter.emit(self)
 
 func _on_area_exited(area):
 	hovering = false
+	Events.on_card_hovering_room_exit.emit(self)

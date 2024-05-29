@@ -24,7 +24,7 @@ var dying : bool = false
 var attacking : bool = false
 
 #room info
-var current_room :room
+var current_room :Room
 
 enum Attack_Type{
 	MELEE,
@@ -89,7 +89,7 @@ func get_player_direction()->Vector2:
 
 
 func _on_room_detector_area_entered(area):
-	if area is room:
+	if area is Room:
 		current_room = area
 		Board_Manipulator
 		print(current_room.room_id)
