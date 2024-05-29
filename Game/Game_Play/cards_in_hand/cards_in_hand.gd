@@ -15,10 +15,10 @@ const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
 var position_offset: Vector2;
+
 func _ready():
 	add_cards(5)
 	rearrange_cards()
-	Events.remove_me.connect(remove_card)
 
 func _process(_delta):
 	rearrange_cards()
@@ -29,11 +29,6 @@ func add_cards(card_amount: int) -> void:
 	for child_index in range(card_amount):
 		var card = CARD.instantiate()
 		add_child(card)
-
-func remove_card(card:Card_UI)->void:
-	for i in get_children():
-		if i == card:
-			reparent(i)
 
 func calculate_position(card: Card_UI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
@@ -53,7 +48,6 @@ func calculate_card_destination(card: Card_UI, ratio: float, width: float, heigh
 	#var mouse_in_range = get_viewport_rect().has_point(get_global_mouse_position())
 	#if mouse_in_range:
 		#mouse_pos = 0.5 - ((get_global_mouse_position().x - global_position.x) / get_viewport_rect().size.x)
-
 	position.x += spread_curve.sample(ratio) * width
 	position += height_curve.sample(ratio + mouse_pos) * Vector2.UP * height
 	
@@ -63,18 +57,18 @@ func calculate_rotation(ratio: float, base_rotation: int) -> float:
 	return rotation_curve.sample(ratio) * deg_to_rad(base_rotation)
 
 func rearrange_cards() -> void:
-	for card in get_children():
+	for card in get_cards():
 		if card.dragging: 
 			continue
 		current_card = card
-		card_index = card.get_index()
+		card_index = get_cards().find(card)
 
-		if get_child_count() > 1:
-			hand_ratio = float(card_index) / float(get_child_count() - 1)
+		if get_cards().size() > 1:
+			hand_ratio = float(card_index) / float( get_cards().size() - 1)
 		else:
 			hand_ratio = 0.5
-
-		var hand_params = calculate_hand_parameters(get_child_count())
+		
+		var hand_params = calculate_hand_parameters(get_cards().size())
 		destination = calculate_card_destination(card, hand_ratio, hand_params[0], hand_params[2])
 		var new_rotation = calculate_rotation(hand_ratio, hand_params[1])
 
@@ -98,3 +92,10 @@ func _input(event):
 		else:
 			show()
 	
+func get_cards():
+	var cards_in_hand = []
+	var all_cards = get_tree().get_nodes_in_group("card_in_hand")
+	for card in get_children():
+		if all_cards.has(card) && not card.dragging:
+			cards_in_hand.append(card)
+	return cards_in_hand

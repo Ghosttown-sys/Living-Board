@@ -43,6 +43,13 @@ Tilemap layers are:
 
 @onready var rng = RandomNumberGenerator.new()
 
+var hovering : bool:
+	set(value):
+		if value:
+			targeted.show();
+		else:
+			targeted.hide();
+
 func _ready():
 	assign_random_openings()
 	update_visuals()
@@ -71,11 +78,6 @@ func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
 	var fog_layer = direction + 5;
 	tilemap.set_layer_enabled(fog_layer, enabled);
 	
-func _on_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed and \
-			event.button_index == MOUSE_BUTTON_LEFT:
-		print(self)
-
 func _on_mouse_entered():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_BOUNCE)
@@ -86,13 +88,11 @@ func _on_mouse_exited():
 	tween.tween_property(self, "scale", Vector2(1,1), 0.2).set_trans(Tween.TRANS_BOUNCE)
 	Events.on_hover_room_exit.emit(self)
 
-
 func _on_area_entered(area):
 	if area is Player:
 		return
-	print(room_id, "  ", area.get_parent().get_parent())
 	targeted.show()
-
+	hovering = true
 
 func _on_area_exited(area):
-	targeted.hide()
+	hovering = false

@@ -41,7 +41,7 @@ _data = {
 "focus": SubResource("Animation_bpy3q")
 }
 
-[node name="CoreCard" type="Control"]
+[node name="CoreCard" type="Control" groups=["card_in_hand"]]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2

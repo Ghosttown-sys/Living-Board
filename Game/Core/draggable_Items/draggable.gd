@@ -23,7 +23,6 @@ func _ready():
 	
 func _on_collider_input_event(event):
 	if Input.is_action_just_pressed("select_card"):
-		#Events.remove_me.emit(parent)
 		initial_pos = position
 		initial_rot = rotation
 		
@@ -32,12 +31,12 @@ func _on_collider_input_event(event):
 		
 		dragging = true
 	if Input.is_action_just_released("select_card"):
-		
 		var tween = get_tree().create_tween()
 		tween.tween_property(visual_node, "scale", Vector2(1,1), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 		dragging = false
 		position = initial_pos
 		rotation = initial_rot
+		
 		
 func _process(_delta):
 	if dragging:
