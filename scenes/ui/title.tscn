@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene load_steps=8 format=3 uid="uid://d1dowke5fsdap"]
 
 [ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="1"]
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
 [ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://c7blexvxm5nqd" path="res://assets/Arts/Main_Menu.png" id="3_1vd5m"]
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("1")])
@@ -59,14 +60,14 @@ grow_vertical = 2
 theme = ExtResource("1_cv88s")
 script = ExtResource("2")
 
-[node name="TextureRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.356863, 0.0666667, 0.403922, 1)
+texture = ExtResource("3_1vd5m")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -85,15 +86,13 @@ text = "Living Board"
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -282.0
-offset_top = -248.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -124.0
+offset_right = 365.0
+offset_bottom = 197.0
+grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
