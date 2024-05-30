@@ -9,7 +9,7 @@ extends Node2D
 var hovered_room : Room
 var rooms = []
 
-@export_category("pLAYER_DIRECTION")
+@export_category("PLAYER_DIRECTION")
 @export var player_position : Vector2
 @export var new_position : Vector2
 
@@ -26,7 +26,8 @@ func _ready():
 		rooms.append([])
 		for y in board_height:
 			create_new_room(room_scene,x,y)
-
+	
+	player_room = rooms[0][0]
 	initialize_board();
 	set_up_player()
 
@@ -43,10 +44,8 @@ func create_new_room(room_scene,x, y):
 	room_instance.position = Vector2(room_size.x * x,room_size.y * y);
 
 func initialize_board():
-	
-	var central_room = rooms[board_width/2][board_height/2]
-	central_room.openings = Game_Manager.ALL_DIRECTIONS.duplicate();
-	central_room.update_visuals()
+	player_room.openings = Game_Manager.ALL_DIRECTIONS.duplicate();
+	player_room.update_visuals()
 	
 	update_rooms_activation()
 	
@@ -142,8 +141,7 @@ func update_rooms_positions():
 	await Tween_Utilities.await_all(tweens);
 
 func update_rooms_activation():
-	var central_room = rooms[board_width/2][board_height/2]
-	var active_rooms = find_all_connected_rooms(central_room)
+	var active_rooms = find_all_connected_rooms(player_room)
 	
 	for row in rooms:
 		for room in row:
@@ -169,18 +167,20 @@ func force_update_player_room(x:int , y:int):
 	update_player_token_room()
 	
 func update_player_token_room():
-	print(is_valid_move())
 	if is_valid_move():
 		rooms[player_position.x][player_position.y].is_hosting_player = false
 		player_position = new_position
 		player_token.reparent(rooms[player_position.x][player_position.y])
-		player_token.global_position = rooms[player_position.x][player_position.y].global_position
+		
+		var tween = get_tree().create_tween()
+		tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
+		#player_token.global_position = rooms[player_position.x][player_position.y].global_position
 		player_room = rooms[player_position.x][player_position.y]
 		rooms[player_position.x][player_position.y].is_hosting_player = true
 	else :
 		new_position = player_position
 	
-	Game_Manager.camera_relocate.emit(player_token.global_position)
+	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
 
 # Check if the move to the next room is valid
 func is_valid_move() -> bool:

@@ -82,5 +82,6 @@ func zoom_handler(event):
 func relocate_camera(new_pos : Vector2)->void:
 	var old_pos = position
 	var displacement = old_pos - new_pos
-	position -= displacement
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position - displacement, 0.8).set_trans(Tween.TRANS_QUAD)
 	
