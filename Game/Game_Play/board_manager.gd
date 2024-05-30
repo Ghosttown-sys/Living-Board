@@ -51,8 +51,23 @@ func initialize_board():
 	update_rooms_activation()
 	
 	Board_Manipulator.grid = rooms;
-
-func find_connected_rooms(room):
+	
+# Returns a list of all rooms connected to the room
+func get_connected_rooms(room: Room):
+	var connected_rooms = []
+	for direction in room.openings:
+		var neighbour_coordinates = room.coordinates + Game_Manager.d2v[direction];
+		# Check if it's out of bound
+		if neighbour_coordinates.x >= board_width || neighbour_coordinates.y >= board_height\
+		 || neighbour_coordinates.x < 0 || neighbour_coordinates.y < 0:
+			continue
+		var neighbour = rooms[neighbour_coordinates.x][neighbour_coordinates.y]
+		if neighbour.openings.has(Game_Manager.opposite_direction[direction]):
+			connected_rooms.append(neighbour)
+	
+	return connected_rooms
+	
+func find_all_connected_rooms(room : Room):
 	var visited_rooms = []
 	# Recursively find all rooms connected to the centre
 	find_connected_rooms_recursive(room,visited_rooms)
@@ -84,7 +99,8 @@ func update_board():
 	await update_rooms_positions()
 	update_rooms_activation()
 	pass
-	
+
+# Visually moves the rooms positions in the grid
 func update_rooms_positions():
 	var tweens = []
 	for x in rooms.size():
@@ -127,7 +143,7 @@ func update_rooms_positions():
 
 func update_rooms_activation():
 	var central_room = rooms[board_width/2][board_height/2]
-	var active_rooms = find_connected_rooms(central_room)
+	var active_rooms = find_all_connected_rooms(central_room)
 	
 	for row in rooms:
 		for room in row:
@@ -153,7 +169,8 @@ func force_update_player_room(x:int , y:int):
 	update_player_token_room()
 	
 func update_player_token_room():
-	if new_position.x >= 0 and new_position.x < rooms.size() and new_position.y >= 0 and new_position.y < rooms[new_position.x].size():
+	print(is_valid_move())
+	if is_valid_move():
 		rooms[player_position.x][player_position.y].is_hosting_player = false
 		player_position = new_position
 		player_token.reparent(rooms[player_position.x][player_position.y])
@@ -164,6 +181,16 @@ func update_player_token_room():
 		new_position = player_position
 	
 	Game_Manager.camera_relocate.emit(player_token.global_position)
+
+# Check if the move to the next room is valid
+func is_valid_move() -> bool:
+	# Out of bounds
+	if new_position.x >= board_width || new_position.y >= board_height\
+			 || new_position.x < 0 || new_position.y < 0:
+				return false
+	var new_room = rooms[new_position.x][new_position.y]
+	var player_room = rooms[player_position.x][player_position.y]
+	return get_connected_rooms(player_room).has(new_room)
 
 func _on_up_pressed():
 	new_position = player_position
