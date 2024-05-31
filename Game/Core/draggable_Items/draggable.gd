@@ -35,8 +35,8 @@ func _on_collider_input_event(event):
 		
 		var target_room : Room = board.hovered_room
 		if target_room != null:
-			get_parent().queue_free()
-			Board_Manipulator.push_row(target_room.coordinates.y, Game_Manager.DIRECTION.RIGHT)
+			parent.apply_effect([target_room.coordinates])
+			parent.queue_free()
 		else:
 			position = initial_pos
 			rotation = initial_rot

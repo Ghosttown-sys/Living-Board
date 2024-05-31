@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=14 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
 [ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="4_bgvcg"]
 [ext_resource type="Script" path="res://Game/Core/draggable_Items/draggable.gd" id="4_jo6ar"]
 [ext_resource type="Script" path="res://Game/Core/utils/lerp_follow.gd" id="5_l66e4"]
+[ext_resource type="Texture2D" uid="uid://dbpm0rns1vtkw" path="res://assets/Arts/Resource_Arts/Resources/trap.tres" id="6_f1fc2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rqmyc"]
 light_mode = 1
@@ -15,6 +16,9 @@ region = Rect2(2.08165e-12, 2.08165e-12, 66, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbwq7"]
 size = Vector2(122, 173)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sq47k"]
+light_mode = 1
 
 [sub_resource type="Animation" id="Animation_fpo18"]
 length = 0.001
@@ -98,23 +102,6 @@ to_follow = NodePath("../Draggable_Item")
 follow_position_speed = 8.0
 follow_rotation_speed = 4.0
 
-[node name="Label" type="Label" parent="TextureRect"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 42.0
-offset_right = 6.0
-offset_bottom = 42.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "STATE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Detector" type="Area2D" parent="TextureRect"]
 position = Vector2(62, 90)
 collision_mask = 4
@@ -122,6 +109,26 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Detector"]
 position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_wbwq7")
+
+[node name="Artwork" type="TextureRect" parent="TextureRect"]
+material = SubResource("CanvasItemMaterial_sq47k")
+layout_mode = 0
+offset_left = 25.0
+offset_top = 45.0
+offset_right = 95.0
+offset_bottom = 115.0
+mouse_filter = 2
+texture = ExtResource("6_f1fc2")
+
+[node name="Description" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 137.0
+offset_right = 117.0
+offset_bottom = 175.0
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="card_anime" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,8 @@
-[gd_resource type="AtlasTexture" format=3 uid="uid://dbpm0rns1vtkw"]
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dbpm0rns1vtkw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xqops"]
+load_path = "res://.godot/imported/TrapSheet.png-68d773b45e02f4f7628464dea0662277.ctex"
 
 [resource]
-region = Rect2(0, 0, 128, 80)
+atlas = SubResource("CompressedTexture2D_xqops")
+region = Rect2(64.2787, 18.0603, 31.27, 28.1177)

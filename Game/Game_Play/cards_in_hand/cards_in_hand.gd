@@ -29,6 +29,8 @@ func add_cards(card_amount: int) -> void:
 	for child_index in range(card_amount):
 		var card = CARD.instantiate()
 		add_child(card)
+		
+		card.initialize_card_effect()
 
 func calculate_position(card: Card_UI) -> Vector2:
 	var bottom_offset = get_viewport_rect().size.y / 8  # Adjust this value as needed
@@ -44,10 +46,6 @@ func calculate_card_destination(card: Card_UI, ratio: float, width: float, heigh
 		position = calculate_position(card)
 	mouse_pos = 0.0
 
-	# Add your mouse position logic here if needed
-	#var mouse_in_range = get_viewport_rect().has_point(get_global_mouse_position())
-	#if mouse_in_range:
-		#mouse_pos = 0.5 - ((get_global_mouse_position().x - global_position.x) / get_viewport_rect().size.x)
 	position.x += spread_curve.sample(ratio) * width
 	position += height_curve.sample(ratio + mouse_pos) * Vector2.UP * height
 	

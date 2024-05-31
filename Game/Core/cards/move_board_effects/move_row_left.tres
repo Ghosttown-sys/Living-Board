@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dce6p2vs5cvm6"]
+
+[ext_resource type="Texture2D" uid="uid://dbpm0rns1vtkw" path="res://assets/Arts/Resource_Arts/Resources/trap.tres" id="1_0cwxo"]
+[ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/move_row.gd" id="2_lpst4"]
+
+[resource]
+script = ExtResource("2_lpst4")
+direction = 0
+artwork = ExtResource("1_0cwxo")
+description = "Shift Row Left"
