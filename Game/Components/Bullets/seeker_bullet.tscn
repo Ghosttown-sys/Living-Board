@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2gxlkh333ete"]
+
+[ext_resource type="Script" path="res://Game/Components/Bullets/seeker_bullet.gd" id="1_ev2dq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvixi"]
+size = Vector2(35, 10)
+
+[node name="Seeker_Bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ev2dq")
+
+[node name="Model" type="Sprite2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_qvixi")
+
+[node name="Visiblity_Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Seeking_Zone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Seeking_Zone"]
+polygon = PackedVector2Array(17, 6, 17, -4, 84, -32, 84, 26)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="Visiblity_Notifier" to="." method="_on_visiblity_notifier_screen_exited"]
+[connection signal="body_entered" from="Seeking_Zone" to="." method="_on_seeking_zone_body_entered"]

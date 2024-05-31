@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=7 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_80pgd"]
+[ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
+[ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="3_564n1"]
 [ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="3_gbia6"]
+[ext_resource type="StyleBox" uid="uid://cm0xe0tmu05yx" path="res://utils/Extra_Resources/test.tres" id="4_rphho"]
 
 [node name="Run" type="Node2D"]
+script = ExtResource("1_s7tjo")
 
 [node name="Board" parent="." instance=ExtResource("1_4lixk")]
+
+[node name="Camera" parent="." instance=ExtResource("3_564n1")]
 
 [node name="Top_Bar" type="CanvasLayer" parent="."]
 script = ExtResource("1_80pgd")
@@ -33,3 +39,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Hud" parent="." instance=ExtResource("3_gbia6")]
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="Debug"]
+offset_left = 5.0
+offset_top = 243.0
+offset_right = 101.0
+offset_bottom = 274.0
+theme_override_styles/normal = ExtResource("4_rphho")
+theme_override_styles/hover = ExtResource("4_rphho")
+theme_override_styles/pressed = ExtResource("4_rphho")
+theme_override_styles/disabled = ExtResource("4_rphho")
+theme_override_styles/focus = ExtResource("4_rphho")
+text = "Enter room"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="pressed" from="Debug/Button" to="." method="_on_button_pressed"]

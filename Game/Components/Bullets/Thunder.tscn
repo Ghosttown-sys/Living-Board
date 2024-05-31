@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb5nqkjbwhdn"]
+
+[ext_resource type="Script" path="res://Game/Components/Bullets/Thunder.gd" id="1_2a450"]
+[ext_resource type="Texture2D" uid="uid://d30w3wg34e1dn" path="res://Game/Components/Bullets/VFX/spark_06_rotated.png" id="1_mqku7"]
+[ext_resource type="Shader" path="res://Game/Components/Bullets/Thunder.gdshader" id="2_te2no"]
+[ext_resource type="Shader" path="res://Game/Components/Bullets/Thunder_End.gdshader" id="4_mx5cu"]
+[ext_resource type="Texture2D" uid="uid://cyipptdni8p5k" path="res://Game/Components/Bullets/VFX/spark_01.png" id="5_pi70m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ework"]
+shader = ExtResource("2_te2no")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g050d"]
+shader = ExtResource("4_mx5cu")
+
+[node name="Thunder" type="RayCast2D"]
+target_position = Vector2(100, 0)
+collision_mask = 5
+script = ExtResource("1_2a450")
+
+[node name="Effect" type="Line2D" parent="."]
+modulate = Color(12, 2, 3, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ework")
+points = PackedVector2Array(0, 0, 100, 0)
+width = 150.0
+texture = ExtResource("1_mqku7")
+texture_mode = 1
+
+[node name="End" type="Node2D" parent="."]
+modulate = Color(12, 2, 1, 1)
+position = Vector2(85, 0)
+
+[node name="Sprite" type="Sprite2D" parent="End"]
+material = SubResource("ShaderMaterial_g050d")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_pi70m")
+
+[node name="Sprite2" type="Sprite2D" parent="End"]
+material = SubResource("ShaderMaterial_g050d")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_pi70m")
+flip_v = true
