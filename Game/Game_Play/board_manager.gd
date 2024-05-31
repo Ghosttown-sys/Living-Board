@@ -14,6 +14,7 @@ var rooms = []
 @export var new_position : Vector2
 
 @export var player_room : Room
+@onready var buttons = $Buttons
 
 func _ready():
 	Events.board_moved.connect(board_moved)
@@ -214,3 +215,5 @@ func _on_down_pressed():
 	new_position = player_position
 	new_position += Vector2.DOWN
 	update_player_token_room()
+
+

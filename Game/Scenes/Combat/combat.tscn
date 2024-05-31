@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch3ms8ijh627m"]
+[gd_scene load_steps=7 format=3 uid="uid://ch3ms8ijh627m"]
 
 [ext_resource type="Texture2D" uid="uid://c417ag6i8wmeg" path="res://assets/Arts/spritesheets/0x72_16x16DungeonTileset.v5.png" id="1_od0s8"]
+[ext_resource type="Script" path="res://Game/Scenes/Combat/combat.gd" id="1_u4lnp"]
 [ext_resource type="PackedScene" uid="uid://cl54r7scqb8x2" path="res://Game/Scenes/Player/Player.tscn" id="2_qqmbi"]
+[ext_resource type="PackedScene" uid="uid://bhquwuui2urij" path="res://Game/Scenes/Monster/monster.tscn" id="4_6ioml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpmea"]
 texture = ExtResource("1_od0s8")
@@ -246,6 +248,7 @@ texture = ExtResource("1_od0s8")
 sources/1 = SubResource("TileSetAtlasSource_tpmea")
 
 [node name="Combat" type="Node2D"]
+script = ExtResource("1_u4lnp")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_oucbu")
@@ -254,3 +257,6 @@ layer_0/tile_data = PackedInt32Array(262147, 65537, 7, 262148, 131073, 7, 327683
 
 [node name="Player" parent="." instance=ExtResource("2_qqmbi")]
 position = Vector2(510, 297)
+
+[node name="Monster" parent="." instance=ExtResource("4_6ioml")]
+position = Vector2(479, 296)

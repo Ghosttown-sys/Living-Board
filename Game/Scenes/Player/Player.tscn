@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl54r7scqb8x2"]
+[gd_scene load_steps=9 format=3 uid="uid://cl54r7scqb8x2"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Player/Player.gd" id="1_dydsy"]
 [ext_resource type="PackedScene" uid="uid://dxschfv10xhuy" path="res://Game/Components/Visual_Component/visual_component.tscn" id="1_ynkep"]
+[ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="2_m7gvw"]
 [ext_resource type="PackedScene" uid="uid://bf6wvf00nqved" path="res://Game/Components/Interaction_Component/interaction_component.tscn" id="2_mr06p"]
+[ext_resource type="PackedScene" uid="uid://bb5nqkjbwhdn" path="res://Game/Components/Bullets/Thunder.tscn" id="3_llta8"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="4_scqfh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x70ov"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihqy0"]
+size = Vector2(16, 4)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbaro"]
 radius = 6.0
@@ -15,29 +17,46 @@ height = 18.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dydsy")
 
-[node name="Room_Detector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Detector"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_x70ov")
-
 [node name="Weapon_Holder" type="Marker2D" parent="."]
-position = Vector2(13, 0)
+position = Vector2(0, -3)
 
-[node name="Melee" type="Area2D" parent="Weapon_Holder"]
+[node name="Weapon_Zone" type="Area2D" parent="Weapon_Holder"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="Weapon" type="Node2D" parent="Weapon_Holder/Weapon_Zone"]
+position = Vector2(18, 0)
+
+[node name="Sprite" type="Sprite2D" parent="Weapon_Holder/Weapon_Zone/Weapon"]
+rotation = 0.837758
+texture = ExtResource("2_m7gvw")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon_Holder/Weapon_Zone"]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_ihqy0")
+
+[node name="melee_marker" type="Marker2D" parent="Weapon_Holder"]
+position = Vector2(40, 0)
+
+[node name="Magic" parent="Weapon_Holder" instance=ExtResource("3_llta8")]
+visible = false
+enabled = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_tbaro")
 
 [node name="Interaction_Component" parent="." instance=ExtResource("2_mr06p")]
+visible = false
 
 [node name="Visual_Component" parent="." instance=ExtResource("1_ynkep")]
 position = Vector2(1, 0)
 
 [node name="Camera" parent="." instance=ExtResource("4_scqfh")]
+zoom = Vector2(2, 2)
 
-[connection signal="area_entered" from="Room_Detector" to="." method="_on_room_detector_area_entered"]
-[connection signal="area_entered" from="Weapon_Holder/Melee" to="." method="_on_melee_area_entered"]
+[connection signal="area_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_melee_area_entered"]
+[connection signal="body_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_weapon_zone_body_entered"]

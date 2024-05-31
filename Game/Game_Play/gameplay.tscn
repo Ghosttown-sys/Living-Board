@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=6 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
-[ext_resource type="PackedScene" path="res://Game/Scenes/Player/player_token.tscn" id="4_onu2n"]
-[ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="5_jl6i2"]
+[ext_resource type="PackedScene" uid="uid://bpeccip4koobu" path="res://Game/Scenes/Player/player_token.tscn" id="4_onu2n"]
 [ext_resource type="StyleBox" uid="uid://cm0xe0tmu05yx" path="res://utils/Extra_Resources/test.tres" id="6_fgclg"]
 
 [node name="Board" type="Node2D"]
@@ -29,8 +28,6 @@ z_index = 2
 
 [node name="Player_Token" parent="." instance=ExtResource("4_onu2n")]
 z_index = 1
-
-[node name="Camera" parent="." instance=ExtResource("5_jl6i2")]
 
 [node name="Buttons" type="CanvasLayer" parent="."]
 
