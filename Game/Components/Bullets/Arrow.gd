@@ -1,4 +1,4 @@
-class_name Bullet
+class_name Arrow
 extends Area2D
 
 @onready var bullet_time_out :Timer = $Bullet_TimeOut

@@ -1,21 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsfft600marhg"]
 
-[ext_resource type="Script" path="res://Game/Components/Bullets/bullet.gd" id="1_4bmv2"]
-[ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="2_wn464"]
+[ext_resource type="Script" path="res://Game/Components/Bullets/Arrow.gd" id="1_ctfo5"]
+[ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="2_l8wks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jolbe"]
 radius = 7.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Arrow" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("1_4bmv2")
+script = ExtResource("1_ctfo5")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jolbe")
 
 [node name="Model" type="Sprite2D" parent="."]
-texture = ExtResource("2_wn464")
+texture = ExtResource("2_l8wks")
 hframes = 4
 frame = 2
 
