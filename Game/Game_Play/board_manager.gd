@@ -137,7 +137,8 @@ func update_rooms_positions():
 				force_update_player_room(x,y)
 			
 			tweens.append(tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD))
-			 
+	if tweens.size() > 0:
+		AudioManager.wall_move_sfx.play()
 	await Tween_Utilities.await_all(tweens);
 
 func update_rooms_activation():
@@ -199,12 +200,14 @@ func _on_up_pressed():
 
 
 func _on_left_pressed():
+	AudioManager.play_music(1)
 	new_position = player_position
 	new_position +=Vector2.LEFT
 	update_player_token_room()
 
 
 func _on_r_ight_pressed():
+	AudioManager.play_music(0)
 	new_position = player_position
 	new_position += Vector2.RIGHT
 	update_player_token_room()

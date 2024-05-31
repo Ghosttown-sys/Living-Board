@@ -2,6 +2,8 @@ extends Control
 
 @onready var _load_game_dlg = $LoadGameDlg
 
+func _ready():
+	AudioManager.play_music(0)
 
 func _on_NewGameBtn_pressed():
 	GameStateService.new_game()

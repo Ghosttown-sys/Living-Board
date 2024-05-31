@@ -1,54 +1,41 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene load_steps=11 format=3 uid="uid://d1dowke5fsdap"]
 
-[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="1"]
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
 [ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://c7blexvxm5nqd" path="res://assets/Arts/Main_Menu.png" id="3_1vd5m"]
+[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_dwkem"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="7_cq32e"]
+[ext_resource type="StyleBox" uid="uid://l4wnxadgiu7n" path="res://assets/themes/main_menu_button.tres" id="7_ohxkk"]
+[ext_resource type="FontFile" uid="uid://ktn001fldc7a" path="res://assets/fonts/Minimal5x7.ttf" id="8_tv0fl"]
+[ext_resource type="StyleBox" uid="uid://dwe4g2d51prik" path="res://assets/themes/small_main_menu_button.tres" id="9_2sb8w"]
 
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("1")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
-cache/0/40/0/ascent = 0.0
-cache/0/40/0/descent = 0.0
-cache/0/40/0/underline_position = 0.0
-cache/0/40/0/underline_thickness = 0.0
-cache/0/40/0/scale = 1.0
-cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/40/0/kerning_overrides/100/0 = Vector2(0, 0)
-cache/0/100/0/ascent = 0.0
-cache/0/100/0/descent = 0.0
-cache/0/100/0/underline_position = 0.0
-cache/0/100/0/underline_thickness = 0.0
-cache/0/100/0/scale = 1.0
-cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/100/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("1")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
-cache/0/48/0/ascent = 0.0
-cache/0/48/0/descent = 0.0
-cache/0/48/0/underline_position = 0.0
-cache/0/48/0/underline_thickness = 0.0
-cache/0/48/0/scale = 1.0
-cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+[sub_resource type="Theme" id="Theme_l37du"]
+default_font = ExtResource("8_tv0fl")
+default_font_size = 50
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("7_cq32e")
+Button/styles/disabled = ExtResource("7_ohxkk")
+Button/styles/focus = ExtResource("7_ohxkk")
+Button/styles/hover = ExtResource("7_ohxkk")
+Button/styles/normal = ExtResource("7_ohxkk")
+Button/styles/pressed = ExtResource("7_ohxkk")
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -81,59 +68,59 @@ theme_override_constants/margin_bottom = 20
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 theme_type_variation = &"title"
-theme_override_fonts/font = SubResource("3")
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("7_cq32e")
 text = "Living Board"
-
-[node name="MarginContainer3" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -124.0
-offset_right = 365.0
-offset_bottom = 197.0
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="NewGameBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_constants/h_separation = 10
-theme_override_fonts/font = SubResource("5")
-text = "New Game"
-flat = true
-
-[node name="LoadGameBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_constants/h_separation = 10
-theme_override_fonts/font = SubResource("5")
-text = "Load Game"
-flat = true
-
-[node name="ExitBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_constants/h_separation = 10
-theme_override_fonts/font = SubResource("5")
-text = "Exit"
-flat = true
 
 [node name="LoadGameDlg" parent="." instance=ExtResource("3")]
 
-[connection signal="pressed" from="MarginContainer3/VBoxContainer/NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer/LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer/ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[node name="NewGameBtn" type="Button" parent="."]
+layout_mode = 2
+offset_left = 18.0
+offset_top = 233.0
+offset_right = 343.0
+offset_bottom = 284.0
+rotation = -0.112011
+scale = Vector2(0.66, 0.66)
+focus_mode = 0
+theme = ExtResource("5_dwkem")
+theme_override_constants/h_separation = 10
+text = "New Game"
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadGameBtn" type="Button" parent="."]
+layout_mode = 2
+offset_left = 153.0
+offset_top = 302.0
+offset_right = 478.0
+offset_bottom = 371.0
+rotation = 0.103988
+scale = Vector2(0.66, 0.66)
+focus_mode = 0
+theme = ExtResource("5_dwkem")
+text = "Load Game"
+
+[node name="ExitBtn" type="Button" parent="."]
+layout_mode = 2
+offset_left = 51.0
+offset_top = 447.0
+offset_right = 376.0
+offset_bottom = 516.0
+rotation = -0.0464225
+scale = Vector2(0.66, 0.66)
+focus_mode = 0
+theme = SubResource("Theme_l37du")
+theme_override_styles/normal = ExtResource("9_2sb8w")
+theme_override_styles/hover = ExtResource("9_2sb8w")
+theme_override_styles/pressed = ExtResource("9_2sb8w")
+theme_override_styles/disabled = ExtResource("9_2sb8w")
+theme_override_styles/focus = ExtResource("9_2sb8w")
+text = "Exit"
+
+[connection signal="pressed" from="NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
+[connection signal="pressed" from="LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
+[connection signal="pressed" from="ExitBtn" to="." method="_on_ExitBtn_pressed"]

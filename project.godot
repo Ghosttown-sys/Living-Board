@@ -26,6 +26,7 @@ Game_Manager="*res://Global/Game_Manager.gd"
 Board_Manipulator="*res://Game/Core/rooms/board_manipulator.gd"
 Events="*res://Global/Events.gd"
 Tween_Utilities="*res://Global/Tween_Utilities.gd"
+AudioManager="*res://Game/audio_manager.tscn"
 
 [debug]
 
