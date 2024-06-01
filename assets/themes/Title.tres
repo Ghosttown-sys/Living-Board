@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://5fedla704eca"]
+
+[ext_resource type="FontFile" uid="uid://b2w370tst0bsw" path="res://assets/fonts/PixelTakhisis-ZajJ.ttf" id="1_3oeix"]
+
+[resource]
+default_font = ExtResource("1_3oeix")
+Label/colors/font_outline_color = Color(0.387272, 0.227868, 0.111996, 1)
+Label/constants/outline_size = 32
+Label/font_sizes/font_size = 95
+Label/fonts/font = ExtResource("1_3oeix")
