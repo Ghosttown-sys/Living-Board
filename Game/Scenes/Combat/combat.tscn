@@ -261,3 +261,7 @@ attack_type = 1
 
 [node name="Monster" parent="." instance=ExtResource("4_6ioml")]
 position = Vector2(479, 296)
+
+[node name="Monster2" parent="." instance=ExtResource("4_6ioml")]
+position = Vector2(639, 304)
+monster_type = 0

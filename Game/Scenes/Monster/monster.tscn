@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhquwuui2urij"]
+[gd_scene load_steps=15 format=3 uid="uid://bhquwuui2urij"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Monster/monster.gd" id="1_cc6s0"]
 [ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_qtapn"]
@@ -134,6 +134,8 @@ _data = {
 "RESET": SubResource("Animation_lpqbx")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdmi1"]
+
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -157,9 +159,16 @@ libraries = {
 position = Vector2(-10, -4)
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Shooter" type="Marker2D" parent="."]
 position = Vector2(12, 0)
 
+[node name="Melee_zone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee_zone"]
+shape = SubResource("CircleShape2D_sdmi1")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Melee_zone" to="." method="_on_melee_zone_body_entered"]
