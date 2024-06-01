@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=15 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" path="res://Game/Core/Card/Core_Card.gd" id="1_artrx"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Global/Curves/Angle_Curve.tres" id="2_4iv8s"]
@@ -18,6 +18,9 @@ region = Rect2(2.08165e-12, 2.08165e-12, 66, 96)
 size = Vector2(122, 173)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sq47k"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0m3in"]
 light_mode = 1
 
 [sub_resource type="Animation" id="Animation_fpo18"]
@@ -121,6 +124,7 @@ mouse_filter = 2
 texture = ExtResource("6_f1fc2")
 
 [node name="Description" type="Label" parent="TextureRect"]
+material = SubResource("CanvasItemMaterial_0m3in")
 layout_mode = 0
 offset_left = 7.0
 offset_top = 137.0

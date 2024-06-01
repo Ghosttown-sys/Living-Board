@@ -16,7 +16,7 @@ var active : bool :
 		tween.tween_property(light, "energy", target, 0.2).set_trans(Tween.TRANS_QUAD)
 		
 # rotation/ facing towards
-var direction : Game_Manager.DIRECTION
+var direction : Game_Manager.DIRECTION = Game_Manager.DIRECTION.UP
 # which directions have a corridor
 var openings : Array[Game_Manager.DIRECTION]
 # which other rooms this is connected to
@@ -51,17 +51,16 @@ var hovering : bool:
 		else:
 			targeted.hide();
 
-
 func _ready():
 	assign_random_openings()
 	update_visuals()
 
 func update_visuals():
 	# for layers 1 to 4 (corridor layers)
-	for direction in range(1,5):
-		tilemap.set_layer_enabled(direction, openings.has(direction - 1));
+	for layer in range(0,4):
+		var direction = Game_Manager.direction_index[layer]
+		tilemap.set_layer_enabled(layer + 1, openings.has(direction));
 	debug_label.text = str(room_id);
-
 
 func get_room_pixel_size():
 	return tilemap.get_used_rect().size * tilemap.rendering_quadrant_size
@@ -77,7 +76,9 @@ func assign_random_openings():
 
 # Renders or hide the fog between corridors
 func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
-	var fog_layer = direction + 5;
+	var direction_index = Game_Manager.layer_index[direction]
+	
+	var fog_layer = direction_index + 5;
 	tilemap.set_layer_enabled(fog_layer, enabled);
 	
 func _on_mouse_entered():

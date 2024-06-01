@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bov1krs5bkhje"]
+
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="1_0aold"]
+[ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/rotate_room.gd" id="2_uxua2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ehp3"]
+atlas = ExtResource("1_0aold")
+region = Rect2(-0.644058, 66.7304, 17.148, 13.2393)
+
+[resource]
+script = ExtResource("2_uxua2")
+direction = 270
+artwork = SubResource("AtlasTexture_6ehp3")
+description = "Rotate Room AntiClockwise"

@@ -109,11 +109,18 @@ func update_rooms_positions():
 			var room = rooms[x][y]
 			var room_size = room.get_room_pixel_size();
 			var new_position :Vector2 = Vector2(room_size.x * room.coordinates.x,room_size.y * room.coordinates.y);
-			# skip if not moved
-			if room.position == new_position:
-				continue
+			var new_rotation = room.direction
 			
+			# If the rotation is 0, make it 360 to rotate anticlockwise
+			if room.rotation_degrees ==0 and new_rotation == Game_Manager.DIRECTION.LEFT:
+				room.rotation_degrees = 360
+			
+			# If the rotation is 270, make it -90 to rotate clockwise
+			if room.rotation_degrees == 270 and new_rotation == Game_Manager.DIRECTION.UP:
+				room.rotation_degrees = -90
+			#rotate
 			var tween = get_tree().create_tween()
+			tweens.append(tween.tween_property(room, "rotation_degrees", new_rotation, 0.8).set_trans(Tween.TRANS_QUAD))
 			
 			#wrap around in Y axis
 			if abs(room.coordinates.y - room.position.y/room_size.y) > 1:
