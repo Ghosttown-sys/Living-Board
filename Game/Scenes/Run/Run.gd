@@ -12,6 +12,7 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 
 
 func _on_button_pressed():
+	AudioManager.play_music(2)
 	toggle_visiblity()
 	var new_combat := COMBAT.instantiate()
 	new_combat.temp = 5
