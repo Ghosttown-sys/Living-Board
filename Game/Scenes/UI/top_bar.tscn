@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccockq4ssn6uj"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_0gwui"]
+[ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="2_3wu0k"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="2_pa1bv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x58si"]
+atlas = ExtResource("2_pa1bv")
+region = Rect2(0, 64, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jr8k"]
+atlas = ExtResource("2_3wu0k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tlm6"]
+bg_color = Color(0.780233, 0.543688, 0.294391, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2imna"]
+bg_color = Color(0.313726, 1, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdwaq"]
+bg_color = Color(0.310758, 0.556018, 0.910188, 1)
+
+[node name="Top_Bar" type="CanvasLayer"]
+script = ExtResource("1_0gwui")
+
+[node name="BG" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_x58si")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Menu" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="PLace_holder3" type="Label" parent="Menu"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Profile" type="NinePatchRect" parent="Menu"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+
+[node name="Profile" type="HBoxContainer" parent="Menu/Profile"]
+layout_mode = 2
+offset_right = 256.0
+offset_bottom = 64.0
+
+[node name="Avatar" type="TextureRect" parent="Menu/Profile/Profile"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_0jr8k")
+
+[node name="Labels" type="VBoxContainer" parent="Menu/Profile/Profile"]
+layout_mode = 2
+alignment = 1
+
+[node name="HP" type="Label" parent="Menu/Profile/Profile/Labels"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+
+[node name="Sanity" type="Label" parent="Menu/Profile/Profile/Labels"]
+layout_mode = 2
+text = "Sanity"
+horizontal_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="Menu/Profile/Profile"]
+layout_mode = 2
+alignment = 1
+
+[node name="HP" type="ProgressBar" parent="Menu/Profile/Profile/Stats"]
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6tlm6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2imna")
+value = 50.0
+show_percentage = false
+
+[node name="Sanity" type="ProgressBar" parent="Menu/Profile/Profile/Stats"]
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6tlm6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gdwaq")
+value = 50.0
+show_percentage = false
+
+[node name="PLace_holder2" type="Label" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Turn" type="NinePatchRect" parent="Menu"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+
+[node name="Turn_Counter" type="Label" parent="Menu/Turn"]
+layout_mode = 2
+offset_top = 9.0
+offset_right = 192.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "Turn 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PLace_holder" type="Label" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Game_State" type="NinePatchRect" parent="Menu"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Phase" type="Label" parent="Menu/Game_State"]
+layout_mode = 2
+offset_top = 9.0
+offset_right = 256.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "Draw phase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PLace_holder4" type="Label" parent="Menu"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 3
