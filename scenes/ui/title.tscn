@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene load_steps=13 format=3 uid="uid://d1dowke5fsdap"]
 
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
 [ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://l4wnxadgiu7n" path="res://assets/themes/main_menu_button.tres" id="7_ohxkk"]
 [ext_resource type="FontFile" uid="uid://ktn001fldc7a" path="res://assets/fonts/Minimal5x7.ttf" id="8_tv0fl"]
 [ext_resource type="StyleBox" uid="uid://dwe4g2d51prik" path="res://assets/themes/small_main_menu_button.tres" id="9_2sb8w"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="10_5plxi"]
 
 [sub_resource type="Theme" id="Theme_l37du"]
 default_font = ExtResource("8_tv0fl")
@@ -36,6 +37,10 @@ Button/styles/focus = ExtResource("7_ohxkk")
 Button/styles/hover = ExtResource("7_ohxkk")
 Button/styles/normal = ExtResource("7_ohxkk")
 Button/styles/pressed = ExtResource("7_ohxkk")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff8ni"]
+atlas = ExtResource("10_5plxi")
+region = Rect2(80, 0, 48, 48)
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -121,6 +126,29 @@ theme_override_styles/disabled = ExtResource("9_2sb8w")
 theme_override_styles/focus = ExtResource("9_2sb8w")
 text = "Exit"
 
+[node name="Sign" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 364.0
+offset_right = 835.0
+offset_bottom = 412.0
+rotation = 0.0436332
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_ff8ni")
+
+[node name="CreditsBtn" type="Button" parent="Sign"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 178.0
+offset_bottom = 70.0
+scale = Vector2(0.22, 0.22)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("7_cq32e")
+text = "Credits"
+flat = true
+
 [connection signal="pressed" from="NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
 [connection signal="pressed" from="ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="Sign/CreditsBtn" to="." method="_on_credits_btn_pressed"]
