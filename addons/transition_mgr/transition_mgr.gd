@@ -8,6 +8,7 @@ signal scene_transitioning(new_scene_path)
 @onready var load_bar_size = $Loading/LoadBarSize
 @onready var player = $Loading/Player
 @onready var is_loading := false
+@onready var dialogue = $Dialogue
 
 @onready var story = $Story
 @onready var page_1 = $Story/Page1
@@ -38,7 +39,7 @@ func _process(_delta):
 		loading_bar.visible = false
 	
 	if !Game_Manager.storyTelled and story.visible:
-		if Input.is_action_just_pressed("continue_dialogue"):
+		if Input.is_action_just_pressed("continue_dialogue") and !DialogueMgr.typing:
 			update_story(story_line)
 
 func transition_to(scene_path: String):
@@ -53,6 +54,7 @@ func transition_to(scene_path: String):
 		story.visible = true
 		page_2.visible = false
 		page_1.visible = true
+		DialogueMgr.start_dialogue(dialogue.lines)
 	else:
 		page_1.visible = false
 		page_2.visible = false
@@ -66,7 +68,7 @@ func update_story(line):
 		page_1.visible = false
 		page_2.visible = true
 	elif line < 7:
-		imagePanels2[line - imagePanels1.size() - 1].self_modulate = Color(0,0,0,0)
+		imagePanels2[line - imagePanels1.size()-1].self_modulate = Color(0,0,0,0)
 	else:
 		Game_Manager.storyTelled = true
 		loading_bar.value = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbtucwcrm3ai2"]
+[gd_scene load_steps=26 format=3 uid="uid://bbtucwcrm3ai2"]
 
 [ext_resource type="Script" path="res://addons/transition_mgr/transition_mgr.gd" id="1_3w3bw"]
 [ext_resource type="Shader" path="res://addons/transition_mgr/transition_mgr.gdshader" id="2_c8yx7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="4_d5viw"]
 [ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="4_iaiva"]
 [ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="6_ds2yw"]
+[ext_resource type="Script" path="res://Game/Dialogue/dialogue_holder.gd" id="7_d6db0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pnl6b"]
 shader = ExtResource("2_c8yx7")
@@ -179,7 +180,7 @@ process_mode = 3
 layer = 2
 script = ExtResource("1_3w3bw")
 imagePanels1 = [NodePath("Story/Page1/HidePanel1"), NodePath("Story/Page1/HidePanel2")]
-imagePanels2 = [NodePath("Story/Page2/HidePanel1"), NodePath("Story/Page2/HidePanel2"), NodePath("Story/Page2/HidePanel2"), NodePath("Story/Page2/HidePanel3")]
+imagePanels2 = [NodePath("Story/Page2/HidePanel1"), NodePath("Story/Page2/HidePanel1"), NodePath("Story/Page2/HidePanel2"), NodePath("Story/Page2/HidePanel3"), NodePath("Story/Page2/HidePanel3")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -347,3 +348,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_3hed0")
 autoplay = "default"
 frame_progress = 0.400166
+
+[node name="Dialogue" type="Node" parent="."]
+script = ExtResource("7_d6db0")
+lines = Array[String](["In the year XYZ, an ancient tomb suddenly emerged from the ground in Rome. The appearance of this tomb piqued the interest of King Altair.", "He declared a call to adventurers from all over the world to raid the tomb in search of riches and gold.", "Adventurers from distant lands and yourself rushed to the discovered tomb with dreams of untold wealth.", "Eventually, everyone reached the heart of the tomb and claimed the ultimate treasure. However, just as the adventurers celebrated their victory, the tomb suddenly came to life.", "The once passive tomb transformed into a deadly maze, filled with lethal traps and powerful monsters.", "One by one, your fellow adventurers fell victim to the tomb's malevolent defenses. As chaos reigned, you found yourself alone, the last survivor in this nightmarish labyrinth.", "Desperation turned to hope when you discovered the Deck of Creation, a powerful artifact that grants you the ability to rotate or move the rooms of the tomb as you wish.", "With this newfound power, your only goal is to escape the tomb alive."])
