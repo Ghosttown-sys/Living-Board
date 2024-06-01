@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://bubq52qhnmdab"]
+
+[ext_resource type="Texture2D" uid="uid://5q3dyrv3n3d5" path="res://assets/Arts/spritesheets/ObjectsSheet.png" id="1_uew3b"]
+[ext_resource type="Script" path="res://Game/Scenes/RoomsDecors/room_decor.gd" id="1_v1tqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxqjy"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j16i6"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irloc"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5b0s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxqjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j16i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irloc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8fs4"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjyxw"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyuhr"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1odxx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8fs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjyxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyuhr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6ef0"]
+atlas = ExtResource("1_uew3b")
+region = Rect2(32, 0, 16, 32)
+
+[node name="Decor" type="Node2D"]
+script = ExtResource("1_v1tqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(38, 39)
+sprite_frames = SubResource("SpriteFrames_k5b0s")
+frame_progress = 0.157821
+speed_scale = 1.09
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-39, 39)
+sprite_frames = SubResource("SpriteFrames_k5b0s")
+frame_progress = 0.157821
+speed_scale = 1.09
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-39, -41)
+sprite_frames = SubResource("SpriteFrames_1odxx")
+speed_scale = 1.09
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(39, -41)
+sprite_frames = SubResource("SpriteFrames_1odxx")
+speed_scale = 1.09
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(24, 2)
+texture = SubResource("AtlasTexture_g6ef0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = SubResource("AtlasTexture_g6ef0")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-25, 2)
+texture = SubResource("AtlasTexture_g6ef0")

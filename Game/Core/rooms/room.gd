@@ -1,7 +1,6 @@
 extends Node2D
 class_name Room
 
-
 static var static_id : int
 
 var is_hosting_player := false
@@ -44,6 +43,16 @@ Tilemap layers are:
 
 @onready var rng = RandomNumberGenerator.new()
 
+var room_decors_database = preload("res://Game/Scenes/RoomsDecors/room_decors_databse.tres")
+
+enum ROOM_TYPE {
+	Normal = 50,
+	Hazard = 80,
+	Treasure = 100
+}
+
+var room_type : ROOM_TYPE
+
 var hovering : bool:
 	set(value):
 		if value:
@@ -53,6 +62,8 @@ var hovering : bool:
 
 func _ready():
 	assign_random_openings()
+	assign_random_room_type()
+	assign_random_decorations()
 	update_visuals()
 
 func get_rotated_openings():
@@ -83,7 +94,26 @@ func assign_random_openings():
 		directions.remove_at(index)
 	
 	openings = directions;
-
+	
+func assign_random_room_type():
+	var random_room_type = ROOM_TYPE.Normal
+	var random_int = Game_Manager.RNG.randi_range(0,100)
+	
+	if random_int < 0 and random_int > ROOM_TYPE.Normal:
+		random_room_type = ROOM_TYPE.Normal
+	elif  random_int < ROOM_TYPE.Normal and random_int > ROOM_TYPE.Hazard:
+		random_room_type = ROOM_TYPE.Hazard
+	elif  random_int < ROOM_TYPE.Hazard and random_int > ROOM_TYPE.Treasure:
+		random_room_type = ROOM_TYPE.Treasure
+	
+	room_type = random_room_type
+	
+func assign_random_decorations():
+	var collection = room_decors_database.get_decorations(room_type)
+	var random_index = Game_Manager.RNG.randi_range(0, collection.size() - 1)
+	var decor_instance = collection[random_index].instantiate()
+	add_child(decor_instance)
+	
 # Renders or hide the fog between corridors
 func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
 	var layer_index_offset = Game_Manager.layer_index[self.direction];

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Rooms_Decors_Database" load_steps=8 format=3 uid="uid://cnjodvkmorujv"]
+
+[ext_resource type="PackedScene" uid="uid://cba06up7jn2pk" path="res://Game/Scenes/RoomsDecors/room_decor_1.tscn" id="1_2jn1p"]
+[ext_resource type="Script" path="res://Game/Scenes/RoomsDecors/room_decors_database.gd" id="1_0475y"]
+[ext_resource type="PackedScene" uid="uid://c7tb15bgoi77w" path="res://Game/Scenes/RoomsDecors/room_decor_2.tscn" id="2_5nquj"]
+[ext_resource type="PackedScene" uid="uid://bubq52qhnmdab" path="res://Game/Scenes/RoomsDecors/room_decor_3.tscn" id="3_y4wqo"]
+[ext_resource type="PackedScene" uid="uid://b5pou4l6qu5ye" path="res://Game/Scenes/RoomsDecors/room_decor_4.tscn" id="4_50cqe"]
+[ext_resource type="PackedScene" uid="uid://o20l8whwt7tw" path="res://Game/Scenes/RoomsDecors/room_hazard_1.tscn" id="5_1u52t"]
+[ext_resource type="PackedScene" uid="uid://c5pd4wbwm5ib2" path="res://Game/Scenes/RoomsDecors/room_treasure_1.tscn" id="6_frpqj"]
+
+[resource]
+script = ExtResource("1_0475y")
+room_normal = Array[PackedScene]([ExtResource("1_2jn1p"), ExtResource("2_5nquj"), ExtResource("3_y4wqo"), ExtResource("4_50cqe")])
+room_hazards = Array[PackedScene]([ExtResource("5_1u52t")])
+room_treasures = Array[PackedScene]([ExtResource("6_frpqj")])

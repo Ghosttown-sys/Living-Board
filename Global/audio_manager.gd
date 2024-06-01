@@ -2,6 +2,8 @@ extends Node
 
 @onready var wall_move_sfx = $SFX/Wall_Move
 @onready var game_start_sfx = $SFX/Game_Start
+@onready var footstepo_sfx = $SFX/Foot_Steps
+
 
 @onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music

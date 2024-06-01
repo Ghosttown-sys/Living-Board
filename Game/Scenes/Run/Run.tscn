@@ -13,6 +13,8 @@ script = ExtResource("1_s7tjo")
 [node name="Board" parent="." instance=ExtResource("1_4lixk")]
 
 [node name="Camera" parent="." instance=ExtResource("3_564n1")]
+zoom = Vector2(0.96, 0.96)
+camera_speed = 8
 
 [node name="Top_Bar" type="CanvasLayer" parent="."]
 script = ExtResource("1_80pgd")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://o20l8whwt7tw"]
+
+[ext_resource type="Script" path="res://Game/Scenes/RoomsDecors/room_decor.gd" id="1_ewj0x"]
+[ext_resource type="Texture2D" uid="uid://di0ir1lesdiuf" path="res://assets/Arts/spritesheets/TrapSheet.png" id="2_bvbdc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p786q"]
+atlas = ExtResource("2_bvbdc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwu3k"]
+atlas = ExtResource("2_bvbdc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pfnv"]
+atlas = ExtResource("2_bvbdc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a45h"]
+atlas = ExtResource("2_bvbdc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_040iu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p786q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwu3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pfnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a45h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pfnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwu3k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Decor" type="Node2D"]
+script = ExtResource("1_ewj0x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, -10)
+sprite_frames = SubResource("SpriteFrames_040iu")
+speed_scale = 1.46
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, -10)
+sprite_frames = SubResource("SpriteFrames_040iu")
+speed_scale = 1.46
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 9)
+sprite_frames = SubResource("SpriteFrames_040iu")
+speed_scale = 1.46
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, 9)
+sprite_frames = SubResource("SpriteFrames_040iu")
+speed_scale = 1.46

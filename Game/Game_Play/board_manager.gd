@@ -204,15 +204,13 @@ func force_update_player_room(x:int , y:int):
 	room_move_token()
 	
 func update_player_token_room():
-	if is_valid_move():
-		rooms[player_position.x][player_position.y].is_hosting_player = false
-		player_position = new_position
-		player_token.reparent(rooms[player_position.x][player_position.y])
-		
-		player_room = rooms[player_position.x][player_position.y]
-		rooms[player_position.x][player_position.y].is_hosting_player = true
-	else :
-		new_position = player_position
+	
+	rooms[player_position.x][player_position.y].is_hosting_player = false
+	player_position = new_position
+	player_token.reparent(rooms[player_position.x][player_position.y])
+	
+	player_room = rooms[player_position.x][player_position.y]
+	rooms[player_position.x][player_position.y].is_hosting_player = true
 	
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
 
@@ -221,9 +219,11 @@ func room_move_token():
 	player_token.global_position = rooms[player_position.x][player_position.y].global_position
 	
 func player_move_token():
-	update_player_token_room()
-	var tween = get_tree().create_tween()
-	tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
+	if is_valid_move():
+		AudioManager.footstepo_sfx.play()
+		update_player_token_room()
+		var tween = get_tree().create_tween()
+		tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
 
 	
 

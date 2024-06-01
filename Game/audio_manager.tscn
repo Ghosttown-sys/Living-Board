@@ -1,21 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgcgvexpgp6ep"]
+[gd_scene load_steps=7 format=3 uid="uid://bgcgvexpgp6ep"]
 
 [ext_resource type="AudioStream" uid="uid://peqij81ycknb" path="res://assets/audio/sfx/wall_move.wav" id="1_5uymb"]
 [ext_resource type="Script" path="res://Global/audio_manager.gd" id="1_xmgq3"]
 [ext_resource type="AudioStream" uid="uid://bld8fr74k7hpa" path="res://assets/audio/music/bg_music.mp3" id="3_niuyc"]
+[ext_resource type="AudioStream" uid="uid://cawljqviggtlx" path="res://assets/audio/sfx/FootstepsSound.mp3" id="3_s8tmh"]
 [ext_resource type="AudioStream" uid="uid://btx4wmt8rqvpp" path="res://assets/audio/music/MenuMusic.mp3" id="3_yjljf"]
 [ext_resource type="AudioStream" uid="uid://dslvy1x4ga77x" path="res://assets/audio/music/combat_music.mp3" id="4_guj6m"]
 
 [node name="Audio_Manager" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_xmgq3")
 
 [node name="SFX" type="Node2D" parent="."]
 
-[node name="Wall_Move" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="Wall_Move" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("1_5uymb")
+volume_db = 17.0
 
-[node name="Game_Start" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="Game_Start" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("1_5uymb")
+volume_db = 18.0
+
+[node name="Foot_Steps" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_s8tmh")
+volume_db = 18.0
 
 [node name="Music" type="Node2D" parent="."]
 
