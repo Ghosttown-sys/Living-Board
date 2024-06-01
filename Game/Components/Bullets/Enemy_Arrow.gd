@@ -1,10 +1,10 @@
-class_name Arrow
+class_name Enemy_Arrow
 extends Area2D
 
 @onready var bullet_time_out :Timer = $Bullet_TimeOut
 
 var direction = Vector2.RIGHT
-var speed = 400
+var speed = 100
 var bullet_damage := 5
 var shotgun: = false
 var range_in_time := 0.2
@@ -22,7 +22,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body is Monster:
+	if body is Player:
 		body.take_damage(bullet_damage)
 		queue_free()
 

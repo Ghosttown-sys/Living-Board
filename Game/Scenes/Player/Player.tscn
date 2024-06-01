@@ -14,7 +14,8 @@ size = Vector2(16, 4)
 radius = 6.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 9
 script = ExtResource("1_dydsy")
 
 [node name="Weapon_Holder" type="Marker2D" parent="."]

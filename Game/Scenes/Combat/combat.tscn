@@ -257,6 +257,7 @@ layer_0/tile_data = PackedInt32Array(262147, 65537, 7, 262148, 131073, 7, 327683
 
 [node name="Player" parent="." instance=ExtResource("2_qqmbi")]
 position = Vector2(510, 297)
+attack_type = 1
 
 [node name="Monster" parent="." instance=ExtResource("4_6ioml")]
 position = Vector2(479, 296)

@@ -172,10 +172,12 @@ func splas_fire():
 			arrow[i].global_position = global_position
 			get_tree().get_root().add_child(arrow[i])
 	else:
-		print("hmm")
 		for i in range(1,arrow.size()+1):
 			arrow[i-1] = ARROW.instantiate()
 			arrow[i-1].rotation = direction.angle()
 			arrow[i-1].direction = melee_marker.global_position - global_position
 			arrow[i-1].global_position = weapon.global_position
 			get_tree().get_root().add_child(arrow[i-1])
+
+func take_damage(damage:float):
+	print(damage)
