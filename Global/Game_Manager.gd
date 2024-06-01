@@ -3,6 +3,8 @@ extends Node
 var seed = hash("help_me")
 var RNG : RandomNumberGenerator;
 
+var storyTelled = false
+
 enum DIRECTION {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3}
 
 const ALL_DIRECTIONS : Array[Game_Manager.DIRECTION] = [\

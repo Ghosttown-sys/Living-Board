@@ -121,7 +121,7 @@ theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
 text = "SimplePixelated
-Insert Name"
+snoopeyxd"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator2" type="HSeparator" parent="Credits"]
@@ -160,6 +160,7 @@ scale = Vector2(1.8, 1.8)
 texture = ExtResource("5_ffbtr")
 
 [node name="Year" type="Label" parent="Story"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 261.0

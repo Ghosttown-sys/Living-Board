@@ -9,14 +9,22 @@ signal scene_transitioning(new_scene_path)
 @onready var player = $Loading/Player
 @onready var is_loading := false
 
+@onready var story = $Story
+@onready var page_1 = $Story/Page1
+@onready var page_2 = $Story/Page2
+@export var imagePanels1: Array[TextureRect]
+@export var imagePanels2: Array[TextureRect]
+
 
 var scene_load_status = 0
 var _scene_path := ""
 var progress = []
-var progress_value
+var progress_value : int
 var previous_progress_value = 0
 
 var loadbar_size_max = 0
+
+var story_line = 0
 
 func _ready():
 	loadbar_size_max = load_bar_size.size.x
@@ -24,14 +32,46 @@ func _ready():
 func _process(_delta):
 	if !is_loading:
 		return
-	_load_scene()
+	if Game_Manager.storyTelled:
+		_load_scene()
+	else:
+		loading_bar.visible = false
 	
+	if !Game_Manager.storyTelled and story.visible:
+		if Input.is_action_just_pressed("continue_dialogue"):
+			update_story(story_line)
 
 func transition_to(scene_path: String):
 	_scene_path = scene_path
+	
+	if !Game_Manager.storyTelled:
+		story_line = 0
+		for imagePanel in imagePanels1:
+			imagePanel.self_modulate = Color("#000000d6")
+		for imagePanel in imagePanels2:
+			imagePanel.self_modulate = Color("#000000d6")
+		story.visible = true
+		page_2.visible = false
+		page_1.visible = true
+	else:
+		page_1.visible = false
+		page_2.visible = false
+	
 	_load()
-	
-	
+
+func update_story(line):
+	if line < 2:
+		imagePanels1[line].self_modulate = Color(0,0,0,0)
+	elif line == 2:
+		page_1.visible = false
+		page_2.visible = true
+	elif line < 7:
+		imagePanels2[line - imagePanels1.size() - 1].self_modulate = Color(0,0,0,0)
+	else:
+		Game_Manager.storyTelled = true
+		loading_bar.value = 0
+		loading_bar.visible = true
+	story_line += 1
 
 func _load():
 	is_loading = true
@@ -44,7 +84,6 @@ func _load():
 	
 func _load_scene():
 	scene_load_status = ResourceLoader.load_threaded_get_status(_scene_path, progress)
-	
 	
 	if progress[0] < 1:
 		var new_progress_value = floor(progress[0] * 100)
@@ -86,6 +125,7 @@ func _reset():
 	loading_bar.visible = false
 	scroll_background.visible = false
 	is_loading = false
+	story.visible = false
 	get_tree().paused = false
 	scene_load_status = 0
 	progress = []
