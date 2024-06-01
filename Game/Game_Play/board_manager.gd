@@ -35,6 +35,10 @@ func _ready():
 	initialize_board();
 	set_up_player()
 
+func _process(delta):
+	if player_room != null:
+		player_token.rotation = -player_room.rotation
+
 func create_new_room(room_scene,x, y):
 	# Create the room
 	var room_instance = room_scene.instantiate();
@@ -192,27 +196,36 @@ func _on_mouse_hover_exit_room(room : Room):
 func set_up_player():
 	player_position = Vector2.ZERO
 	new_position = player_position
-	update_player_token_room()
+	room_move_token()
 
 func force_update_player_room(x:int , y:int):
 	player_position = Vector2(x,y)
 	new_position = player_position
-	update_player_token_room()
+	room_move_token()
 	
 func update_player_token_room():
 	if is_valid_move():
 		rooms[player_position.x][player_position.y].is_hosting_player = false
 		player_position = new_position
 		player_token.reparent(rooms[player_position.x][player_position.y])
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
-		player_token.global_position = rooms[player_position.x][player_position.y].global_position
+		
 		player_room = rooms[player_position.x][player_position.y]
 		rooms[player_position.x][player_position.y].is_hosting_player = true
 	else :
 		new_position = player_position
 	
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
+
+func room_move_token():
+	update_player_token_room()
+	player_token.global_position = rooms[player_position.x][player_position.y].global_position
+	
+func player_move_token():
+	update_player_token_room()
+	var tween = get_tree().create_tween()
+	tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
+
+	
 
 # Check if the move to the next room is valid
 func is_valid_move() -> bool:
@@ -225,32 +238,29 @@ func is_valid_move() -> bool:
 	var player_room = rooms[player_position.x][player_position.y]
 	valid_rooms.append_array(get_connected_rooms(player_room))
 	
-	for a in valid_rooms:
-		print(a.room_id)
-	print(" aa ", new_room.room_id)
 	return valid_rooms.has(new_room)
 
 func _on_up_pressed():
 	new_position = player_position
 	new_position += Vector2.UP
-	update_player_token_room()
+	player_move_token()
 
 
 func _on_left_pressed():
 	new_position = player_position
 	new_position +=Vector2.LEFT
-	update_player_token_room()
+	player_move_token()
 
 
 func _on_r_ight_pressed():
 	new_position = player_position
 	new_position += Vector2.RIGHT
-	update_player_token_room()
+	player_move_token()
 
 
 func _on_down_pressed():
 	new_position = player_position
 	new_position += Vector2.DOWN
-	update_player_token_room()
+	player_move_token()
 
 
