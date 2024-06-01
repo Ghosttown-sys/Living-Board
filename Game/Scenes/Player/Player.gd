@@ -1,9 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-signal toggle_inventory
-
-
+const ARROW = preload("res://Game/Components/Bullets/Arrow.tscn")
 # Exports
 @export_category("Stats")
 @export var speed :int = 50
@@ -20,6 +18,7 @@ signal toggle_inventory
 @onready var sprite = $Weapon_Holder/Weapon_Zone/Weapon/Sprite
 @onready var weapon_zone = $Weapon_Holder/Weapon_Zone
 @onready var magic = $Weapon_Holder/Magic
+@onready var weapon = $Weapon_Holder/Weapon_Zone/Weapon
 
 var can_move = false
 var direction : Vector2 = Vector2.UP
@@ -113,6 +112,9 @@ func attack_check(delta:float):
 			Attack_Type.SEEKER:
 				var target_position :Vector2 = (get_global_mouse_position() - weapon_holder.global_position).normalized()
 				magic_attack(target_position)
+			
+			Attack_Type.RANGED:
+				splas_fire()
 	
 func melee_attack(target:Vector2):
 	attacking = true
@@ -140,9 +142,14 @@ func set_weapon():
 			Attack_Type.MELEE:
 				sprite.frame = 0
 				damage = 5
+				sprite.rotation = deg_to_rad(45)
 			Attack_Type.SEEKER:
 				sprite.frame = 3
 				damage = 1
+			Attack_Type.RANGED:
+				sprite.rotation = deg_to_rad(180)
+				sprite.frame = 1
+				damage = 2
 			Attack_Type.MAGIC:
 				sprite.hide()
 				magic.show()
@@ -152,3 +159,25 @@ func _on_weapon_zone_body_entered(body):
 	if attacking and attack_type == Attack_Type.MELEE and body is Monster:
 		print("attacking")
 		body.take_damage(damage)
+
+
+func splas_fire():
+	var arrow = [null]
+	var angle = 36
+	if arrow.size() >1:
+		for i in range(1):
+			arrow[i] = ARROW.instantiate()
+			arrow[i].direction = Vector2.RIGHT.rotated(angle*i)
+			arrow[i].rotation = angle
+			arrow[i].global_position = global_position
+			get_tree().get_root().add_child(arrow[i])
+	else:
+		for i in range(1,arrow.size()+1):
+			arrow[i-1] = ARROW.instantiate()
+			arrow[i-1].rotation = direction.angle()
+			arrow[i-1].direction = melee_marker.global_position - global_position
+			arrow[i-1].global_position = weapon.global_position
+			get_tree().get_root().add_child(arrow[i-1])
+
+func take_damage(damage:float):
+	print(damage)

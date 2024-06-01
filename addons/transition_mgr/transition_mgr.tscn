@@ -1,6 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbtucwcrm3ai2"]
+[gd_scene load_steps=19 format=3 uid="uid://bbtucwcrm3ai2"]
 
 [ext_resource type="Script" path="res://addons/transition_mgr/transition_mgr.gd" id="1_3w3bw"]
+[ext_resource type="Shader" path="res://addons/transition_mgr/transition_mgr.gdshader" id="2_c8yx7"]
+[ext_resource type="Texture2D" uid="uid://w0swrg50f00" path="res://assets/Arts/Scrollable_Loading_Background.png" id="2_hvux1"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="4_d5viw"]
+[ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="4_iaiva"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnl6b"]
+shader = ExtResource("2_c8yx7")
 
 [sub_resource type="Animation" id="Animation_ywbuj"]
 length = 0.001
@@ -15,6 +22,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollBackground:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fkof3"]
@@ -31,6 +50,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollBackground:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_w7d3q"]
 resource_name = "fadeOut"
@@ -46,6 +77,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollBackground:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w12t0"]
 _data = {
@@ -54,24 +97,65 @@ _data = {
 "fadeOut": SubResource("Animation_w7d3q")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdsh2"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.0470588, 0.219608, 0.243137, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsacs"]
+atlas = ExtResource("4_d5viw")
+region = Rect2(0, 64, 128, 32)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x56lg"]
-bg_color = Color(0.254902, 0.627451, 0.819608, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.807843, 0.792157, 0.819608, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5qc4"]
+texture = SubResource("AtlasTexture_vsacs")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 128, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_850my"]
+bg_color = Color(0.666667, 0.756863, 0.105882, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ge5"]
+atlas = ExtResource("4_iaiva")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf8ee"]
+atlas = ExtResource("4_iaiva")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4v6m"]
+atlas = ExtResource("4_iaiva")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le2ud"]
+atlas = ExtResource("4_iaiva")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hed0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf8ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4v6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le2ud")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="transition_mgr" type="CanvasLayer"]
 process_mode = 3
+layer = 2
 script = ExtResource("1_3w3bw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -82,6 +166,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="ScrollBackground" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_pnl6b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hvux1")
+stretch_mode = 1
 
 [node name="fadeAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -101,9 +197,26 @@ offset_right = -19.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.211765, 0.160784, 0.0313726, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_bdsh2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_x56lg")
-value = 80.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+theme_override_styles/background = SubResource("StyleBoxTexture_c5qc4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_850my")
+value = 100.0
 rounded = true
+
+[node name="LoadBarSize" type="Control" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" type="AnimatedSprite2D" parent="Loading"]
+position = Vector2(64, -35)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_3hed0")
+autoplay = "default"
+frame_progress = 0.400166

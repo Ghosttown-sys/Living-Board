@@ -9,6 +9,7 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 func _on_button_pressed():
 	toggle_visiblity()
 	var new_combat := COMBAT.instantiate()
+	new_combat.temp = 5
 	add_child(new_combat)
 
 

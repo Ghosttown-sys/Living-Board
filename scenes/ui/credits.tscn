@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=3 uid="uid://baco7nlnngnr4"]
+
+[ext_resource type="Script" path="res://scenes/ui/credits.gd" id="1_5vdep"]
+[ext_resource type="Shader" path="res://addons/transition_mgr/transition_mgr.gdshader" id="1_h61bv"]
+[ext_resource type="Texture2D" uid="uid://w0swrg50f00" path="res://assets/Arts/Scrollable_Loading_Background.png" id="2_uqpcn"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="3_hbu8t"]
+[ext_resource type="Texture2D" uid="uid://do5pdne1a04x4" path="res://assets/Arts/spritesheets/Story.png" id="5_ffbtr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlje7"]
+shader = ExtResource("1_h61bv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_sm0r5"]
+font = ExtResource("3_hbu8t")
+font_size = 40
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.529412)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nyra8"]
+line_spacing = 10.0
+font = ExtResource("3_hbu8t")
+font_size = 25
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.529412)
+shadow_offset = Vector2(5, 5)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5vdep")
+
+[node name="ScrollBackground" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_hlje7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uqpcn")
+stretch_mode = 1
+
+[node name="CreditsBtn" type="Button" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 198.0
+offset_bottom = 108.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.788235, 0.435294, 0.0117647, 1)
+theme_override_colors/font_pressed_color = Color(0.501961, 0.266667, 0.00392157, 1)
+theme_override_colors/font_hover_color = Color(0.980392, 0.54902, 0.0588235, 1)
+theme_override_colors/font_focus_color = Color(0.980392, 0.54902, 0.0588235, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.501961, 0.266667, 0.00392157, 1)
+theme_override_colors/font_disabled_color = Color(0.788235, 0.435294, 0.0117647, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_hbu8t")
+theme_override_font_sizes/font_size = 80
+text = "Back"
+flat = true
+
+[node name="Credits" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 120.0
+offset_right = 811.0
+offset_bottom = -5.0
+grow_vertical = 2
+
+[node name="Category" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "Code:
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+
+[node name="Names" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "Insert Name
+Insert Name"
+label_settings = SubResource("LabelSettings_nyra8")
+
+[node name="HSeparator" type="HSeparator" parent="Credits"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Category2" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "Art:
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+
+[node name="Names2" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "SimplePixelated
+Insert Name"
+label_settings = SubResource("LabelSettings_nyra8")
+
+[node name="HSeparator2" type="HSeparator" parent="Credits"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Category3" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "Music & Sounds:
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+
+[node name="Names3" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "danyb0i"
+label_settings = SubResource("LabelSettings_nyra8")
+
+[node name="Story" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 26.0
+offset_right = 761.0
+offset_bottom = 323.0
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("5_ffbtr")
+
+[node name="Year" type="Label" parent="Story"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 261.0
+offset_bottom = 41.0
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "year xxxx
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CreditsBtn" to="." method="_on_credits_btn_pressed"]

@@ -16,3 +16,7 @@ func _on_LoadGameBtn_pressed():
 
 func _on_ExitBtn_pressed():
 	get_tree().quit()
+
+
+func _on_credits_btn_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/credits.tscn")

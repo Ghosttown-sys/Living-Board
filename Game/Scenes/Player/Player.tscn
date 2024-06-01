@@ -14,7 +14,8 @@ size = Vector2(16, 4)
 radius = 6.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 9
 script = ExtResource("1_dydsy")
 
 [node name="Weapon_Holder" type="Marker2D" parent="."]
@@ -30,9 +31,9 @@ monitorable = false
 position = Vector2(18, 0)
 
 [node name="Sprite" type="Sprite2D" parent="Weapon_Holder/Weapon_Zone/Weapon"]
-rotation = 0.837758
 texture = ExtResource("2_m7gvw")
 hframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon_Holder/Weapon_Zone"]
 position = Vector2(18, 0)
