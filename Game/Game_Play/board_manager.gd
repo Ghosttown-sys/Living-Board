@@ -204,10 +204,9 @@ func update_player_token_room():
 		rooms[player_position.x][player_position.y].is_hosting_player = false
 		player_position = new_position
 		player_token.reparent(rooms[player_position.x][player_position.y])
-		
-		var tween = get_tree().create_tween()
-		tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
-		#player_token.global_position = rooms[player_position.x][player_position.y].global_position
+		#var tween = get_tree().create_tween()
+		#tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
+		player_token.global_position = rooms[player_position.x][player_position.y].global_position
 		player_room = rooms[player_position.x][player_position.y]
 		rooms[player_position.x][player_position.y].is_hosting_player = true
 	else :
@@ -218,12 +217,18 @@ func update_player_token_room():
 # Check if the move to the next room is valid
 func is_valid_move() -> bool:
 	# Out of bounds
+	var valid_rooms = [player_room]
 	if new_position.x >= board_width || new_position.y >= board_height\
 			 || new_position.x < 0 || new_position.y < 0:
 				return false
 	var new_room = rooms[new_position.x][new_position.y]
 	var player_room = rooms[player_position.x][player_position.y]
-	return get_connected_rooms(player_room).has(new_room)
+	valid_rooms.append_array(get_connected_rooms(player_room))
+	
+	for a in valid_rooms:
+		print(a.room_id)
+	print(" aa ", new_room.room_id)
+	return valid_rooms.has(new_room)
 
 func _on_up_pressed():
 	new_position = player_position
