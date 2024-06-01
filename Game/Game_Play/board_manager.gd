@@ -17,6 +17,9 @@ var rooms = []
 @onready var buttons = $Buttons
 
 func _ready():
+	AudioManager.play_music(1)
+	AudioManager.game_start_sfx.play()
+	
 	Events.board_moved.connect(board_moved)
 	Events.on_card_hovering_room_enter.connect(_on_mouse_hover_enter_room)
 	Events.on_card_hovering_room_exit.connect(_on_mouse_hover_exit_room)
@@ -97,9 +100,34 @@ func update_board():
 			rooms[x][y].coordinates = Vector2i(x,y);
 			rooms[x][y].update_visuals()
 	await update_rooms_positions()
+	update_rooms_rotation()
 	update_rooms_activation()
-	pass
-
+	
+func update_rooms_rotation():
+	for x in rooms.size():
+		for y in rooms[0].size():
+			# update rotation
+			var room = rooms[x][y]
+			var new_rotation = room.direction
+			
+			if room.rotation_degrees == new_rotation:
+				continue
+			
+			# If the rotation is 0, make it 360 to rotate anticlockwise
+			if room.rotation_degrees ==0 and new_rotation == Game_Manager.DIRECTION.LEFT:
+				room.rotation_degrees = 360
+			
+			# If the rotation is 270, make it -90 to rotate clockwise
+			if room.rotation_degrees == 270 and new_rotation == Game_Manager.DIRECTION.UP:
+				room.rotation_degrees = -90
+			
+			AudioManager.wall_move_sfx.play()
+			#rotate
+			var tween = get_tree().create_tween()
+			await tween.tween_property(room, "rotation_degrees", new_rotation, 0.8).set_trans(Tween.TRANS_QUAD).finished
+			
+			room.rotation_degrees = 0
+	
 # Visually moves the rooms positions in the grid
 func update_rooms_positions():
 	var tweens = []
@@ -109,19 +137,11 @@ func update_rooms_positions():
 			var room = rooms[x][y]
 			var room_size = room.get_room_pixel_size();
 			var new_position :Vector2 = Vector2(room_size.x * room.coordinates.x,room_size.y * room.coordinates.y);
-			var new_rotation = room.direction
 			
-			# If the rotation is 0, make it 360 to rotate anticlockwise
-			if room.rotation_degrees ==0 and new_rotation == Game_Manager.DIRECTION.LEFT:
-				room.rotation_degrees = 360
-			
-			# If the rotation is 270, make it -90 to rotate clockwise
-			if room.rotation_degrees == 270 and new_rotation == Game_Manager.DIRECTION.UP:
-				room.rotation_degrees = -90
-			#rotate
-			var tween = get_tree().create_tween()
-			tweens.append(tween.tween_property(room, "rotation_degrees", new_rotation, 0.8).set_trans(Tween.TRANS_QUAD))
-			
+			# skip if not moved
+			if room.position == new_position:
+				continue
+
 			#wrap around in Y axis
 			if abs(room.coordinates.y - room.position.y/room_size.y) > 1:
 				var up = room.coordinates.y - room.position.y/room_size.y > 0
@@ -143,7 +163,8 @@ func update_rooms_positions():
 			
 			if rooms[x][y].is_hosting_player:
 				force_update_player_room(x,y)
-			
+				
+			var tween = get_tree().create_tween()
 			tweens.append(tween.tween_property(room, "position", new_position, 0.8).set_trans(Tween.TRANS_QUAD))
 	if tweens.size() > 0:
 		AudioManager.wall_move_sfx.play()
@@ -208,14 +229,12 @@ func _on_up_pressed():
 
 
 func _on_left_pressed():
-	AudioManager.play_music(1)
 	new_position = player_position
 	new_position +=Vector2.LEFT
 	update_player_token_room()
 
 
 func _on_r_ight_pressed():
-	AudioManager.play_music(0)
 	new_position = player_position
 	new_position += Vector2.RIGHT
 	update_player_token_room()

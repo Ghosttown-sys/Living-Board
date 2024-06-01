@@ -1,15 +1,18 @@
 extends Node
 
 @onready var wall_move_sfx = $SFX/Wall_Move
+@onready var game_start_sfx = $SFX/Game_Start
 
+@onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music
 @onready var combat_music = $Music/Combat_Music
 
-@onready var tracks = [bg_music,combat_music]
+@onready var tracks = [menu_music,bg_music,combat_music]
 """
 Tracklist:
-	0 - bg_music
-	1 - combat_music
+	0 - menu_music
+	1 - bg_music
+	2 - combat_music
 """
 var current_track : int = -1
 
