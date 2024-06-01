@@ -93,8 +93,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "Insert Name
-Insert Name"
+text = "Candy Overdose
+ZY"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator" type="HSeparator" parent="Credits"]

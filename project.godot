@@ -56,6 +56,11 @@ folder_colors={
 "res://utils/": "pink"
 }
 
+[gui]
+
+theme/custom="res://assets/themes/main_theme.tres"
+theme/custom_font="res://assets/fonts/Pixellari.ttf"
+
 [input]
 
 ui_left={

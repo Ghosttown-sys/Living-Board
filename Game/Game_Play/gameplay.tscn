@@ -1,10 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=16 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 [ext_resource type="PackedScene" uid="uid://bakg6u6d2jf7b" path="res://Game/Scenes/Player/player_token.tscn" id="4_onu2n"]
-[ext_resource type="StyleBox" uid="uid://cm0xe0tmu05yx" path="res://utils/Extra_Resources/test.tres" id="6_fgclg"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="5_gbi3n"]
+[ext_resource type="Texture2D" uid="uid://ci65rgyt0857q" path="res://assets/Arts/spritesheets/MovementButtonsSheet.png" id="5_wp12m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8nuc"]
+atlas = ExtResource("5_gbi3n")
+region = Rect2(0, 64, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1icuq"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6lj8"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b8ns"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8d7o"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h81u4"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m4db"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq664"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8jqd"]
+atlas = ExtResource("5_wp12m")
+region = Rect2(32, 64, 32, 32)
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_lwgv5")
@@ -31,72 +68,76 @@ z_index = 1
 
 [node name="Buttons" type="CanvasLayer" parent="."]
 
-[node name="UP" type="Button" parent="Buttons"]
+[node name="Buttons" type="NinePatchRect" parent="Buttons"]
+custom_minimum_size = Vector2(176, 176)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 65.0
-offset_top = -99.0
-offset_right = 106.0
-offset_bottom = -68.0
+offset_left = 28.0
+offset_top = -156.0
+offset_right = 156.0
+offset_bottom = -28.0
 grow_vertical = 0
-theme_override_styles/normal = ExtResource("6_fgclg")
-theme_override_styles/hover = ExtResource("6_fgclg")
-theme_override_styles/pressed = ExtResource("6_fgclg")
-theme_override_styles/disabled = ExtResource("6_fgclg")
-theme_override_styles/focus = ExtResource("6_fgclg")
-text = "   up  "
+texture = SubResource("AtlasTexture_q8nuc")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
-[node name="Left" type="Button" parent="Buttons"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -63.0
-offset_right = 48.0
-offset_bottom = -32.0
+[node name="UP" type="TextureButton" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_left = 56.0
+offset_right = 120.0
+offset_bottom = 176.0
 grow_vertical = 0
-theme_override_styles/normal = ExtResource("6_fgclg")
-theme_override_styles/hover = ExtResource("6_fgclg")
-theme_override_styles/pressed = ExtResource("6_fgclg")
-theme_override_styles/disabled = ExtResource("6_fgclg")
-theme_override_styles/focus = ExtResource("6_fgclg")
-text = "Left"
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_1icuq")
+texture_pressed = SubResource("AtlasTexture_r6lj8")
+stretch_mode = 4
 
-[node name="RIght" type="Button" parent="Buttons"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 117.0
-offset_top = -63.0
-offset_right = 158.0
-offset_bottom = -32.0
+[node name="Left" type="TextureButton" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_top = 56.0
+offset_right = 64.0
+offset_bottom = 120.0
 grow_vertical = 0
-theme_override_styles/normal = ExtResource("6_fgclg")
-theme_override_styles/hover = ExtResource("6_fgclg")
-theme_override_styles/pressed = ExtResource("6_fgclg")
-theme_override_styles/disabled = ExtResource("6_fgclg")
-theme_override_styles/focus = ExtResource("6_fgclg")
-text = "Right"
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_4b8ns")
+texture_pressed = SubResource("AtlasTexture_q8d7o")
+stretch_mode = 4
 
-[node name="Down" type="Button" parent="Buttons"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -33.0
-offset_right = 106.0
-offset_bottom = -2.0
+[node name="RIght" type="TextureButton" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_left = 112.0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 120.0
 grow_vertical = 0
-theme_override_styles/normal = ExtResource("6_fgclg")
-theme_override_styles/hover = ExtResource("6_fgclg")
-theme_override_styles/pressed = ExtResource("6_fgclg")
-theme_override_styles/disabled = ExtResource("6_fgclg")
-theme_override_styles/focus = ExtResource("6_fgclg")
-text = "Down
-"
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_h81u4")
+texture_pressed = SubResource("AtlasTexture_0m4db")
+stretch_mode = 4
 
-[connection signal="pressed" from="Buttons/UP" to="." method="_on_up_pressed"]
-[connection signal="pressed" from="Buttons/Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="Buttons/RIght" to="." method="_on_r_ight_pressed"]
-[connection signal="pressed" from="Buttons/Down" to="." method="_on_down_pressed"]
+[node name="Down" type="TextureButton" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_left = 56.0
+offset_top = 112.0
+offset_right = 120.0
+offset_bottom = 176.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = SubResource("AtlasTexture_hq664")
+texture_pressed = SubResource("AtlasTexture_l8jqd")
+stretch_mode = 4
+
+[connection signal="pressed" from="Buttons/Buttons/UP" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="Buttons/Buttons/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Buttons/Buttons/RIght" to="." method="_on_r_ight_pressed"]
+[connection signal="pressed" from="Buttons/Buttons/Down" to="." method="_on_down_pressed"]

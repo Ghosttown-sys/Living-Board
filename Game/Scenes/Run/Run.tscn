@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
-[ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_80pgd"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="3_564n1"]
 [ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="3_gbia6"]
-[ext_resource type="StyleBox" uid="uid://cm0xe0tmu05yx" path="res://utils/Extra_Resources/test.tres" id="4_rphho"]
+[ext_resource type="PackedScene" uid="uid://ccockq4ssn6uj" path="res://Game/Scenes/UI/top_bar.tscn" id="4_xd8x2"]
+[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="7_scgpg"]
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_s7tjo")
@@ -16,46 +16,28 @@ script = ExtResource("1_s7tjo")
 zoom = Vector2(0.96, 0.96)
 camera_speed = 8
 
-[node name="Top_Bar" type="CanvasLayer" parent="."]
-script = ExtResource("1_80pgd")
-
-[node name="BG" type="ColorRect" parent="Top_Bar"]
-custom_minimum_size = Vector2(0, 64)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 64.0
-grow_horizontal = 2
-mouse_filter = 2
-color = Color(0.20871, 0.20871, 0.20871, 1)
-
-[node name="Menu" type="HBoxContainer" parent="Top_Bar"]
-custom_minimum_size = Vector2(0, 64)
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-mouse_filter = 2
-
-[node name="PLace_holder" type="Label" parent="Top_Bar/Menu"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Hud" parent="." instance=ExtResource("3_gbia6")]
 
-[node name="Debug" type="CanvasLayer" parent="."]
+[node name="Turn_Controler" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="Debug"]
-offset_left = 5.0
-offset_top = 243.0
-offset_right = 101.0
-offset_bottom = 274.0
-theme_override_styles/normal = ExtResource("4_rphho")
-theme_override_styles/hover = ExtResource("4_rphho")
-theme_override_styles/pressed = ExtResource("4_rphho")
-theme_override_styles/disabled = ExtResource("4_rphho")
-theme_override_styles/focus = ExtResource("4_rphho")
+[node name="Button" type="Button" parent="Turn_Controler"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -89.0
+offset_right = 28.0
+offset_bottom = -38.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("7_scgpg")
 text = "Enter room"
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[connection signal="pressed" from="Debug/Button" to="." method="_on_button_pressed"]
+[node name="Top_Bar" parent="." instance=ExtResource("4_xd8x2")]
+
+[connection signal="pressed" from="Turn_Controler/Button" to="." method="_on_button_pressed"]
