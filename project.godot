@@ -27,6 +27,7 @@ Board_Manipulator="*res://Game/Core/rooms/board_manipulator.gd"
 Events="*res://Global/Events.gd"
 Tween_Utilities="*res://Global/Tween_Utilities.gd"
 AudioManager="*res://Game/audio_manager.tscn"
+DialogueMgr="*res://Game/Dialogue/dialogue_mgr.tscn"
 
 [debug]
 
@@ -176,6 +177,11 @@ move_down={
 ]
 }
 attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+continue_dialogue={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]

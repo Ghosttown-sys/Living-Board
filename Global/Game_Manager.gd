@@ -4,6 +4,7 @@ var seed = hash("help_me!!!")
 var RNG : RandomNumberGenerator;
 
 enum DIRECTION {LEFT = 270, RIGHT = 90, UP = 0, DOWN = 180}
+var storyTelled = false
 
 const ALL_DIRECTIONS : Array[DIRECTION] = [\
 		DIRECTION.LEFT,\

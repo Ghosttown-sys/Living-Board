@@ -6,6 +6,7 @@ func _ready():
 	AudioManager.play_music(0)
 
 func _on_NewGameBtn_pressed():
+	Game_Manager.storyTelled = false
 	GameStateService.new_game()
 	TransitionMgr.transition_to("res://Game/Scenes/Run/Run.tscn")
 
