@@ -26,17 +26,17 @@ func drag_handler(event) -> void:
 		if Input.is_action_pressed("drag_camera"):
 			is_dragging = true
 			if move_relative_to_zoom:
-				position -= event.relative * (zoom * 0.8)
+				offset -= event.relative * (zoom * 0.8)
 			else:
-				position -= event.relative
-			position = Vector2(
+				offset -= event.relative
+			offset = Vector2(
 				clamp(
-					position.x,
+					offset.x,
 					limit_left+get_viewport_rect().size.x/2,
 					limit_right-get_viewport_rect().size.x/2
 				),
 				clamp(
-					position.y,
+					offset.y,
 					limit_top+get_viewport_rect().size.y/2,
 					limit_bottom-get_viewport_rect().size.y/2
 				)
@@ -53,17 +53,17 @@ func keys_handler() -> void:
 	if  direction == Vector2(0,0):
 		return
 	if move_relative_to_zoom:
-		position += direction.normalized() * camera_speed * (zoom * 0.8)
+		offset += direction.normalized() * camera_speed * (zoom * 0.8)
 	else:
-		position += direction.normalized() * camera_speed
-	position = Vector2(
+		offset += direction.normalized() * camera_speed
+	offset = Vector2(
 		clamp(
-			position.x,
+			offset.x,
 			limit_left+get_viewport_rect().size.x/2,
 			limit_right-get_viewport_rect().size.x/2
 		),
 		clamp(
-			position.y,
+			offset.y,
 			limit_top+get_viewport_rect().size.y/2,
 			limit_bottom-get_viewport_rect().size.y/2
 		)
@@ -80,8 +80,8 @@ func zoom_handler(event):
 
 
 func relocate_camera(new_pos : Vector2)->void:
-	var old_pos = position
+	var old_pos = offset
 	var displacement = old_pos - new_pos
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position - displacement, 0.8).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, "offset", offset - displacement, 0.8).set_trans(Tween.TRANS_QUAD)
 	
