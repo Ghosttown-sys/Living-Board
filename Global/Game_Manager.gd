@@ -1,6 +1,6 @@
 extends Node
 
-var seed = hash("help_me")
+var seed = hash("help_me!!!")
 var RNG : RandomNumberGenerator;
 
 enum DIRECTION {LEFT = 270, RIGHT = 90, UP = 0, DOWN = 180}
@@ -27,18 +27,19 @@ const opposite_direction = {
 }
 
 const layer_index = {
-	DIRECTION.LEFT :0,
+	DIRECTION.LEFT :3,
 	DIRECTION.RIGHT :1,
-	DIRECTION.UP :2,
-	DIRECTION.DOWN :3
+	DIRECTION.UP :0,
+	DIRECTION.DOWN :2
 }
 
 const direction_index = {
-	0: DIRECTION.LEFT ,
+	3: DIRECTION.LEFT ,
 	1: DIRECTION.RIGHT ,
-	2: DIRECTION.UP ,
-	3: DIRECTION.DOWN
+	0: DIRECTION.UP ,
+	2: DIRECTION.DOWN
 }
+
 # true = clockwise, false = anticlockwise
 # Returns the direction after performing a rotation
 func get_dir_after_rotation(initial_dir, rotation) -> DIRECTION:

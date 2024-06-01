@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cpa7e8h4jsbo5"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cpa7e8h4jsbo5"]
 
-[ext_resource type="Texture2D" path="res://assets/Arts/Resource_Arts/Resources/Monsters.tres" id="1_sm0rc"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="1_0qfrq"]
 [ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/rotate_room.gd" id="2_hnn51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvpi4"]
+atlas = ExtResource("1_0qfrq")
+region = Rect2(16, 312, 42, 42)
 
 [resource]
 script = ExtResource("2_hnn51")
 direction = 90
-artwork = ExtResource("1_sm0rc")
-description = "Rotate Room Clockwise"
+artwork = SubResource("AtlasTexture_fvpi4")
+description = "Rotate Room"

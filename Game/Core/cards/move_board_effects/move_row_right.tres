@@ -1,16 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://qnd8yn6aey5b"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://qnd8yn6aey5b"]
 
 [ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/move_row.gd" id="1_p0hwx"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xqops"]
-load_path = "res://.godot/imported/TrapSheet.png-68d773b45e02f4f7628464dea0662277.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ju74n"]
-atlas = SubResource("CompressedTexture2D_xqops")
-region = Rect2(0.0727444, 0.53396, 15.3828, 16.5176)
+[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Arts/Resource_Arts/Resources/cards_atlas.tres" id="1_pattc"]
 
 [resource]
 script = ExtResource("1_p0hwx")
-direction = 1
-artwork = SubResource("AtlasTexture_ju74n")
-description = "Shift Row Right"
+direction = 90
+artwork = ExtResource("1_pattc")
+description = "Move Row"

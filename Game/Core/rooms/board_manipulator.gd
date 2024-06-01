@@ -19,7 +19,6 @@ func print_grid():
 	print(to_print)
 
 func push_column(col_index, direction : Game_Manager.DIRECTION):
-	print(" Pushing column ", col_index, " to the ", Game_Manager.DIRECTION.keys()[direction])
 	if col_index >= grid_height:
 		printerr(col_index, " is out of bound")
 		return
@@ -38,7 +37,6 @@ func push_column(col_index, direction : Game_Manager.DIRECTION):
 	Events.board_moved.emit();
 
 func push_row(row_index, direction : Game_Manager.DIRECTION):
-	print(" Pushing row ", row_index, " to the ", Game_Manager.DIRECTION.keys()[direction])
 	if row_index >= grid_width:
 		printerr(row_index, " is out of bound")
 		return

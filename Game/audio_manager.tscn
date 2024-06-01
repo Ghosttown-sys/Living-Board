@@ -19,11 +19,11 @@ stream = ExtResource("1_5uymb")
 
 [node name="Music" type="Node2D" parent="."]
 
-[node name="Menu_Music" type="AudioStreamPlayer2D" parent="Music"]
+[node name="Menu_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_yjljf")
 
-[node name="Bg_Music" type="AudioStreamPlayer2D" parent="Music"]
+[node name="Bg_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_niuyc")
 
-[node name="Combat_Music" type="AudioStreamPlayer2D" parent="Music"]
+[node name="Combat_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("4_guj6m")

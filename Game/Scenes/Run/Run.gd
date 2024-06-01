@@ -17,5 +17,3 @@ func toggle_visiblity():
 	debug.hide()
 	board.visible =false
 	board.buttons.hide()
-	
-	

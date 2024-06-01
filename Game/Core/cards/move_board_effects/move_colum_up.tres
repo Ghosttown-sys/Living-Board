@@ -1,16 +1,14 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://bgl44a8vws3uo"]
 
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="1_gvpw1"]
 [ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/move_column.gd" id="1_lp3nw"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xqops"]
-load_path = "res://.godot/imported/TrapSheet.png-68d773b45e02f4f7628464dea0662277.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1t2t"]
-atlas = SubResource("CompressedTexture2D_xqops")
-region = Rect2(0.577099, 47.9433, 14.7524, 16.5176)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbft3"]
+atlas = ExtResource("1_gvpw1")
+region = Rect2(16, 212, 34, 45)
 
 [resource]
 script = ExtResource("1_lp3nw")
-direction = 2
-artwork = SubResource("AtlasTexture_g1t2t")
-description = "Shift Column Up"
+direction = 0
+artwork = SubResource("AtlasTexture_wbft3")
+description = "MoveColumn"

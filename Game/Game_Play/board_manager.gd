@@ -58,14 +58,14 @@ func initialize_board():
 # Returns a list of all rooms connected to the room
 func get_connected_rooms(room: Room):
 	var connected_rooms = []
-	for direction in room.openings:
+	for direction in room.get_rotated_openings():
 		var neighbour_coordinates = room.coordinates + Game_Manager.d2v[direction];
 		# Check if it's out of bound
 		if neighbour_coordinates.x >= board_width || neighbour_coordinates.y >= board_height\
 		 || neighbour_coordinates.x < 0 || neighbour_coordinates.y < 0:
 			continue
 		var neighbour = rooms[neighbour_coordinates.x][neighbour_coordinates.y]
-		if neighbour.openings.has(Game_Manager.opposite_direction[direction]):
+		if neighbour.get_rotated_openings().has(Game_Manager.opposite_direction[direction]):
 			connected_rooms.append(neighbour)
 	
 	return connected_rooms
@@ -78,21 +78,25 @@ func find_all_connected_rooms(room : Room):
 
 func find_connected_rooms_recursive(room, visited_rooms):
 	visited_rooms.append(room)
-	for direction in room.openings:
+	for direction in room.get_rotated_openings():
 		var next_room_coordinates = room.coordinates + Game_Manager.d2v[direction];
 		# Check if it's out of bound
 		if next_room_coordinates.x >= board_width || next_room_coordinates.y >= board_height\
 		 || next_room_coordinates.x < 0 || next_room_coordinates.y < 0:
+			room.enable_corridor_fog(direction, true)
 			continue
 		var next_room = rooms[next_room_coordinates.x][next_room_coordinates.y];
-		if next_room.openings.has(Game_Manager.opposite_direction[direction]):
+		
+		if next_room.get_rotated_openings().has(Game_Manager.opposite_direction[direction]):
 			# Disable fog between corridors if both ways are connected
 			room.enable_corridor_fog(direction, false)
 			next_room.enable_corridor_fog(Game_Manager.opposite_direction[direction], false)
-
+			
 			# if it was not visited yet, perform the recursion
 			if not visited_rooms.has(next_room):
 				find_connected_rooms_recursive(next_room, visited_rooms)
+		else:
+			room.enable_corridor_fog(direction, true)
 
 func update_board():
 	for x in rooms.size():
@@ -126,7 +130,6 @@ func update_rooms_rotation():
 			var tween = get_tree().create_tween()
 			await tween.tween_property(room, "rotation_degrees", new_rotation, 0.8).set_trans(Tween.TRANS_QUAD).finished
 			
-			room.rotation_degrees = 0
 	
 # Visually moves the rooms positions in the grid
 func update_rooms_positions():

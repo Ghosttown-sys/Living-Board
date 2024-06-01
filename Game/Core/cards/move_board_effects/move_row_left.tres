@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dce6p2vs5cvm6"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dce6p2vs5cvm6"]
 
-[ext_resource type="Texture2D" uid="uid://dbpm0rns1vtkw" path="res://assets/Arts/Resource_Arts/Resources/trap.tres" id="1_0cwxo"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="1_emsj5"]
 [ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/move_row.gd" id="2_lpst4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daw6g"]
+atlas = ExtResource("1_emsj5")
+region = Rect2(138, 223, 45, 34)
 
 [resource]
 script = ExtResource("2_lpst4")
-direction = 0
-artwork = ExtResource("1_0cwxo")
-description = "Shift Row Left"
+direction = 270
+artwork = SubResource("AtlasTexture_daw6g")
+description = "Move Row"

@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="1_lwfia"]
 
-
 [resource]
 atlas = ExtResource("1_lwfia")
-region = Rect2(0, 0, 25, 36)
+region = Rect2(214, 222, 44, 35)

@@ -55,11 +55,21 @@ func _ready():
 	assign_random_openings()
 	update_visuals()
 
+func get_rotated_openings():
+	var rotated_openings = []
+	for opening in openings:
+		# Remap direction considering room rotation
+		var rotated_direction = (Game_Manager.layer_index[opening]+Game_Manager.layer_index[direction]) % 4
+		if rotated_direction < 0:
+			rotated_direction += 4
+		rotated_openings.append(Game_Manager.direction_index[rotated_direction])
+	return rotated_openings
+
 func update_visuals():
 	# for layers 1 to 4 (corridor layers)
-	for layer in range(0,4):
-		var direction = Game_Manager.direction_index[layer]
-		tilemap.set_layer_enabled(layer + 1, openings.has(direction));
+	for layer in range(1,5):
+		var direction = Game_Manager.direction_index[layer - 1]
+		tilemap.set_layer_enabled(layer, openings.has(direction));
 	debug_label.text = str(room_id);
 
 func get_room_pixel_size():
@@ -76,9 +86,14 @@ func assign_random_openings():
 
 # Renders or hide the fog between corridors
 func enable_corridor_fog(direction : Game_Manager.DIRECTION, enabled : bool):
+	var layer_index_offset = Game_Manager.layer_index[self.direction];
 	var direction_index = Game_Manager.layer_index[direction]
 	
-	var fog_layer = direction_index + 5;
+	var rotated_index = (direction_index-layer_index_offset) % 4
+	if rotated_index < 0:
+		rotated_index += 4
+	
+	var fog_layer = rotated_index + 5;
 	tilemap.set_layer_enabled(fog_layer, enabled);
 	
 func _on_mouse_entered():
