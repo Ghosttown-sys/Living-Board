@@ -30,8 +30,11 @@ func next_line():
 		current_line += 1
 	else:
 		end_dialogue()
+	
+	Events.on_dialogue_next_line.emit()
 
 func end_dialogue():
+	Events.on_dialogue_ended.emit()
 	dialogue_lines.text = ""
 	panel.visible = false
 

@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7ywqugxcv735"]
+
+[ext_resource type="Script" path="res://Game/Tutorial/Tutorial_Manager.gd" id="1_ixjqq"]
+[ext_resource type="Script" path="res://Game/Dialogue/dialogue_holder.gd" id="2_cbpb7"]
+[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Arts/Resource_Arts/Resources/cards_atlas.tres" id="3_3qnrq"]
+
+[node name="Tutorial" type="Node"]
+script = ExtResource("1_ixjqq")
+
+[node name="Dialogues" type="Node" parent="."]
+script = ExtResource("2_cbpb7")
+lines = Array[String](["Find a way out from this maze", "You have up to 3 actions per turn", "Which you can use to draw a card from you deck", "Play a card from your hand by dragging it onto the board", "Or move your character", "After each turn the catacombs will unleash their wrath and shuffle the rooms to get you trapped", "So hurry up looting this place and find the exit before it's too late!"])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_priority = 4
+
+[node name="Interactions_Blocker" type="Control" parent="CanvasLayer"]
+z_index = 50
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Actions_Arrow" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 715.0
+offset_top = 101.0
+offset_right = 755.0
+offset_bottom = 141.0
+rotation = 0.348128
+scale = Vector2(1.89, 2.59)
+texture = ExtResource("3_3qnrq")
+
+[node name="Draw_Card_Arrow" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 178.0
+offset_top = 213.0
+offset_right = 218.0
+offset_bottom = 253.0
+rotation = -1.33966
+scale = Vector2(1.89, 2.59)
+texture = ExtResource("3_3qnrq")
+
+[node name="Play_Card_Arrow" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 514.0
+offset_top = 408.0
+offset_right = 554.0
+offset_bottom = 448.0
+rotation = 2.92207
+scale = Vector2(1.89, 2.59)
+texture = ExtResource("3_3qnrq")
+
+[node name="Move_Arrow" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 243.0
+offset_top = 457.0
+offset_right = 283.0
+offset_bottom = 497.0
+rotation = -2.06722
+scale = Vector2(1.89, 2.59)
+texture = ExtResource("3_3qnrq")

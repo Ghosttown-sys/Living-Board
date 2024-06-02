@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://qnd8yn6aey5b"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://qnd8yn6aey5b"]
 
 [ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/move_row.gd" id="1_p0hwx"]
-[ext_resource type="Texture2D" uid="uid://b6gmnjfn5qopy" path="res://assets/Arts/Resource_Arts/Resources/cards_atlas.tres" id="1_pattc"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="1_y31pi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwdqe"]
+atlas = ExtResource("1_y31pi")
+region = Rect2(214, 222, 44, 35)
 
 [resource]
 script = ExtResource("1_p0hwx")
 direction = 90
-artwork = ExtResource("1_pattc")
+artwork = SubResource("AtlasTexture_qwdqe")
 description = "Move Row"

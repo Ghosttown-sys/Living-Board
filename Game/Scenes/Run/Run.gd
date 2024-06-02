@@ -12,10 +12,11 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 
 const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
-
+@onready var shaker = $Shaker
 
 func _ready():
 	Game_Manager.combat_done.connect(toggle_visiblity_on)
+	Events.on_game_started.emit()
 	
 	for i in PlayerStats.player_stat.max_actions:
 		var instance = action_token_scene.instantiate()
@@ -28,6 +29,10 @@ func _ready():
 func _process(delta):
 	hp.value = PlayerStats.player_stat.player_health
 	sanity.value = PlayerStats.player_stat.player_sanity
+	
+	if PlayerStats.player_stat.player_actions <= 0:
+		await get_tree().create_timer(1).timeout
+		end_turn()
 	
 func _on_stats_changed():
 	for token in actions.get_children():
@@ -60,9 +65,10 @@ func toggle_visiblity_on():
 	board.buttons.show()
 	camera.make_current()
 
-func _on_end_turn_pressed():
+func end_turn():
 	if not Game_Manager.is_player_turn:
 		return
+	shaker.apply_random_shake()
 	board_random_moves()
 	PlayerStats.restore_all_actions()
 
