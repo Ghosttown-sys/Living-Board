@@ -5,6 +5,8 @@ extends Node2D
 const COMBAT = preload("res://Game/Scenes/Rooms_Internal/combat.tscn")
 const TREASURE = preload("res://Game/Scenes/Rooms_Internal/treasure.tscn")
 
+const GAME_OVER = preload("res://scenes/ui/game_over.tscn")
+
 @onready var camera :Camera2D= $Camera
 
 @onready var hp = $Top_Bar/Menu/Profile/Profile/Stats/HP
@@ -24,6 +26,7 @@ func _ready():
 	Game_Manager.treasure_room_entered.connect(treasure_room_found)
 	Game_Manager.hazard_room_entered.connect(hazard_room_found)
 	
+	Events.player_died.connect(game_over)
 	Events.on_move_finished.connect(on_move_finished)
 	Events.on_game_started.emit()
 	var current_enemies : Array[Monster_Data]
@@ -32,6 +35,8 @@ func _ready():
 		var instance = action_token_scene.instantiate()
 		actions.add_child(instance)
 	
+	
+	PlayerStats.reset_player()
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
 
@@ -129,3 +134,7 @@ func _on_skip_room_pressed():
 	room_interactions.hide()
 	Events.on_move_finished.emit()
 	
+func game_over():
+	AudioManager.play_music(3)
+	var game_over_scene = GAME_OVER.instantiate()
+	add_child(game_over_scene)

@@ -13,3 +13,5 @@ signal on_dialogue_ended
 signal on_game_started
 
 signal on_move_finished
+
+signal player_died

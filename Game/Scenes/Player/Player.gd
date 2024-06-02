@@ -177,4 +177,4 @@ func splas_fire():
 			get_tree().get_root().add_child(arrow[i-1])
 
 func take_damage(damage:float):
-	PlayerStats.player_stat.player_health -= damage
+	PlayerStats.take_damage(damage)

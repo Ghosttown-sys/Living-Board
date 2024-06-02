@@ -10,13 +10,15 @@ extends Node
 @onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music
 @onready var combat_music = $Music/Combat_Music
+@onready var death_music = $Music/Death_Music
 
-@onready var tracks = [menu_music,bg_music,combat_music]
+@onready var tracks = [menu_music,bg_music,combat_music,death_music]
 """
 Tracklist:
 	0 - menu_music
 	1 - bg_music
 	2 - combat_music
+	3 - death_music
 """
 var current_track : int = -1
 

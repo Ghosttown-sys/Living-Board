@@ -21,7 +21,12 @@ func restore_all_actions():
 func take_damage(damage):
 	player_stat.player_health -= damage
 	Events.on_player_stats_changed.emit()
+	if player_stat.player_health <= 0:
+		Events.player_died.emit()
 
 func take_sanity_damage(damage):
 	player_stat.player_sanity -= damage
 	Events.on_player_stats_changed.emit()
+
+func reset_player():
+	player_stat.reset()
