@@ -59,13 +59,13 @@ func _physics_process(delta):
 		move_and_slide()
 
 func take_damage(damage:float)->void:
-	max_hp -= damage
-	if max_hp <= 0:
-		is_dying = true
-		sprite.sprite_frames.remove_frame("default",1)
-		animation_player.play("Death")
-		await get_tree().create_timer(1).timeout
-		queue_free()
+	if !is_dying:
+		max_hp -= damage
+		if max_hp <= 0:
+			is_dying = true
+			animation_player.play("Death")
+			await get_tree().create_timer(1).timeout
+			queue_free()
 
 
 func _on_timer_timeout():
