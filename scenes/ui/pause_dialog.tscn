@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://bswgagaqfkxrf"]
 
 [ext_resource type="Texture2D" uid="uid://bn8508130mlq4" path="res://assets/images/white_box_32x32.png" id="1"]
-[ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_xkewf"]
 [ext_resource type="Script" path="res://scenes/ui/pause_dialog.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="3"]
 [ext_resource type="PackedScene" uid="uid://fhkyjillo30b" path="res://scenes/ui/save_game_dlg.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="5"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="5_ltifu"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -24,44 +24,31 @@ cache/0/100/0/scale = 1.0
 cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
 
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("3")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
-cache/0/48/0/ascent = 0.0
-cache/0/48/0/descent = 0.0
-cache/0/48/0/underline_position = 0.0
-cache/0/48/0/underline_thickness = 0.0
-cache/0/48/0/scale = 1.0
-cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_dw5si"]
+font = ExtResource("5_ltifu")
+font_size = 100
+font_color = Color(0.756863, 0.509804, 0, 1)
+outline_size = 20
+shadow_size = 20
+shadow_color = Color(1, 1, 1, 0.490196)
+shadow_offset = Vector2(5, 5)
 
-[node name="PauseDialog" type="Control"]
+[node name="PauseDialog" type="CanvasLayer"]
 process_mode = 1
-layout_mode = 3
+layer = 5
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.423529)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_xkewf")
-script = ExtResource("2")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 0.423529)
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
 texture = ExtResource("1")
 stretch_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -83,14 +70,17 @@ theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = SubResource("1")
 text = "Pause"
+label_settings = SubResource("LabelSettings_dw5si")
+horizontal_alignment = 1
 
 [node name="ResumeBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_ltifu")
 text = "Resume"
 flat = true
 
@@ -98,9 +88,10 @@ flat = true
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_ltifu")
 text = "Save"
 flat = true
 
@@ -108,9 +99,10 @@ flat = true
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_ltifu")
 text = "Load"
 flat = true
 
@@ -118,9 +110,10 @@ flat = true
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
-theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_ltifu")
 text = "Main Menu"
 flat = true
 

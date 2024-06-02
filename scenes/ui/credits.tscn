@@ -11,7 +11,7 @@ shader = ExtResource("1_h61bv")
 
 [sub_resource type="LabelSettings" id="LabelSettings_sm0r5"]
 font = ExtResource("3_hbu8t")
-font_size = 40
+font_size = 30
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.529412)
 shadow_offset = Vector2(5, 5)
@@ -82,7 +82,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "Code:
+text = "Project lead / Developer:
 "
 label_settings = SubResource("LabelSettings_sm0r5")
 
@@ -93,13 +93,38 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "Candy Overdose
-ZY"
+text = "Candy Overdose"
+label_settings = SubResource("LabelSettings_nyra8")
+
+[node name="HSeparator4" type="HSeparator" parent="Credits"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Category5" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "Interaction designer / Developer:
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+
+[node name="Names5" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "ZY"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator" type="HSeparator" parent="Credits"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Category2" type="Label" parent="Credits"]
@@ -109,7 +134,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "Art:
+text = "UI/UX designer / pixel artist:
 "
 label_settings = SubResource("LabelSettings_sm0r5")
 
@@ -120,13 +145,38 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "SimplePixelated
-snoopeyxd"
+text = "SimplePixelated"
+label_settings = SubResource("LabelSettings_nyra8")
+
+[node name="HSeparator3" type="HSeparator" parent="Credits"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Category4" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "character designer / pixel artist:
+"
+label_settings = SubResource("LabelSettings_sm0r5")
+
+[node name="Names4" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.195371, 0.13411, 0.0987246, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_hbu8t")
+text = "snoopeyxd"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator2" type="HSeparator" parent="Credits"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Category3" type="Label" parent="Credits"]
@@ -136,7 +186,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "Music & Sounds:
+text = "Composer / SFX:
 "
 label_settings = SubResource("LabelSettings_sm0r5")
 
