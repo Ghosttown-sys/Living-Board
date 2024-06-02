@@ -52,7 +52,7 @@ func create_new_room(room_scene,x, y):
 	room_instance.position = Vector2(room_size.x * x,room_size.y * y);
 
 func initialize_board():
-	player_room.openings = Game_Manager.ALL_DIRECTIONS.duplicate();
+	player_room.openings = Directions.ALL_DIRECTIONS.duplicate();
 	player_room.update_visuals()
 	
 	update_rooms_activation()
@@ -63,13 +63,13 @@ func initialize_board():
 func get_connected_rooms(room: Room):
 	var connected_rooms = []
 	for direction in room.get_rotated_openings():
-		var neighbour_coordinates = room.coordinates + Game_Manager.d2v[direction];
+		var neighbour_coordinates = room.coordinates + Directions.d2v[direction];
 		# Check if it's out of bound
 		if neighbour_coordinates.x >= board_width || neighbour_coordinates.y >= board_height\
 		 || neighbour_coordinates.x < 0 || neighbour_coordinates.y < 0:
 			continue
 		var neighbour = rooms[neighbour_coordinates.x][neighbour_coordinates.y]
-		if neighbour.get_rotated_openings().has(Game_Manager.opposite_direction[direction]):
+		if neighbour.get_rotated_openings().has(Directions.opposite_direction[direction]):
 			connected_rooms.append(neighbour)
 	
 	return connected_rooms
@@ -83,7 +83,7 @@ func find_all_connected_rooms(room : Room):
 func find_connected_rooms_recursive(room, visited_rooms):
 	visited_rooms.append(room)
 	for direction in room.get_rotated_openings():
-		var next_room_coordinates = room.coordinates + Game_Manager.d2v[direction];
+		var next_room_coordinates = room.coordinates + Directions.d2v[direction];
 		# Check if it's out of bound
 		if next_room_coordinates.x >= board_width || next_room_coordinates.y >= board_height\
 		 || next_room_coordinates.x < 0 || next_room_coordinates.y < 0:
@@ -91,10 +91,10 @@ func find_connected_rooms_recursive(room, visited_rooms):
 			continue
 		var next_room = rooms[next_room_coordinates.x][next_room_coordinates.y];
 		
-		if next_room.get_rotated_openings().has(Game_Manager.opposite_direction[direction]):
+		if next_room.get_rotated_openings().has(Directions.opposite_direction[direction]):
 			# Disable fog between corridors if both ways are connected
 			room.enable_corridor_fog(direction, false)
-			next_room.enable_corridor_fog(Game_Manager.opposite_direction[direction], false)
+			next_room.enable_corridor_fog(Directions.opposite_direction[direction], false)
 			
 			# if it was not visited yet, perform the recursion
 			if not visited_rooms.has(next_room):
@@ -122,11 +122,11 @@ func update_rooms_rotation():
 				continue
 			
 			# If the rotation is 0, make it 360 to rotate anticlockwise
-			if room.rotation_degrees ==0 and new_rotation == Game_Manager.DIRECTION.LEFT:
+			if room.rotation_degrees ==0 and new_rotation == Directions.DIRECTION.LEFT:
 				room.rotation_degrees = 360
 			
 			# If the rotation is 270, make it -90 to rotate clockwise
-			if room.rotation_degrees == 270 and new_rotation == Game_Manager.DIRECTION.UP:
+			if room.rotation_degrees == 270 and new_rotation == Directions.DIRECTION.UP:
 				room.rotation_degrees = -90
 			
 			AudioManager.wall_move_sfx.play()

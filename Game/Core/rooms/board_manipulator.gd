@@ -18,16 +18,16 @@ func print_grid():
 		to_print += "\n"
 	print(to_print)
 
-func push_column(col_index, direction : Game_Manager.DIRECTION):
+func push_column(col_index, direction : Directions.DIRECTION):
 	if col_index >= grid_height:
 		printerr(col_index, " is out of bound")
 		return
-	if direction != Game_Manager.DIRECTION.UP && direction != Game_Manager.DIRECTION.DOWN:
-		printerr(Game_Manager.DIRECTION.keys()[direction], " is not supported")
+	if direction != Directions.DIRECTION.UP && direction != Directions.DIRECTION.DOWN:
+		printerr(Directions.DIRECTION.keys()[direction], " is not supported")
 		return
 
 	var column = grid[col_index]
-	if direction == Game_Manager.DIRECTION.DOWN:
+	if direction == Directions.DIRECTION.DOWN:
 		var tail = column.pop_back();
 		column.push_front(tail);
 	else:# direction == DIRECTION.UP
@@ -36,15 +36,15 @@ func push_column(col_index, direction : Game_Manager.DIRECTION):
 		
 	Events.board_moved.emit();
 
-func push_row(row_index, direction : Game_Manager.DIRECTION):
+func push_row(row_index, direction : Directions.DIRECTION):
 	if row_index >= grid_width:
 		printerr(row_index, " is out of bound")
 		return
-	if direction != Game_Manager.DIRECTION.LEFT && direction != Game_Manager.DIRECTION.RIGHT:
-		printerr(Game_Manager.DIRECTION.keys()[direction], " is not supported")
+	if direction != Directions.DIRECTION.LEFT && direction != Directions.DIRECTION.RIGHT:
+		printerr(Directions.DIRECTION.keys()[direction], " is not supported")
 		return
 	
-	if direction == Game_Manager.DIRECTION.RIGHT:
+	if direction == Directions.DIRECTION.RIGHT:
 		# Remove the last element of each row and insert it at the start of the next row
 		var tail = grid[grid_height - 1][row_index]
 		for row in range(grid_height - 1, 0, -1):
@@ -59,9 +59,9 @@ func push_row(row_index, direction : Game_Manager.DIRECTION):
 	
 	Events.board_moved.emit();
 
-func rotate_room(coordinates, direction : Game_Manager.DIRECTION):
+func rotate_room(coordinates, direction : Directions.DIRECTION):
 	var facing_dir = grid[coordinates.x][coordinates.y].direction
-	var rotation_dir = true if direction == Game_Manager.DIRECTION.RIGHT else false
+	var rotation_dir = true if direction == Directions.DIRECTION.RIGHT else false
 	grid[coordinates.x][coordinates.y].direction = Game_Manager.get_dir_after_rotation(facing_dir, rotation_dir)
 	Events.board_moved.emit();
 

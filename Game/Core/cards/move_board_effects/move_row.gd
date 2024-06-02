@@ -1,6 +1,6 @@
 extends Card_Effect
 
-@export var direction = Game_Manager.DIRECTION.LEFT
+@export var direction = Directions.DIRECTION.LEFT
 
 func apply_effect(args : Array):
 	if args.size() != 1:
