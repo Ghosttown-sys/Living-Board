@@ -1,12 +1,15 @@
 class_name Monster
 extends CharacterBody2D
 
+@export var monster_data :Monster_Data
+
 var max_hp := 10.0
 var damage := 2
 var speed := 800.0
 var rush_speed := 16000.0
 var cd := 1.5
 var cdm := 3.0
+
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite :AnimatedSprite2D = $sprite
@@ -23,25 +26,23 @@ var direction : Vector2
 @export var frame_2 : AtlasTexture
 @onready var shooter = $Shooter
 
-enum Monster_Type{
-	MELEE,
-	RANGED,
-	RUSHER,
-}
 
 @export var distance_from_player : int = 32
 
 @export_category("Monster_Type")
-@export var monster_type : Monster_Type = Monster_Type.RANGED
+@export var monster_type : Monster_Data.MONSTER_TYPE = Monster_Data.MONSTER_TYPE.RANGED
 const ARROW = preload("res://Game/Components/Bullets/Enemy_Arrow.tscn")
 
 func _ready():
-	sprite.sprite_frames.set_frame("default",0,frame_1)
-	sprite.sprite_frames.set_frame("default",1,frame_2)
-	sprite.play("default")
+	set_up_monster()
+	set_up_animation()
+	monster_in_it()
+
+func monster_in_it():
 	player = get_tree().get_first_node_in_group("Player")
 	timer.start(cd)
 	hp_bar.max_value = max_hp
+	
 
 func _physics_process(delta):
 	hp_bar.value = max_hp
@@ -62,6 +63,23 @@ func _physics_process(delta):
 			sprite.flip_h = false
 		move_and_slide()
 
+func set_up_monster():
+	max_hp = monster_data.max_hp
+	damage = monster_data.damage
+	speed = monster_data.speed
+	rush_speed = monster_data.rush_speed
+	cd = monster_data.cd
+	cdm =monster_data.cdm
+	frame_1 = monster_data.sprite_frame_1
+	frame_2 = monster_data.sprite_frame_2
+	monster_type = monster_data.monster_type
+	
+
+func set_up_animation():
+	sprite.sprite_frames.set_frame("default",0,frame_1)
+	sprite.sprite_frames.set_frame("default",1,frame_2)
+	sprite.play("default")
+
 func take_damage(damage:float)->void:
 	if !is_dying:
 		max_hp -= damage
@@ -79,9 +97,9 @@ func take_damage(damage:float)->void:
 func _on_timer_timeout():
 	if !is_dying:
 		match monster_type:
-				Monster_Type.RANGED:
+				Monster_Data.MONSTER_TYPE.RANGED:
 					shoot()
-				Monster_Type.MELEE:
+				Monster_Data.MONSTER_TYPE.MELEE:
 					is_dashing = true
 					await get_tree().create_timer(1).timeout
 					dash()
@@ -107,6 +125,6 @@ func dash():
 
 
 func _on_melee_zone_body_entered(body):
-	if body is Player and monster_type == Monster_Type.MELEE:
+	if body is Player and monster_type == Monster_Data.MONSTER_TYPE.MELEE:
 		body.take_damage(damage)
 		is_dashing = false

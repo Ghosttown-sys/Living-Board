@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Monster_Data" load_steps=5 format=3 uid="uid://v4fvo5qbb8f4"]
+
+[ext_resource type="Script" path="res://Game/Resources/Resource_Scripts/Monster_Data.gd" id="1_tnn8l"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_2qhig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfumb"]
+atlas = ExtResource("2_2qhig")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb7wx"]
+atlas = ExtResource("2_2qhig")
+region = Rect2(16, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_tnn8l")
+name = "Zombie"
+sprite_frame_1 = SubResource("AtlasTexture_tfumb")
+sprite_frame_2 = SubResource("AtlasTexture_bb7wx")
+monster_type = 1
+max_hp = 35.0
+damage = 5
+speed = 200.0
+rush_speed = 30000.0
+cd = 5.0
+cdm = 8.0

@@ -12,4 +12,5 @@
 script = ExtResource("1_0475y")
 room_normal = Array[PackedScene]([ExtResource("1_2jn1p"), ExtResource("2_5nquj"), ExtResource("3_y4wqo"), ExtResource("4_50cqe")])
 room_hazards = Array[PackedScene]([ExtResource("5_1u52t")])
+room_combat = Array[PackedScene]([])
 room_treasures = Array[PackedScene]([ExtResource("6_frpqj")])

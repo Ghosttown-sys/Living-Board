@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Monster_Data" load_steps=5 format=3 uid="uid://bg6oo205wkyr2"]
+
+[ext_resource type="Script" path="res://Game/Resources/Resource_Scripts/Monster_Data.gd" id="1_6r20j"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_vs0cy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymbch"]
+atlas = ExtResource("2_vs0cy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17bvn"]
+atlas = ExtResource("2_vs0cy")
+region = Rect2(16, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_6r20j")
+name = "Skelton"
+sprite_frame_1 = SubResource("AtlasTexture_ymbch")
+sprite_frame_2 = SubResource("AtlasTexture_17bvn")
+monster_type = 1
+max_hp = 50.0
+damage = 1
+speed = 900.0
+rush_speed = 16000.0
+cd = 2.5
+cdm = 4.0

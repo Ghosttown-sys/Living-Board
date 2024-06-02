@@ -12,6 +12,8 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 
 const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
+
+
 func _ready():
 	Game_Manager.combat_done.connect(toggle_visiblity_on)
 	
@@ -51,7 +53,6 @@ func toggle_visiblity_off():
 	board.buttons.hide()
 	
 func toggle_visiblity_on():
-	print("hmm")
 	turn_controler.show()
 	board.visible =true
 	board.buttons.show()

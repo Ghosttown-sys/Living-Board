@@ -25,6 +25,10 @@ var coordinates : Vector2i;
 @onready var light : Light2D = $light
 @onready var tilemap : TileMap = $Room_Tilemap
 @onready var targeted = $Targeted
+@onready var monster_token_1 = $Monster_Token_1
+@onready var monster_token_2 = $Monster_Token_2
+@onready var monster_token_3 = $Monster_Token_3
+
 """
 Tilemap layers are:
 	0 : Base
@@ -46,13 +50,15 @@ Tilemap layers are:
 var room_decors_database = preload("res://Game/Scenes/RoomsDecors/room_decors_databse.tres")
 
 enum ROOM_TYPE {
-	Normal = 50,
-	Hazard = 80,
+	Normal = 15,
+	Hazard = 45,
+	Combat = 85,
 	Treasure = 100
 }
 
 var room_type : ROOM_TYPE
-
+@export var possible_monsters : Array[Monster_Data]
+@export var hosting_monsters : Array[Monster_Data]
 var hovering : bool:
 	set(value):
 		if value:
@@ -103,6 +109,8 @@ func assign_random_room_type():
 		random_room_type = ROOM_TYPE.Normal
 	elif  random_int > ROOM_TYPE.Normal and random_int < ROOM_TYPE.Hazard:
 		random_room_type = ROOM_TYPE.Hazard
+	elif  random_int > ROOM_TYPE.Hazard and random_int < ROOM_TYPE.Combat:
+		random_room_type = ROOM_TYPE.Combat
 	elif  random_int > ROOM_TYPE.Hazard and random_int < ROOM_TYPE.Treasure:
 		random_room_type = ROOM_TYPE.Treasure
 	
@@ -113,7 +121,38 @@ func assign_random_decorations():
 	var random_index = Game_Manager.RNG.randi_range(0, collection.size() - 1)
 	var decor_instance = collection[random_index].instantiate()
 	add_child(decor_instance)
+	if room_type == ROOM_TYPE.Combat:
+		set_up_combat_room()
+
+func set_up_combat_room():
+	monster_token_1.monster_data = possible_monsters.pick_random()
+	monster_token_2.monster_data = possible_monsters.pick_random()
+	monster_token_3.monster_data = possible_monsters.pick_random()
 	
+	monster_token_1.update()
+	monster_token_2.update()
+	monster_token_3.update()
+
+	var difficulty := randi_range(1,3)
+	if difficulty == 1:
+		monster_token_1.show()
+		hosting_monsters.append(monster_token_1.monster_data)
+		
+	elif difficulty == 2:
+		monster_token_2.show()
+		hosting_monsters.append(monster_token_2.monster_data)
+		monster_token_3.show()
+		hosting_monsters.append(monster_token_3.monster_data)
+		
+	elif difficulty == 3:
+		monster_token_1.show()
+		hosting_monsters.append(monster_token_1.monster_data)
+		monster_token_2.show()
+		hosting_monsters.append(monster_token_2.monster_data)
+		monster_token_3.show()
+		hosting_monsters.append(monster_token_3.monster_data)
+		
+
 # Renders or hide the fog between corridors
 func enable_corridor_fog(direction : Directions.DIRECTION, enabled : bool):
 	var layer_index_offset = Directions.layer_index[self.direction];

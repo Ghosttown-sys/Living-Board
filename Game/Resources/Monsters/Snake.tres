@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Monster_Data" load_steps=5 format=3 uid="uid://bkrtcjgowxqhx"]
+
+[ext_resource type="Script" path="res://Game/Resources/Resource_Scripts/Monster_Data.gd" id="1_kljgg"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_eslcu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68v5f"]
+atlas = ExtResource("2_eslcu")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dugn1"]
+atlas = ExtResource("2_eslcu")
+region = Rect2(16, 48, 16, 16)
+
+[resource]
+script = ExtResource("1_kljgg")
+name = "Snake"
+sprite_frame_1 = SubResource("AtlasTexture_68v5f")
+sprite_frame_2 = SubResource("AtlasTexture_dugn1")
+monster_type = 0
+max_hp = 20.0
+damage = 3
+speed = 800.0
+rush_speed = 16000.0
+cd = 2.0
+cdm = 3.5
