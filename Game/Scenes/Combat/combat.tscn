@@ -265,3 +265,15 @@ position = Vector2(479, 296)
 [node name="Monster2" parent="." instance=ExtResource("4_6ioml")]
 position = Vector2(639, 304)
 monster_type = 0
+
+[node name="Spawner_1" type="Marker2D" parent="."]
+position = Vector2(213, 212)
+
+[node name="Spawner_2" type="Marker2D" parent="."]
+position = Vector2(216, 447)
+
+[node name="Spawner_3" type="Marker2D" parent="."]
+position = Vector2(827, 210)
+
+[node name="Spawner_4" type="Marker2D" parent="."]
+position = Vector2(847, 435)

@@ -13,7 +13,7 @@ atlas = ExtResource("2_3wu0k")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tlm6"]
-bg_color = Color(0.780233, 0.543688, 0.294391, 1)
+bg_color = Color(0.737255, 0.203922, 0.141176, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2imna"]
 bg_color = Color(0.313726, 1, 0.333333, 1)

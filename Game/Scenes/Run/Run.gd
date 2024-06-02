@@ -19,7 +19,10 @@ func _ready():
 	
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
-
+func _process(delta):
+	hp.value = PlayerStats.player_stat.player_health
+	sanity.value = PlayerStats.player_stat.player_sanity
+	
 func _on_stats_changed():
 	for token in actions.get_children():
 		token.visible = false
@@ -29,14 +32,12 @@ func _on_stats_changed():
 	hp.max_value = PlayerStats.player_stat.max_hp
 	sanity.max_value = PlayerStats.player_stat.max_sanity
 	
-	hp.value = PlayerStats.player_stat.player_health
-	sanity.value = PlayerStats.player_stat.player_sanity
+
 
 func _on_button_pressed():
 	AudioManager.play_music(2)
 	toggle_visiblity()
 	var new_combat := COMBAT.instantiate()
-	new_combat.temp = 5
 	add_child(new_combat)
 
 

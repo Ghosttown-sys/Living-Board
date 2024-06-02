@@ -155,7 +155,6 @@ func set_weapon():
 
 func _on_weapon_zone_body_entered(body):
 	if attacking and attack_type == Attack_Type.MELEE and body is Monster:
-		print("attacking")
 		body.take_damage(damage)
 
 
@@ -179,4 +178,3 @@ func splas_fire():
 
 func take_damage(damage:float):
 	PlayerStats.player_stat.player_health -= damage
-	print(PlayerStats.player_stat.player_health)
