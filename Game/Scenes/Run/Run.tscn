@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=10 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="3_gbia6"]
 [ext_resource type="PackedScene" uid="uid://ccockq4ssn6uj" path="res://Game/Scenes/UI/top_bar.tscn" id="4_xd8x2"]
 [ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_yoqht"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="7_8mmna"]
+[ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="8_om7ju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ey7b"]
+atlas = ExtResource("7_8mmna")
+region = Rect2(0, 64, 128, 32)
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_s7tjo")
@@ -40,12 +46,6 @@ grow_horizontal = 0
 scale = Vector2(0.8, 0.8)
 theme_override_constants/separation = 100
 
-[node name="Button" type="Button" parent="Turn_Controler/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_yoqht")
-theme_override_font_sizes/font_size = 40
-text = "Enter room"
-
 [node name="End_Turn" type="Button" parent="Turn_Controler/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -55,4 +55,85 @@ text = "End Turn"
 
 [node name="Top_Bar" parent="." instance=ExtResource("4_xd8x2")]
 
-[connection signal="pressed" from="Turn_Controler/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Room_Interactions" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Room_Interactions"]
+custom_minimum_size = Vector2(1024, 536)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -536.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_4ey7b")
+region_rect = Rect2(1, 1, 126, 30)
+patch_margin_left = 40
+patch_margin_right = 40
+
+[node name="Panel" type="NinePatchRect" parent="Room_Interactions/NinePatchRect"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 47.0
+offset_right = -1.0
+offset_bottom = 347.0
+grow_horizontal = 2
+texture = ExtResource("8_om7ju")
+
+[node name="Label" type="Label" parent="Room_Interactions/NinePatchRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Combat room ecountered"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Room_Interactions/NinePatchRect/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -97.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Skiping room will cost sanity !!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enter_Room" type="Button" parent="Room_Interactions/NinePatchRect"]
+layout_mode = 2
+offset_left = 651.0
+offset_top = 423.0
+offset_right = 899.0
+offset_bottom = 463.0
+theme = ExtResource("5_yoqht")
+theme_override_font_sizes/font_size = 40
+text = "Enter room"
+
+[node name="Skip_room" type="Button" parent="Room_Interactions/NinePatchRect"]
+layout_mode = 2
+offset_left = 128.0
+offset_top = 427.0
+offset_right = 376.0
+offset_bottom = 467.0
+theme = ExtResource("5_yoqht")
+theme_override_font_sizes/font_size = 40
+text = " Skip room"
+
+[connection signal="pressed" from="Turn_Controler/VBoxContainer/End_Turn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Room_Interactions/NinePatchRect/Enter_Room" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Room_Interactions/NinePatchRect/Skip_room" to="." method="_on_skip_room_pressed"]

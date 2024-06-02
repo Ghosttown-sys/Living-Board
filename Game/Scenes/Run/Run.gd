@@ -9,6 +9,7 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 @onready var sanity = $Top_Bar/Menu/Profile/Profile/Stats/Sanity
 @onready var turn_counter = $Top_Bar/Menu/Turn/Turn_Counter
 @onready var actions = $Top_Bar/Menu/Game_State/Action_Tokens
+@onready var room_interactions = $Room_Interactions
 
 const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
@@ -16,8 +17,10 @@ const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
 func _ready():
 	Game_Manager.combat_done.connect(toggle_visiblity_on)
+	Game_Manager.combat_room_entered.connect(combat_room_found)
 	Events.on_game_started.emit()
-	
+	var current_enemies : Array[Monster_Data]
+
 	for i in PlayerStats.player_stat.max_actions:
 		var instance = action_token_scene.instantiate()
 		actions.add_child(instance)
@@ -25,15 +28,20 @@ func _ready():
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
 
-
 func _process(delta):
 	hp.value = PlayerStats.player_stat.player_health
 	sanity.value = PlayerStats.player_stat.player_sanity
+
 	
 	if PlayerStats.player_stat.player_actions <= 0:
 		await get_tree().create_timer(1).timeout
 		end_turn()
 	
+
+func combat_room_found(enemies : Array[Monster_Data]):
+	current_enemies = enemies
+	room_interactions.show()
+
 func _on_stats_changed():
 	for token in actions.get_children():
 		token.visible = false
@@ -51,13 +59,14 @@ func _on_button_pressed():
 	AudioManager.play_music(2)
 	toggle_visiblity_off()
 	var new_combat := COMBAT.instantiate()
+	new_combat.current_enemies = current_enemies
 	add_child(new_combat)
-
 
 func toggle_visiblity_off():
 	turn_controler.hide()
 	board.visible =false
 	board.buttons.hide()
+	room_interactions.hide()
 	
 func toggle_visiblity_on():
 	turn_controler.show()
@@ -96,3 +105,9 @@ func board_random_moves():
 	Game_Manager.is_player_turn = true
 	Game_Manager.turn += 1
 	_on_stats_changed()
+
+
+func _on_skip_room_pressed():
+	PlayerStats.player_stat.player_sanity -= 20
+	room_interactions.hide()
+	

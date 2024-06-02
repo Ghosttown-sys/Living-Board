@@ -18,6 +18,8 @@ var rooms = []
 
 var player_animating : bool = false
 
+var can_move := true
+
 func _ready():
 	AudioManager.play_music(1)
 	AudioManager.game_start_sfx.play()
@@ -214,10 +216,14 @@ func update_player_token_room():
 	player_token.reparent(rooms[player_position.x][player_position.y])
 	
 	player_room = rooms[player_position.x][player_position.y]
+	
 	rooms[player_position.x][player_position.y].is_hosting_player = true
 	
 	await get_tree().create_timer(0.2).timeout
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
+	
+	if player_room.room_type == Room.ROOM_TYPE.Combat:
+		Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
 
 func room_move_token():
 	update_player_token_room()
@@ -234,6 +240,8 @@ func player_move_token():
 		player_animating = true
 		await tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD).finished
 		player_animating = false
+		
+
 	
 
 # Check if the move to the next room is valid

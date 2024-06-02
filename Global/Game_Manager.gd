@@ -8,6 +8,8 @@ var storyTelled = false
 signal camera_relocate(pos:Vector2)
 signal combat_done
 
+signal combat_room_entered(enemies : Array[Monster_Data])
+
 const z_index_idle_card = 0
 const z_index_dragging_card = 10
 const z_index_rooms = 20
