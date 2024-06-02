@@ -5,7 +5,8 @@ var max_hp := 10.0
 var damage := 2
 var speed := 800.0
 var rush_speed := 16000.0
-var cd := 2.0
+var cd := 1.5
+var cdm := 3.0
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite :AnimatedSprite2D = $sprite
@@ -95,7 +96,7 @@ func shoot():
 			arrow[i-1].bullet_damage = damage
 			if !is_dying:
 				get_tree().get_root().add_child(arrow[i-1])
-				timer.start(cd)
+				timer.start(randf_range(cd,cdm))
 				
 
 func dash():

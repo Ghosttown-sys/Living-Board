@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhquwuui2urij"]
+[gd_scene load_steps=19 format=3 uid="uid://bhquwuui2urij"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Monster/monster.gd" id="1_cc6s0"]
 [ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_qtapn"]
 [ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="3_dqvoj"]
 [ext_resource type="PackedScene" uid="uid://brdvyw7orugsk" path="res://Game/Components/Visual_Component/cpu_explosion_effect.tscn" id="4_11rl2"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="5_d3h0o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohmlc"]
 atlas = ExtResource("2_qtapn")
@@ -124,11 +125,25 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdmi1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fpf2"]
-bg_color = Color(0.760395, 0.25375, 0.175337, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsacs"]
+atlas = ExtResource("5_d3h0o")
+region = Rect2(0, 96, 128, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8r4c"]
+texture = SubResource("AtlasTexture_vsacs")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 128, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdxxm"]
-bg_color = Color(0.364237, 0.674316, 0.0496822, 1)
+bg_color = Color(0.85098, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 4
@@ -166,11 +181,11 @@ position = Vector2(-14, 0)
 
 [node name="HP_BAR" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(20, 2)
-offset_left = -10.0
-offset_top = -14.0
-offset_right = 10.0
-offset_bottom = -12.0
-theme_override_styles/background = SubResource("StyleBoxFlat_8fpf2")
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxTexture_t8r4c")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pdxxm")
 value = 50.0
 show_percentage = false
