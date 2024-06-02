@@ -17,3 +17,11 @@ func consume_action() -> bool:
 func restore_all_actions():
 	player_stat.player_actions = player_stat.max_actions
 	Events.on_player_stats_changed.emit()
+
+func take_damage(damage):
+	player_stat.player_health -= damage
+	Events.on_player_stats_changed.emit()
+
+func take_sanity_damage(damage):
+	player_stat.player_sanity -= damage
+	Events.on_player_stats_changed.emit()

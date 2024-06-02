@@ -241,6 +241,9 @@ func player_move_token():
 			Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
 		elif player_room.room_type == Room.ROOM_TYPE.Treasure:
 			Game_Manager.treasure_room_entered.emit()
+		elif player_room.room_type == Room.ROOM_TYPE.Hazard:
+			Game_Manager.hazard_room_entered.emit()
+			Events.on_move_finished.emit()
 		else:
 			Events.on_move_finished.emit()
 
@@ -295,5 +298,4 @@ func _on_down_pressed():
 	player_move_token()
 
 func _enemies_defeated():
-	print("player left room")
 	player_room.monsters_defeated()

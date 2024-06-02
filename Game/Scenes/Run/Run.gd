@@ -22,6 +22,7 @@ func _ready():
 	Game_Manager.leave_room.connect(toggle_visiblity_on)
 	Game_Manager.combat_room_entered.connect(combat_room_found)
 	Game_Manager.treasure_room_entered.connect(treasure_room_found)
+	Game_Manager.hazard_room_entered.connect(hazard_room_found)
 	
 	Events.on_move_finished.connect(on_move_finished)
 	Events.on_game_started.emit()
@@ -51,7 +52,10 @@ func treasure_room_found():
 	toggle_visiblity_off()
 	var new_treasure := TREASURE.instantiate()
 	add_child(new_treasure)
-	
+
+func hazard_room_found():
+	PlayerStats.take_damage(10)
+
 func _on_stats_changed():
 	for token in actions.get_children():
 		token.visible = false

@@ -8,7 +8,7 @@ extends Node
 @onready var play_card_arrow = $CanvasLayer/Play_Card_Arrow
 @onready var move_arrow = $CanvasLayer/Move_Arrow
 
-var skip_tutorial = true
+var skip_tutorial = false
 
 func _ready():
 	
