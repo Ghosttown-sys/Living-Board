@@ -3,7 +3,6 @@ extends Node
 var seed = hash("help_me!!!")
 var RNG : RandomNumberGenerator;
 
-
 var storyTelled = false
 
 signal camera_relocate(pos:Vector2)

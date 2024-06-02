@@ -8,8 +8,23 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 @onready var hp = $Top_Bar/Menu/Profile/Profile/Stats/HP
 @onready var sanity = $Top_Bar/Menu/Profile/Profile/Stats/Sanity
 @onready var turn_counter = $Top_Bar/Menu/Turn/Turn_Counter
-@onready var phase = $Top_Bar/Menu/Game_State/Phase
+@onready var actions = $Top_Bar/Menu/Game_State/Action_Tokens
 
+
+func _ready():
+	Events.on_player_stats_changed.connect(_on_stats_changed)
+
+func _on_stats_changed():
+	for token in actions.get_children():
+		token.visible = false
+	for i in PlayerStats.player_stat.player_actions:
+		actions.get_child(i).visible = true	
+	
+	hp.max_value = PlayerStats.player_stat.max_hp
+	sanity.max_value = PlayerStats.player_stat.max_sanity
+	
+	hp.value = PlayerStats.player_stat.player_health
+	sanity.value = PlayerStats.player_stat.player_sanity
 
 func _on_button_pressed():
 	AudioManager.play_music(2)

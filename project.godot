@@ -28,6 +28,7 @@ Events="*res://Global/Events.gd"
 Tween_Utilities="*res://Global/Tween_Utilities.gd"
 AudioManager="*res://Game/audio_manager.tscn"
 DialogueMgr="*res://Game/Dialogue/dialogue_mgr.tscn"
+PlayerStats="*res://Global/Player_Stats.gd"
 
 [debug]
 
