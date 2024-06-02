@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 
 signal pause_about_to_show()
