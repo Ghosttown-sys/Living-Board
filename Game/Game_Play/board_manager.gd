@@ -25,6 +25,7 @@ func _ready():
 	Events.board_moved.connect(board_moved)
 	Events.on_card_hovering_room_enter.connect(_on_mouse_hover_enter_room)
 	Events.on_card_hovering_room_exit.connect(_on_mouse_hover_exit_room)
+	Game_Manager.combat_done.connect(_enemies_defeated)
 	
 	var room_scene = load(room_template.resource_path)
 	# Create rooms
@@ -282,4 +283,5 @@ func _on_down_pressed():
 	new_position += Vector2.DOWN
 	player_move_token()
 
-
+func _enemies_defeated():
+	player_room.monsters_defeated()

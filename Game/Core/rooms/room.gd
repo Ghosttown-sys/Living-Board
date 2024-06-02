@@ -168,7 +168,13 @@ func set_up_combat_room():
 		hosting_monsters.append(monster_token_2.monster_data)
 		monster_token_3.show()
 		hosting_monsters.append(monster_token_3.monster_data)
-		
+
+func monsters_defeated():
+	room_type = ROOM_TYPE.Normal
+	light.color = normal_color
+	monster_token_1.hide()
+	monster_token_2.hide()
+	monster_token_3.hide()
 
 # Renders or hide the fog between corridors
 func enable_corridor_fog(direction : Directions.DIRECTION, enabled : bool):
