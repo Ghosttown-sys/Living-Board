@@ -13,6 +13,7 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 
 const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
+var current_enemies : Array[Monster_Data]
 @onready var shaker = $Shaker
 
 func _ready():
