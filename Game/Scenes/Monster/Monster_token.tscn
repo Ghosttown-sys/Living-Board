@@ -9,7 +9,7 @@
 atlas = ExtResource("5_esogf")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t33p0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0qwb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -31,7 +31,7 @@ vframes = 5
 
 [node name="Monster_Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
-sprite_frames = SubResource("SpriteFrames_t33p0")
+sprite_frames = SubResource("SpriteFrames_y0qwb")
 flip_h = true
 
 [node name="light" type="PointLight2D" parent="."]

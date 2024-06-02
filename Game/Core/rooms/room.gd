@@ -111,7 +111,7 @@ func assign_random_room_type():
 		random_room_type = ROOM_TYPE.Hazard
 	elif  random_int > ROOM_TYPE.Hazard and random_int < ROOM_TYPE.Combat:
 		random_room_type = ROOM_TYPE.Combat
-	elif  random_int > ROOM_TYPE.Hazard and random_int < ROOM_TYPE.Treasure:
+	elif  random_int > ROOM_TYPE.Combat and random_int < ROOM_TYPE.Treasure:
 		random_room_type = ROOM_TYPE.Treasure
 	
 	room_type = random_room_type
@@ -125,6 +125,7 @@ func assign_random_decorations():
 		set_up_combat_room()
 
 func set_up_combat_room():
+	
 	monster_token_1.monster_data = possible_monsters.pick_random()
 	monster_token_2.monster_data = possible_monsters.pick_random()
 	monster_token_3.monster_data = possible_monsters.pick_random()
