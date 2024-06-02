@@ -1,0 +1,185 @@
+[gd_scene load_steps=17 format=3 uid="uid://bsyhodg0xsyjj"]
+
+[ext_resource type="Script" path="res://Game/Scenes/UI/game_over.gd" id="1_7olko"]
+[ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="1_nouvs"]
+[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="2_qiwra"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="3_fnxuu"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="3_xdt7x"]
+[ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="5_0kc2x"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sb157"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6j2f"]
+atlas = ExtResource("1_nouvs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoc5h"]
+atlas = ExtResource("1_nouvs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm582"]
+atlas = ExtResource("1_nouvs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf531"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_o6j2f")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_qoc5h")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_pm582")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3uqt"]
+atlas = ExtResource("3_fnxuu")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr77s"]
+atlas = ExtResource("3_fnxuu")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cshw5"]
+atlas = ExtResource("3_fnxuu")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="FontFile" id="FontFile_ksoy5"]
+fallbacks = Array[Font]([ExtResource("2_qiwra")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_muyac"]
+font = ExtResource("3_xdt7x")
+font_size = 100
+font_color = Color(0.756863, 0.509804, 0, 1)
+outline_size = 20
+shadow_size = 20
+shadow_color = Color(1, 1, 1, 0.490196)
+shadow_offset = Vector2(5, 5)
+
+[node name="game_over" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7olko")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.290196, 0.290196, 0.290196, 0.603922)
+offset_left = -58.0
+offset_right = 1088.0
+offset_bottom = 608.0
+texture = SubResource("CanvasTexture_sb157")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+self_modulate = Color(0.137255, 0.137255, 0.137255, 0.603922)
+offset_left = 3.50232
+offset_top = -171.0
+offset_right = 531.502
+offset_bottom = 623.0
+rotation = 0.261799
+texture = SubResource("CanvasTexture_sb157")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+self_modulate = Color(0.137255, 0.137255, 0.137255, 0.603922)
+offset_left = 500.502
+offset_top = -30.0
+offset_right = 1011.5
+offset_bottom = 773.0
+rotation = -0.261799
+texture = SubResource("CanvasTexture_sb157")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+position = Vector2(508, 469)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_wf531")
+animation = &"death"
+autoplay = "death"
+frame = 2
+frame_progress = 1.0
+
+[node name="Enemy" type="Sprite2D" parent="."]
+position = Vector2(393, 406)
+rotation = 0.314159
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_l3uqt")
+
+[node name="Enemy2" type="Sprite2D" parent="."]
+position = Vector2(647, 482)
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_xr77s")
+flip_h = true
+
+[node name="Enemy3" type="Sprite2D" parent="."]
+position = Vector2(360, 519)
+rotation = -0.314159
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_cshw5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -202.0
+offset_right = 237.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = SubResource("FontFile_ksoy5")
+text = "Game Over"
+label_settings = SubResource("LabelSettings_muyac")
+horizontal_alignment = 1
+
+[node name="LoadBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("3_xdt7x")
+text = "Load"
+flat = true
+
+[node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("3_xdt7x")
+text = "Main Menu"
+flat = true
+
+[node name="LoadGameDlg" parent="." instance=ExtResource("5_0kc2x")]
+
+[connection signal="pressed" from="VBoxContainer/LoadBtn" to="." method="_on_load_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]

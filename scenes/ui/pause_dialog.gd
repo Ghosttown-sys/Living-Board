@@ -32,6 +32,7 @@ func _on_LoadBtn_pressed():
 
 func _on_MainMenuBtn_pressed():
 	TransitionMgr.transition_to("res://scenes/ui/title.tscn")
+	visible = false
 
 
 func _show() -> void:
