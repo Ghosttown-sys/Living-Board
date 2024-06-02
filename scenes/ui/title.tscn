@@ -35,32 +35,40 @@ texture = ExtResource("3_1vd5m")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
-offset_left = 16.0
-offset_top = -6.0
-offset_right = 748.0
-offset_bottom = 116.0
+offset_left = 13.0
+offset_top = 19.0
+offset_right = 745.0
+offset_bottom = 141.0
 theme = ExtResource("4_vh7jk")
 theme_type_variation = &"title"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/shadow_outline_size = 20
 text = "Whispering"
 
 [node name="Title2" type="Label" parent="."]
 layout_mode = 2
-offset_left = 317.0
-offset_top = 82.0
-offset_right = 1030.0
-offset_bottom = 204.0
+offset_left = 314.0
+offset_top = 107.0
+offset_right = 1027.0
+offset_bottom = 229.0
 theme = ExtResource("4_vh7jk")
 theme_type_variation = &"title"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/shadow_outline_size = 20
 text = "Catacombs"
 
 [node name="LoadGameDlg" parent="." instance=ExtResource("3")]
 
 [node name="NewGameBtn" type="Button" parent="."]
 layout_mode = 2
-offset_left = 24.0
-offset_top = 221.0
-offset_right = 349.0
-offset_bottom = 272.0
+offset_left = 36.0
+offset_top = 194.0
+offset_right = 361.0
+offset_bottom = 245.0
 rotation = -0.112011
 scale = Vector2(0.66, 0.66)
 focus_mode = 0
@@ -72,10 +80,10 @@ expand_icon = true
 
 [node name="LoadGameBtn" type="Button" parent="."]
 layout_mode = 2
-offset_left = 153.0
-offset_top = 302.0
-offset_right = 478.0
-offset_bottom = 371.0
+offset_left = 150.0
+offset_top = 292.0
+offset_right = 475.0
+offset_bottom = 361.0
 rotation = 0.103988
 scale = Vector2(0.66, 0.66)
 focus_mode = 0
@@ -84,10 +92,10 @@ text = "Load Game"
 
 [node name="ExitBtn" type="Button" parent="."]
 layout_mode = 2
-offset_left = 51.0
-offset_top = 447.0
-offset_right = 376.0
-offset_bottom = 516.0
+offset_left = 40.0
+offset_top = 424.0
+offset_right = 365.0
+offset_bottom = 493.0
 rotation = -0.0464225
 scale = Vector2(0.66, 0.66)
 focus_mode = 0
