@@ -11,3 +11,5 @@ signal on_dialogue_next_line
 signal on_dialogue_ended
 
 signal on_game_started
+
+signal on_move_finished

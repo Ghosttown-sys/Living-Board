@@ -221,9 +221,6 @@ func update_player_token_room():
 	
 	await get_tree().create_timer(0.2).timeout
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
-	
-	if player_room.room_type == Room.ROOM_TYPE.Combat:
-		Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
 
 func room_move_token():
 	update_player_token_room()
@@ -240,7 +237,10 @@ func player_move_token():
 		player_animating = true
 		await tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD).finished
 		player_animating = false
-		
+		if player_room.room_type == Room.ROOM_TYPE.Combat:
+			Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
+		else:
+			Events.on_move_finished.emit()
 
 	
 

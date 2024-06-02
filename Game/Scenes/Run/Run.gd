@@ -19,6 +19,7 @@ var current_enemies : Array[Monster_Data]
 func _ready():
 	Game_Manager.combat_done.connect(toggle_visiblity_on)
 	Game_Manager.combat_room_entered.connect(combat_room_found)
+	Events.on_move_finished.connect(on_move_finished)
 	Events.on_game_started.emit()
 	var current_enemies : Array[Monster_Data]
 
@@ -29,16 +30,15 @@ func _ready():
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
 
-func _process(delta):
-	hp.value = PlayerStats.player_stat.player_health
-	sanity.value = PlayerStats.player_stat.player_sanity
-
-	
+func on_move_finished():
 	if PlayerStats.player_stat.player_actions <= 0:
 		await get_tree().create_timer(1).timeout
 		end_turn()
+		
+func _process(delta):
+	hp.value = PlayerStats.player_stat.player_health
+	sanity.value = PlayerStats.player_stat.player_sanity
 	
-
 func combat_room_found(enemies : Array[Monster_Data]):
 	current_enemies = enemies
 	room_interactions.show()
@@ -111,4 +111,5 @@ func board_random_moves():
 func _on_skip_room_pressed():
 	PlayerStats.player_stat.player_sanity -= 20
 	room_interactions.hide()
+	Events.on_move_finished.emit()
 	
