@@ -42,6 +42,7 @@ color = Color(0.681968, 0.601481, 0.50578, 1)
 texture = ExtResource("3_6m736")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

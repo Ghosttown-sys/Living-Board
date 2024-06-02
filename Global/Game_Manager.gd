@@ -57,4 +57,4 @@ const z_index_rooms = 20
 
 func _ready():
 	RNG = RandomNumberGenerator.new()
-	RNG.seed = seed;
+	#RNG.seed = seed;
