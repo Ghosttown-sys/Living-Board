@@ -71,10 +71,21 @@ var hovering : bool:
 		else:
 			targeted.hide();
 
-func _ready():
+func initiate():
 	assign_random_openings()
 	assign_random_room_type()
 	assign_random_decorations()
+	update_visuals()
+
+func force_to_normal_room():
+	var current_decor = get_node("Decor")
+	current_decor.queue_free()
+	room_type = ROOM_TYPE.Normal
+	assign_random_decorations()
+	monster_token_1.hide()
+	monster_token_2.hide()
+	monster_token_3.hide()
+	
 	update_visuals()
 
 func get_rotated_openings():

@@ -44,18 +44,19 @@ func _process(delta):
 func create_new_room(room_scene,x, y):
 	# Create the room
 	var room_instance = room_scene.instantiate();
-	room_instance.room_id = room_instance.static_id + 1;
+	room_instance.room_id = room_instance.static_id + 1
 	rooms[x].append(room_instance)
 	add_child(room_instance)
+	room_instance.initiate()
 	room_instance.active = false
 	room_instance.coordinates = Vector2i(x,y)
 	# Position it on the grid
 	var room_size = room_instance.get_room_pixel_size()
-	room_instance.position = Vector2(room_size.x * x,room_size.y * y);
+	room_instance.position = Vector2(room_size.x * x,room_size.y * y)
 
 func initialize_board():
 	player_room.openings = Directions.ALL_DIRECTIONS.duplicate();
-	player_room.update_visuals()
+	player_room.force_to_normal_room()
 	
 	update_rooms_activation()
 	
