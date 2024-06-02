@@ -27,7 +27,7 @@ func _ready():
 	Events.board_moved.connect(board_moved)
 	Events.on_card_hovering_room_enter.connect(_on_mouse_hover_enter_room)
 	Events.on_card_hovering_room_exit.connect(_on_mouse_hover_exit_room)
-	Game_Manager.combat_done.connect(_enemies_defeated)
+	Game_Manager.leave_room.connect(_enemies_defeated)
 	
 	var room_scene = load(room_template.resource_path)
 	# Create rooms
@@ -239,6 +239,8 @@ func player_move_token():
 		player_animating = false
 		if player_room.room_type == Room.ROOM_TYPE.Combat:
 			Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
+		elif player_room.room_type == Room.ROOM_TYPE.Treasure:
+			Game_Manager.treasure_room_entered.emit()
 		else:
 			Events.on_move_finished.emit()
 
@@ -293,4 +295,5 @@ func _on_down_pressed():
 	player_move_token()
 
 func _enemies_defeated():
+	print("player left room")
 	player_room.monsters_defeated()

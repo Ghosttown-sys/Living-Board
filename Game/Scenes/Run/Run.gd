@@ -2,7 +2,9 @@ extends Node2D
 @onready var board = $Board
 @onready var turn_controler = $Turn_Controler
 
-const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
+const COMBAT = preload("res://Game/Scenes/Rooms_Internal/combat.tscn")
+const TREASURE = preload("res://Game/Scenes/Rooms_Internal/treasure.tscn")
+
 @onready var camera :Camera2D= $Camera
 
 @onready var hp = $Top_Bar/Menu/Profile/Profile/Stats/HP
@@ -17,8 +19,10 @@ var current_enemies : Array[Monster_Data]
 @onready var shaker = $Shaker
 
 func _ready():
-	Game_Manager.combat_done.connect(toggle_visiblity_on)
+	Game_Manager.leave_room.connect(toggle_visiblity_on)
 	Game_Manager.combat_room_entered.connect(combat_room_found)
+	Game_Manager.treasure_room_entered.connect(treasure_room_found)
+	
 	Events.on_move_finished.connect(on_move_finished)
 	Events.on_game_started.emit()
 	var current_enemies : Array[Monster_Data]
@@ -42,7 +46,12 @@ func _process(delta):
 func combat_room_found(enemies : Array[Monster_Data]):
 	current_enemies = enemies
 	room_interactions.show()
-
+	
+func treasure_room_found():
+	toggle_visiblity_off()
+	var new_treasure := TREASURE.instantiate()
+	add_child(new_treasure)
+	
 func _on_stats_changed():
 	for token in actions.get_children():
 		token.visible = false
@@ -57,11 +66,14 @@ func _on_stats_changed():
 func _on_button_pressed():
 	if not Game_Manager.is_player_turn:
 		return
-	AudioManager.play_music(2)
-	toggle_visiblity_off()
-	var new_combat := COMBAT.instantiate()
-	new_combat.current_enemies = current_enemies
-	add_child(new_combat)
+	match board.player_room.room_type:
+		Room.ROOM_TYPE.Combat:
+			AudioManager.play_music(2)
+			toggle_visiblity_off()
+			var new_combat := COMBAT.instantiate()
+			new_combat.current_enemies = current_enemies
+			add_child(new_combat)
+			
 
 func toggle_visiblity_off():
 	turn_controler.hide()

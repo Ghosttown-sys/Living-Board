@@ -35,6 +35,7 @@ func _on_collider_input_event(event):
 		AudioManager.pop_sfx.play()
 		var target_room : Room = board.hovered_room
 		if target_room != null and Game_Manager.is_player_turn and PlayerStats.consume_action():
+			Events.on_move_finished.emit()
 			parent.apply_effect([target_room.coordinates])
 			parent.queue_free()
 		else:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ch3ms8ijh627m"]
 
 [ext_resource type="Texture2D" uid="uid://c417ag6i8wmeg" path="res://assets/Arts/spritesheets/0x72_16x16DungeonTileset.v5.png" id="1_od0s8"]
-[ext_resource type="Script" path="res://Game/Scenes/Combat/combat.gd" id="1_u4lnp"]
+[ext_resource type="Script" path="res://Game/Scenes/Rooms_Internal/combat.gd" id="1_u4lnp"]
 [ext_resource type="PackedScene" uid="uid://cl54r7scqb8x2" path="res://Game/Scenes/Player/Player.tscn" id="2_qqmbi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpmea"]

@@ -6,9 +6,11 @@ var RNG : RandomNumberGenerator;
 var storyTelled = false
 
 signal camera_relocate(pos:Vector2)
-signal combat_done
+
+signal leave_room
 
 signal combat_room_entered(enemies : Array[Monster_Data])
+signal treasure_room_entered()
 
 const z_index_idle_card = 0
 const z_index_dragging_card = 10
