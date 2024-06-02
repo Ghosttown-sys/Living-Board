@@ -75,6 +75,8 @@ func _on_stats_changed():
 func _on_button_pressed():
 	if not Game_Manager.is_player_turn:
 		return
+	
+	AudioManager.button_press_sfx.play()
 	match board.player_room.room_type:
 		Room.ROOM_TYPE.Combat:
 			AudioManager.play_music(2)
@@ -130,6 +132,7 @@ func board_random_moves():
 
 
 func _on_skip_room_pressed():
+	AudioManager.button_press_sfx.play()
 	PlayerStats.player_stat.player_sanity -= 20
 	room_interactions.hide()
 	Events.on_move_finished.emit()

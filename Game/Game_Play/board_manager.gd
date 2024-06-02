@@ -275,24 +275,28 @@ func is_valid_move() -> bool:
 		#_on_down_pressed()
 
 func _on_up_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.UP
 	player_move_token()
 
 
 func _on_left_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position +=Vector2.LEFT
 	player_move_token()
 
 
 func _on_r_ight_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.RIGHT
 	player_move_token()
 
 
 func _on_down_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.DOWN
 	player_move_token()

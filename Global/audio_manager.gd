@@ -5,7 +5,7 @@ extends Node
 @onready var footstepo_sfx = $SFX/Foot_Steps
 @onready var draw_card_sfx = $SFX/Draw_Card
 @onready var pop_sfx = $SFX/Pop
-
+@onready var button_press_sfx = $SFX/Button_Press
 
 @onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music
