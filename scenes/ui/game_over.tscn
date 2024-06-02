@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bsyhodg0xsyjj"]
 
-[ext_resource type="Script" path="res://Game/Scenes/UI/game_over.gd" id="1_7olko"]
+[ext_resource type="Script" path="res://scenes/ui/game_over.gd" id="1_7olko"]
 [ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="1_nouvs"]
 [ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="2_qiwra"]
 [ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="3_fnxuu"]
