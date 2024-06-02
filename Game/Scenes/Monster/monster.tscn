@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhquwuui2urij"]
+[gd_scene load_steps=17 format=3 uid="uid://bhquwuui2urij"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Monster/monster.gd" id="1_cc6s0"]
 [ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="2_qtapn"]
@@ -124,6 +124,12 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdmi1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fpf2"]
+bg_color = Color(0.760395, 0.25375, 0.175337, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdxxm"]
+bg_color = Color(0.364237, 0.674316, 0.0496822, 1)
+
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -157,6 +163,17 @@ shape = SubResource("CircleShape2D_sdmi1")
 
 [node name="explosion_effect" parent="." instance=ExtResource("4_11rl2")]
 position = Vector2(-14, 0)
+
+[node name="HP_BAR" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(20, 2)
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 10.0
+offset_bottom = -12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8fpf2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pdxxm")
+value = 50.0
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Melee_zone" to="." method="_on_melee_zone_body_entered"]

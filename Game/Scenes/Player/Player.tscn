@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl54r7scqb8x2"]
+[gd_scene load_steps=8 format=3 uid="uid://cl54r7scqb8x2"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Player/Player.gd" id="1_dydsy"]
 [ext_resource type="PackedScene" uid="uid://dxschfv10xhuy" path="res://Game/Components/Visual_Component/visual_component.tscn" id="1_ynkep"]
 [ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="2_m7gvw"]
 [ext_resource type="PackedScene" uid="uid://bf6wvf00nqved" path="res://Game/Components/Interaction_Component/interaction_component.tscn" id="2_mr06p"]
 [ext_resource type="PackedScene" uid="uid://bb5nqkjbwhdn" path="res://Game/Components/Bullets/Thunder.tscn" id="3_llta8"]
-[ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="4_scqfh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihqy0"]
 size = Vector2(16, 4)
@@ -56,9 +55,8 @@ visible = false
 [node name="Visual_Component" parent="." instance=ExtResource("1_ynkep")]
 position = Vector2(1, 0)
 
-[node name="Camera" parent="." instance=ExtResource("4_scqfh")]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-camera_speed = 8
 
 [connection signal="area_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_melee_area_entered"]
 [connection signal="body_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_weapon_zone_body_entered"]

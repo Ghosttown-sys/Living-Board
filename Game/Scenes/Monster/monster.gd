@@ -5,11 +5,12 @@ var max_hp := 10.0
 var damage := 2
 var speed := 800.0
 var rush_speed := 16000.0
-var cd := 5.0
+var cd := 2.0
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite :AnimatedSprite2D = $sprite
 @onready var timer = $Timer
+@onready var hp_bar = $HP_BAR
 
 var player : Player
 var is_dying : bool = false
@@ -39,8 +40,10 @@ func _ready():
 	sprite.play("default")
 	player = get_tree().get_first_node_in_group("Player")
 	timer.start(cd)
+	hp_bar.max_value = max_hp
 
 func _physics_process(delta):
+	hp_bar.value = max_hp
 	if is_instance_valid(player) and !is_dying:
 		direction = (player.global_position - global_position).normalized()
 		if !is_dashing:
@@ -64,6 +67,8 @@ func take_damage(damage:float)->void:
 		if max_hp <= 0:
 			is_dying = true
 			animation_player.play("Death")
+			await get_tree().create_timer(0.1).timeout
+			hp_bar.hide()
 			$explosion_effect.emitting = true
 			await get_tree().create_timer(1).timeout
 			queue_free()
@@ -76,7 +81,6 @@ func _on_timer_timeout():
 					shoot()
 				Monster_Type.MELEE:
 					is_dashing = true
-					print("dash end")
 					await get_tree().create_timer(1).timeout
 					dash()
 
@@ -94,7 +98,6 @@ func shoot():
 				
 
 func dash():
-	print("dash start")
 	is_dashing = false
 	timer.start()
 
@@ -105,4 +108,3 @@ func _on_melee_zone_body_entered(body):
 	if body is Player and monster_type == Monster_Type.MELEE:
 		body.take_damage(damage)
 		is_dashing = false
-		print(is_dashing)

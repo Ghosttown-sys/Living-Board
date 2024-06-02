@@ -20,39 +20,31 @@ camera_speed = 8
 
 [node name="Turn_Controler" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="Turn_Controler"]
-anchors_preset = 3
+[node name="VBoxContainer" type="VBoxContainer" parent="Turn_Controler"]
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -999.0
-offset_top = -58.0
-offset_right = -745.0
-offset_bottom = -7.0
+offset_left = -212.0
+offset_top = 139.0
+offset_right = 36.0
+offset_bottom = 319.0
 grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.67, 0.67)
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 100
+
+[node name="Button" type="Button" parent="Turn_Controler/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("5_yoqht")
+theme_override_font_sizes/font_size = 40
 text = "Enter room"
 
-[node name="End_Turn" type="Button" parent="Turn_Controler"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -286.0
-offset_top = -496.0
-offset_right = 99.0
-offset_bottom = -432.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.67, 0.67)
+[node name="End_Turn" type="Button" parent="Turn_Controler/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("5_yoqht")
+theme_override_font_sizes/font_size = 40
 text = "End Turn"
 
 [node name="Top_Bar" parent="." instance=ExtResource("4_xd8x2")]
 
-[connection signal="pressed" from="Turn_Controler/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Turn_Controler/End_Turn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Turn_Controler/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Turn_Controler/VBoxContainer/End_Turn" to="." method="_on_end_turn_pressed"]

@@ -12,13 +12,13 @@ const ARROW = preload("res://Game/Components/Bullets/Arrow.tscn")
 @onready var animation_tree : AnimationTree = $Visual_Component/AnimationTree
 @onready var mood : Label = $Visual_Component/Mood
 @onready var interaction_component = $Interaction_Component
-@onready var camera = $Camera
 @onready var weapon_holder = $Weapon_Holder
 @onready var melee_marker = $Weapon_Holder/melee_marker
 @onready var sprite = $Weapon_Holder/Weapon_Zone/Weapon/Sprite
 @onready var weapon_zone = $Weapon_Holder/Weapon_Zone
 @onready var magic = $Weapon_Holder/Magic
 @onready var weapon = $Weapon_Holder/Weapon_Zone/Weapon
+@onready var camera = $Camera2D
 
 var can_move = false
 var direction : Vector2 = Vector2.UP
@@ -28,6 +28,7 @@ var attacking : bool = false
 var damage : int = 1
 #room info
 var current_room :Room
+var player_stats: Player_Stats_Res
 
 enum Attack_Type{
 	MELEE,
@@ -48,6 +49,7 @@ enum Current_State {
 @export var attack_type : Attack_Type = Attack_Type.MELEE
 
 func _ready():
+	player_stats = PlayerStats.player_stat
 	camera.make_current()
 	can_move = true
 	animation_tree.active = true
@@ -59,7 +61,6 @@ func _physics_process(delta: float) -> void :
 		update_aim()
 		attack_check(delta)
 		update_animation()
-		update_camera()
 		move_and_slide()
 
 func update_animation():
@@ -72,9 +73,6 @@ func update_animation():
 		Current_State.WALK:
 			animation_tree["parameters/Walk/blend_position"] = direction
 
-func update_camera():
-	if not camera.is_dragging and current_state == Current_State.WALK:
-		camera.global_position = global_position
 
 func update_aim():
 	weapon_holder.rotation = direction.angle()
@@ -180,4 +178,5 @@ func splas_fire():
 			get_tree().get_root().add_child(arrow[i-1])
 
 func take_damage(damage:float):
-	print(damage)
+	PlayerStats.player_stat.player_health -= damage
+	print(PlayerStats.player_stat.player_health)
