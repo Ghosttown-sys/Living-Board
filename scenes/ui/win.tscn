@@ -1,0 +1,166 @@
+[gd_scene load_steps=13 format=3 uid="uid://m84ou7aq7uta"]
+
+[ext_resource type="Texture2D" uid="uid://c7blexvxm5nqd" path="res://assets/Arts/Main_Menu.png" id="1_b837v"]
+[ext_resource type="Script" path="res://scenes/ui/win.gd" id="1_o53dp"]
+[ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="2_yr7af"]
+[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="4_ae46c"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="5_xsmdv"]
+[ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="6_uypew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6j2f"]
+atlas = ExtResource("2_yr7af")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoc5h"]
+atlas = ExtResource("2_yr7af")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf531"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_o6j2f")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_qoc5h")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
+
+[sub_resource type="FontFile" id="FontFile_ksoy5"]
+fallbacks = Array[Font]([ExtResource("4_ae46c")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_83l5v"]
+font = ExtResource("5_xsmdv")
+font_size = 80
+font_color = Color(1, 0.811765, 0.556863, 1)
+outline_size = 30
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 30
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5vgy"]
+font = ExtResource("5_xsmdv")
+font_size = 55
+outline_size = 20
+outline_color = Color(0.309804, 0.231373, 0, 1)
+shadow_size = 20
+shadow_color = Color(0.180392, 0.129412, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[node name="win" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_o53dp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -918.0
+offset_top = -30.0
+offset_right = 1243.0
+offset_bottom = 1117.0
+texture = ExtResource("1_b837v")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+position = Vector2(509, 473)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_wf531")
+animation = &"death"
+autoplay = "death"
+frame = 1
+frame_progress = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -487.0
+offset_top = -275.0
+offset_right = 148.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = SubResource("FontFile_ksoy5")
+text = "You have escaped"
+label_settings = SubResource("LabelSettings_83l5v")
+
+[node name="Cleared" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = SubResource("FontFile_ksoy5")
+text = "Rooms cleared:"
+label_settings = SubResource("LabelSettings_b5vgy")
+
+[node name="Time" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = SubResource("FontFile_ksoy5")
+text = "Time:"
+label_settings = SubResource("LabelSettings_b5vgy")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LoadBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_xsmdv")
+text = "Load"
+flat = true
+alignment = 0
+
+[node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
+theme_override_fonts/font = ExtResource("5_xsmdv")
+text = "Main Menu"
+flat = true
+alignment = 0
+
+[node name="LoadGameDlg" parent="." instance=ExtResource("6_uypew")]
+
+[connection signal="pressed" from="VBoxContainer/LoadBtn" to="." method="_on_load_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
