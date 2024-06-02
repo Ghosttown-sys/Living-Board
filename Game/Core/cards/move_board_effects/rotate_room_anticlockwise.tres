@@ -11,4 +11,4 @@ region = Rect2(74, 312, 42, 42)
 script = ExtResource("2_uxua2")
 direction = 270
 artwork = SubResource("AtlasTexture_0r2ru")
-description = "Rotate Room AntiClockwise"
+description = "Rotate Room"

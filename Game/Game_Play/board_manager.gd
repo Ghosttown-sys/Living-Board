@@ -220,6 +220,8 @@ func room_move_token():
 	
 func player_move_token():
 	if is_valid_move():
+		if not PlayerStats.consume_action():
+			return
 		AudioManager.footstepo_sfx.play()
 		update_player_token_room()
 		var tween = get_tree().create_tween()

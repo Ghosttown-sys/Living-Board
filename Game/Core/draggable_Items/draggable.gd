@@ -34,7 +34,7 @@ func _on_collider_input_event(event):
 	if event.is_action("select_card") and event.is_released() and not event.is_echo():
 		AudioManager.pop_sfx.play()
 		var target_room : Room = board.hovered_room
-		if target_room != null:
+		if target_room != null and PlayerStats.consume_action():
 			parent.apply_effect([target_room.coordinates])
 			parent.queue_free()
 		else:

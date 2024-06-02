@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccockq4ssn6uj"]
+[gd_scene load_steps=11 format=3 uid="uid://ccockq4ssn6uj"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_0gwui"]
 [ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="2_3wu0k"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="2_pa1bv"]
+[ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="4_qy0t3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x58si"]
 atlas = ExtResource("2_pa1bv")
@@ -20,6 +21,10 @@ bg_color = Color(0.313726, 1, 0.333333, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdwaq"]
 bg_color = Color(0.310758, 0.556018, 0.910188, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj2q5"]
+atlas = ExtResource("4_qy0t3")
+region = Rect2(0, 0, 16, 16)
 
 [node name="Top_Bar" type="CanvasLayer"]
 script = ExtResource("1_0gwui")
@@ -124,15 +129,64 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
-[node name="Phase" type="Label" parent="Menu/Game_State"]
+[node name="Actions" type="Label" parent="Menu/Game_State"]
 layout_mode = 2
+offset_left = -75.0
 offset_top = 9.0
-offset_right = 256.0
+offset_right = 85.0
 offset_bottom = 54.0
 theme_override_font_sizes/font_size = 32
-text = "Draw phase"
+text = "Actions:"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Action_Tokens" type="HBoxContainer" parent="Menu/Game_State"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 13.0
+offset_right = 250.0
+offset_bottom = 56.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Game_State/Action_Tokens"]
+custom_minimum_size = Vector2(30, 43)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bj2q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/Game_State/Action_Tokens"]
+custom_minimum_size = Vector2(30, 43)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bj2q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Menu/Game_State/Action_Tokens"]
+custom_minimum_size = Vector2(30, 43)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bj2q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="Menu/Game_State/Action_Tokens"]
+custom_minimum_size = Vector2(30, 43)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bj2q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Menu/Game_State/Action_Tokens"]
+custom_minimum_size = Vector2(30, 43)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bj2q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Game_State"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="PLace_holder4" type="Label" parent="Menu"]
 custom_minimum_size = Vector2(20, 0)

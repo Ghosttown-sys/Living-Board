@@ -63,8 +63,6 @@ scale = Vector2(0.67, 0.67)
 theme = SubResource("Theme_4osj2")
 text = "Enter room"
 
-[node name="Node2D" type="Node2D" parent="."]
-
 [node name="Top_Bar" parent="." instance=ExtResource("4_xd8x2")]
 
 [connection signal="pressed" from="Turn_Controler/Button" to="." method="_on_button_pressed"]

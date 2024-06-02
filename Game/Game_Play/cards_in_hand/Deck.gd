@@ -11,5 +11,6 @@ func _process(delta):
 
 func _on_interact(event):
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
-		hand.add_cards(1)
-		AudioManager.draw_card_sfx.play()
+		if PlayerStats.consume_action():
+			hand.add_cards(1)
+			AudioManager.draw_card_sfx.play()
