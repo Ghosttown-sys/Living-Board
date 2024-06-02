@@ -121,7 +121,7 @@ region = Rect2(0, 152, 240, 145)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vsacs"]
 atlas = ExtResource("4_d5viw")
-region = Rect2(0, 64, 128, 32)
+region = Rect2(0, 96, 128, 32)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5qc4"]
 texture = SubResource("AtlasTexture_vsacs")

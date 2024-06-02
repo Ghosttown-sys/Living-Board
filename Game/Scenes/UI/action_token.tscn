@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://v0uwew2c6ude" path="res://assets/Arts/Resource_Arts/Resources/ui_atlas.tres" id="1_0k2jq"]
 
 [node name="TextureRect" type="TextureRect"]
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(64, 64)
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("1_0k2jq")
