@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsyshdd5ur16f"]
+[gd_scene load_steps=6 format=3 uid="uid://dsyshdd5ur16f"]
 
 [ext_resource type="Texture2D" uid="uid://b5561gugf2clj" path="res://assets/Arts/spritesheets/EnemiesSheet.png" id="1_jj5lf"]
 [ext_resource type="Script" path="res://Game/Scenes/Monster/Monster_token.gd" id="1_laylj"]
-[ext_resource type="Texture2D" uid="uid://b6kf63xd4kmw0" path="res://assets/images/light.png" id="3_6xkoh"]
 [ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="5_esogf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_263k2"]
@@ -24,16 +23,16 @@ animations = [{
 script = ExtResource("1_laylj")
 
 [node name="Platform" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 position = Vector2(0, 4)
 texture = ExtResource("1_jj5lf")
 hframes = 2
 vframes = 5
 
 [node name="Monster_Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_y0qwb")
 flip_h = true
-
-[node name="light" type="PointLight2D" parent="."]
-color = Color(0.900115, 0.055727, 0.191969, 1)
-texture = ExtResource("3_6xkoh")

@@ -20,6 +20,8 @@ size = Vector2(100, 97)
 collision_layer = 12
 script = ExtResource("1_ew3o0")
 possible_monsters = Array[Resource("res://Game/Resources/Resource_Scripts/Monster_Data.gd")]([ExtResource("2_tse7w"), ExtResource("3_lwoo1"), ExtResource("4_ujq5h"), ExtResource("5_5k6o0")])
+normal_color = Color(0.682353, 0.6, 0.505882, 1)
+monster_color = Color(0.901961, 0.054902, 0.192157, 1)
 
 [node name="Room_Tilemap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6p2qs")

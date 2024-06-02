@@ -13,6 +13,7 @@ var active : bool :
 		var tween = get_tree().create_tween()
 		var target = 1 if value else 0
 		tween.tween_property(light, "energy", target, 0.2).set_trans(Tween.TRANS_QUAD)
+		light.color = normal_color if not hosting_monsters else monster_color
 		
 # rotation/ facing towards
 var direction : Directions.DIRECTION = Directions.DIRECTION.UP
@@ -59,6 +60,10 @@ enum ROOM_TYPE {
 var room_type : ROOM_TYPE
 @export var possible_monsters : Array[Monster_Data]
 @export var hosting_monsters : Array[Monster_Data]
+
+@export var normal_color : Color
+@export var monster_color : Color
+
 var hovering : bool:
 	set(value):
 		if value:
