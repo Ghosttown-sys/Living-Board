@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cge2g0xi6yg04"]
+
+[ext_resource type="Texture2D" uid="uid://5q3dyrv3n3d5" path="res://assets/Arts/spritesheets/ObjectsSheet.png" id="1_4b0yu"]
+[ext_resource type="Script" path="res://Game/Core/cards/move_board_effects/light_room.gd" id="2_27dhq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxkfa"]
+atlas = ExtResource("1_4b0yu")
+region = Rect2(48, 32, 16, 16)
+
+[resource]
+script = ExtResource("2_27dhq")
+artwork = SubResource("AtlasTexture_mxkfa")
+description = "Light room"
