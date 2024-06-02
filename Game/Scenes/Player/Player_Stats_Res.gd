@@ -3,7 +3,7 @@ class_name  Player_Stats_Res
 
 const max_hp = 100
 const max_sanity = 100
-const max_actions = 5
+const max_actions = 7
 
 var player_name : String
 var player_health : int

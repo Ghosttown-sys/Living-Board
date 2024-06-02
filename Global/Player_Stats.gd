@@ -13,3 +13,7 @@ func consume_action() -> bool:
 	player_stat.player_actions -= 1
 	Events.on_player_stats_changed.emit()
 	return true
+
+func restore_all_actions():
+	player_stat.player_actions = player_stat.max_actions
+	Events.on_player_stats_changed.emit()

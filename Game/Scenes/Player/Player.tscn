@@ -58,6 +58,7 @@ position = Vector2(1, 0)
 
 [node name="Camera" parent="." instance=ExtResource("4_scqfh")]
 zoom = Vector2(2, 2)
+camera_speed = 8
 
 [connection signal="area_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_melee_area_entered"]
 [connection signal="body_entered" from="Weapon_Holder/Weapon_Zone" to="." method="_on_weapon_zone_body_entered"]

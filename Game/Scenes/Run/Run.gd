@@ -10,9 +10,15 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 @onready var turn_counter = $Top_Bar/Menu/Turn/Turn_Counter
 @onready var actions = $Top_Bar/Menu/Game_State/Action_Tokens
 
+const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
 func _ready():
+	for i in PlayerStats.player_stat.max_actions:
+		var instance = action_token_scene.instantiate()
+		actions.add_child(instance)
+	
 	Events.on_player_stats_changed.connect(_on_stats_changed)
+	_on_stats_changed()
 
 func _on_stats_changed():
 	for token in actions.get_children():
@@ -38,3 +44,6 @@ func toggle_visiblity():
 	turn_controler.hide()
 	board.visible =false
 	board.buttons.hide()
+
+func _on_end_turn_pressed():
+	PlayerStats.restore_all_actions()

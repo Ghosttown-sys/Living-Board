@@ -16,6 +16,8 @@ var rooms = []
 @export var player_room : Room
 @onready var buttons = $Buttons
 
+var player_animating : bool = false
+
 func _ready():
 	AudioManager.play_music(1)
 	AudioManager.game_start_sfx.play()
@@ -225,8 +227,10 @@ func player_move_token():
 		AudioManager.footstepo_sfx.play()
 		update_player_token_room()
 		var tween = get_tree().create_tween()
-		tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD)
-
+		
+		player_animating = true
+		await tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD).finished
+		player_animating = false
 	
 
 # Check if the move to the next room is valid
@@ -241,6 +245,18 @@ func is_valid_move() -> bool:
 	valid_rooms.append_array(get_connected_rooms(player_room))
 	
 	return valid_rooms.has(new_room)
+
+func _input(event):
+	if player_animating:
+		return
+	if event.is_action("move_left") and !event.is_echo() and event.is_pressed():
+		_on_left_pressed()
+	if event.is_action("move_up") and !event.is_echo() and event.is_pressed():
+		_on_up_pressed()
+	if event.is_action("move_right") and !event.is_echo() and event.is_pressed():
+		_on_r_ight_pressed()
+	if event.is_action("move_down") and !event.is_echo() and event.is_pressed():
+		_on_down_pressed()
 
 func _on_up_pressed():
 	new_position = player_position

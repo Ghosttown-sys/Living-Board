@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2r6o33tuv3t0"]
+
+[ext_resource type="Texture2D" uid="uid://v0uwew2c6ude" path="res://assets/Arts/Resource_Arts/Resources/ui_atlas.tres" id="1_0k2jq"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(30, 43)
+texture = ExtResource("1_0k2jq")
+expand_mode = 1
+stretch_mode = 5

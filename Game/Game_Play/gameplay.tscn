@@ -114,6 +114,7 @@ z_index = 1
 [node name="Buttons" type="CanvasLayer" parent="."]
 
 [node name="Buttons" type="NinePatchRect" parent="Buttons"]
+visible = false
 custom_minimum_size = Vector2(176, 176)
 anchors_preset = 2
 anchor_top = 1.0

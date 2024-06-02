@@ -1,38 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=7 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
 [ext_resource type="PackedScene" uid="uid://cu1qxrv7bksx3" path="res://scenes/Camera/camera.tscn" id="3_564n1"]
 [ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="3_gbia6"]
 [ext_resource type="PackedScene" uid="uid://ccockq4ssn6uj" path="res://Game/Scenes/UI/top_bar.tscn" id="4_xd8x2"]
-[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="5_n2pie"]
-[ext_resource type="StyleBox" uid="uid://l4wnxadgiu7n" path="res://assets/themes/main_menu_button.tres" id="6_3f10n"]
-
-[sub_resource type="Theme" id="Theme_4osj2"]
-default_font = ExtResource("5_n2pie")
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(0.272341, 0.178643, 0.0915966, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
-Button/constants/h_separation = 4
-Button/constants/icon_max_width = 0
-Button/constants/outline_size = 20
-Button/font_sizes/font_size = 50
-Button/fonts/font = ExtResource("5_n2pie")
-Button/styles/disabled = ExtResource("6_3f10n")
-Button/styles/focus = ExtResource("6_3f10n")
-Button/styles/hover = ExtResource("6_3f10n")
-Button/styles/normal = ExtResource("6_3f10n")
-Button/styles/pressed = ExtResource("6_3f10n")
+[ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_yoqht"]
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_s7tjo")
@@ -53,16 +26,33 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -220.0
-offset_top = -405.0
-offset_right = 28.0
-offset_bottom = -354.0
+offset_left = -999.0
+offset_top = -58.0
+offset_right = -745.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
-theme = SubResource("Theme_4osj2")
+theme = ExtResource("5_yoqht")
 text = "Enter room"
+
+[node name="End_Turn" type="Button" parent="Turn_Controler"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -496.0
+offset_right = 99.0
+offset_bottom = -432.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+theme = ExtResource("5_yoqht")
+text = "End Turn"
 
 [node name="Top_Bar" parent="." instance=ExtResource("4_xd8x2")]
 
 [connection signal="pressed" from="Turn_Controler/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Turn_Controler/End_Turn" to="." method="_on_end_turn_pressed"]

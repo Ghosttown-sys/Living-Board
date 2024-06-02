@@ -1,12 +1,14 @@
 [gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://l4wnxadgiu7n"]
 
-[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="1_ghmbw"]
+[ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="1_jdtpf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c18b6"]
-atlas = ExtResource("1_ghmbw")
-region = Rect2(0, 0, 64, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0scw"]
+atlas = ExtResource("1_jdtpf")
+region = Rect2(0, 64.107, 128, 31.893)
 
 [resource]
-texture = SubResource("AtlasTexture_c18b6")
-expand_margin_top = 150.0
-expand_margin_bottom = 26.0
+texture = SubResource("AtlasTexture_x0scw")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
