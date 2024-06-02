@@ -216,6 +216,7 @@ func update_player_token_room():
 	player_room = rooms[player_position.x][player_position.y]
 	rooms[player_position.x][player_position.y].is_hosting_player = true
 	
+	await get_tree().create_timer(0.2).timeout
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
 
 func room_move_token():
