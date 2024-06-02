@@ -246,17 +246,17 @@ func is_valid_move() -> bool:
 	
 	return valid_rooms.has(new_room)
 
-func _input(event):
-	if player_animating:
-		return
-	if event.is_action("move_left") and !event.is_echo() and event.is_pressed():
-		_on_left_pressed()
-	if event.is_action("move_up") and !event.is_echo() and event.is_pressed():
-		_on_up_pressed()
-	if event.is_action("move_right") and !event.is_echo() and event.is_pressed():
-		_on_r_ight_pressed()
-	if event.is_action("move_down") and !event.is_echo() and event.is_pressed():
-		_on_down_pressed()
+#func _input(event):
+	#if player_animating:
+		#return
+	#if event.is_action("move_left") and !event.is_echo() and event.is_pressed():
+		#_on_left_pressed()
+	#if event.is_action("move_up") and !event.is_echo() and event.is_pressed():
+		#_on_up_pressed()
+	#if event.is_action("move_right") and !event.is_echo() and event.is_pressed():
+		#_on_r_ight_pressed()
+	#if event.is_action("move_down") and !event.is_echo() and event.is_pressed():
+		#_on_down_pressed()
 
 func _on_up_pressed():
 	new_position = player_position

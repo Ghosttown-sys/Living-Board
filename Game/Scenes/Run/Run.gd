@@ -13,12 +13,16 @@ const COMBAT = preload("res://Game/Scenes/Combat/combat.tscn")
 const action_token_scene = preload("res://Game/Scenes/UI/action_token.tscn")
 
 func _ready():
+	Game_Manager.combat_done.connect(toggle_visiblity_on)
+	
 	for i in PlayerStats.player_stat.max_actions:
 		var instance = action_token_scene.instantiate()
 		actions.add_child(instance)
 	
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
+
+
 func _process(delta):
 	hp.value = PlayerStats.player_stat.player_health
 	sanity.value = PlayerStats.player_stat.player_sanity
@@ -36,15 +40,23 @@ func _on_stats_changed():
 
 func _on_button_pressed():
 	AudioManager.play_music(2)
-	toggle_visiblity()
+	toggle_visiblity_off()
 	var new_combat := COMBAT.instantiate()
 	add_child(new_combat)
 
 
-func toggle_visiblity():
+func toggle_visiblity_off():
 	turn_controler.hide()
 	board.visible =false
 	board.buttons.hide()
+	
+func toggle_visiblity_on():
+	print("hmm")
+	turn_controler.show()
+	board.visible =true
+	board.buttons.show()
+	camera.make_current()
+
 
 func _on_end_turn_pressed():
 	PlayerStats.restore_all_actions()
