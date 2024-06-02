@@ -65,6 +65,9 @@ func rotate_room(coordinates, direction : Directions.DIRECTION):
 	grid[coordinates.x][coordinates.y].direction = Directions.get_dir_after_rotation(facing_dir, rotation_dir)
 	Events.board_moved.emit();
 
+func light_room(coordinates):
+	grid[coordinates.x][coordinates.y].active = true
+
 func get_row(index):
 	return grid[index]
 

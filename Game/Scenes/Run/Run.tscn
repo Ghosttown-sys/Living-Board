@@ -11,6 +11,8 @@
 script = ExtResource("1_s7tjo")
 
 [node name="Board" parent="." instance=ExtResource("1_4lixk")]
+board_height = 9
+board_width = 9
 
 [node name="Camera" parent="." instance=ExtResource("3_564n1")]
 zoom = Vector2(0.96, 0.96)

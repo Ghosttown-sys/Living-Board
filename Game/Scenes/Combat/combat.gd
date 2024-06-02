@@ -18,5 +18,6 @@ func _process(delta):
 		combat_done()
 
 func combat_done():
+	AudioManager.play_music(1)
 	Game_Manager.combat_done.emit()
 	queue_free()
