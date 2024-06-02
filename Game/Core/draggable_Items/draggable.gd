@@ -26,13 +26,13 @@ func _on_collider_input_event(event):
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
 		initial_pos = position
 		initial_rot = rotation
-		
+		AudioManager.pop_sfx.play()
 		var tween = get_tree().create_tween()
 		tween.tween_property(visual_node, "scale", Vector2(0.2,0.2), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		
 		dragging = true
 	if event.is_action("select_card") and event.is_released() and not event.is_echo():
-		
+		AudioManager.pop_sfx.play()
 		var target_room : Room = board.hovered_room
 		if target_room != null:
 			parent.apply_effect([target_room.coordinates])

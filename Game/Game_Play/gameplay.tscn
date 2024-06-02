@@ -1,11 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdk2ksgvsl00o"]
+[gd_scene load_steps=20 format=3 uid="uid://cdk2ksgvsl00o"]
 
 [ext_resource type="PackedScene" uid="uid://c2cfb0p8w4c1n" path="res://Game/Core/rooms/room.tscn" id="1_evmpu"]
 [ext_resource type="Script" path="res://Game/Game_Play/board_manager.gd" id="1_lwgv5"]
+[ext_resource type="Texture2D" uid="uid://dwhmej4pbefmw" path="res://assets/Arts/spritesheets/cards_sheet.png" id="4_8luig"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Game/Game_Play/cards_in_hand/cards_in_hand.tscn" id="4_exeyq"]
 [ext_resource type="PackedScene" uid="uid://bakg6u6d2jf7b" path="res://Game/Scenes/Player/player_token.tscn" id="4_onu2n"]
+[ext_resource type="Script" path="res://Game/Game_Play/cards_in_hand/Deck.gd" id="5_1v2qw"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="5_gbi3n"]
 [ext_resource type="Texture2D" uid="uid://ci65rgyt0857q" path="res://assets/Arts/spritesheets/MovementButtonsSheet.png" id="5_wp12m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tidmn"]
+light_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qyrm"]
+atlas = ExtResource("4_8luig")
+region = Rect2(66, 0, 66, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8nuc"]
 atlas = ExtResource("5_gbi3n")
@@ -62,6 +71,36 @@ color = Color(0, 0, 0, 1)
 
 [node name="Cards_in_hand" parent="." instance=ExtResource("4_exeyq")]
 z_index = 2
+
+[node name="Deck" type="TextureRect" parent="."]
+z_index = 2
+material = SubResource("CanvasItemMaterial_tidmn")
+custom_minimum_size = Vector2(99.2, 144)
+offset_left = 726.0
+offset_top = 447.0
+offset_right = 726.0
+offset_bottom = 447.0
+texture = SubResource("AtlasTexture_1qyrm")
+script = ExtResource("5_1v2qw")
+screen_pos = Vector2(860, 420)
+
+[node name="Deck2" type="TextureRect" parent="Deck"]
+z_index = 2
+material = SubResource("CanvasItemMaterial_tidmn")
+custom_minimum_size = Vector2(99.2, 144)
+layout_mode = 0
+offset_right = 99.2
+offset_bottom = 144.0
+texture = SubResource("AtlasTexture_1qyrm")
+
+[node name="Deck3" type="TextureRect" parent="Deck"]
+z_index = 2
+material = SubResource("CanvasItemMaterial_tidmn")
+custom_minimum_size = Vector2(99.2, 144)
+layout_mode = 0
+offset_right = 99.2
+offset_bottom = 144.0
+texture = SubResource("AtlasTexture_1qyrm")
 
 [node name="Player_Token" parent="." instance=ExtResource("4_onu2n")]
 z_index = 1
@@ -137,6 +176,7 @@ texture_normal = SubResource("AtlasTexture_hq664")
 texture_pressed = SubResource("AtlasTexture_l8jqd")
 stretch_mode = 4
 
+[connection signal="gui_input" from="Deck" to="Deck" method="_on_interact"]
 [connection signal="pressed" from="Buttons/Buttons/UP" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="Buttons/Buttons/Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="Buttons/Buttons/RIght" to="." method="_on_r_ight_pressed"]

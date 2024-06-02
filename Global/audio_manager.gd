@@ -3,6 +3,8 @@ extends Node
 @onready var wall_move_sfx = $SFX/Wall_Move
 @onready var game_start_sfx = $SFX/Game_Start
 @onready var footstepo_sfx = $SFX/Foot_Steps
+@onready var draw_card_sfx = $SFX/Draw_Card
+@onready var pop_sfx = $SFX/Pop
 
 
 @onready var menu_music = $Music/Menu_Music
@@ -27,7 +29,7 @@ func play_music(track_to_play):
 		return
 	tracks[track_to_play].play()
 	var tween = get_tree().create_tween()
-	tween.tween_property(tracks[track_to_play], "volume_db", 0, 1)
+	tween.tween_property(tracks[track_to_play], "volume_db", -20, 1)
 	await tween.tween_property(tracks[current_track], "volume_db", -80, 1)
 	tracks[current_track].stop()
 	current_track = track_to_play

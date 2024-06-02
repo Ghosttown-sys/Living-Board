@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgcgvexpgp6ep"]
+[gd_scene load_steps=9 format=3 uid="uid://bgcgvexpgp6ep"]
 
 [ext_resource type="AudioStream" uid="uid://peqij81ycknb" path="res://assets/audio/sfx/wall_move.wav" id="1_5uymb"]
 [ext_resource type="Script" path="res://Global/audio_manager.gd" id="1_xmgq3"]
 [ext_resource type="AudioStream" uid="uid://bld8fr74k7hpa" path="res://assets/audio/music/bg_music.mp3" id="3_niuyc"]
 [ext_resource type="AudioStream" uid="uid://cawljqviggtlx" path="res://assets/audio/sfx/FootstepsSound.mp3" id="3_s8tmh"]
 [ext_resource type="AudioStream" uid="uid://btx4wmt8rqvpp" path="res://assets/audio/music/MenuMusic.mp3" id="3_yjljf"]
+[ext_resource type="AudioStream" uid="uid://b530bovye04ux" path="res://assets/audio/sfx/CardDraw.mp3" id="4_dxo1d"]
 [ext_resource type="AudioStream" uid="uid://dslvy1x4ga77x" path="res://assets/audio/music/combat_music.mp3" id="4_guj6m"]
+[ext_resource type="AudioStream" uid="uid://b2axnavxdrgv2" path="res://assets/audio/sfx/PopSound.mp3" id="5_61isu"]
 
 [node name="Audio_Manager" type="Node2D"]
 process_mode = 3
@@ -15,23 +17,31 @@ script = ExtResource("1_xmgq3")
 
 [node name="Wall_Move" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("1_5uymb")
-volume_db = 17.0
 
 [node name="Game_Start" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("1_5uymb")
-volume_db = 18.0
 
 [node name="Foot_Steps" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("3_s8tmh")
-volume_db = 18.0
+volume_db = 12.0
+
+[node name="Draw_Card" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_dxo1d")
+
+[node name="Pop" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_61isu")
+volume_db = -6.0
 
 [node name="Music" type="Node2D" parent="."]
 
 [node name="Menu_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_yjljf")
+volume_db = -20.0
 
 [node name="Bg_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_niuyc")
+volume_db = -20.0
 
 [node name="Combat_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("4_guj6m")
+volume_db = -20.0
