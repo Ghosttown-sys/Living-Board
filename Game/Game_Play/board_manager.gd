@@ -222,7 +222,7 @@ func room_move_token():
 	
 func player_move_token():
 	if is_valid_move():
-		if not PlayerStats.consume_action():
+		if not Game_Manager.is_player_turn or not PlayerStats.consume_action():
 			return
 		AudioManager.footstepo_sfx.play()
 		update_player_token_room()
