@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://brdvyw7orugsk"]
+
+[ext_resource type="Texture2D" uid="uid://utd55owre4as" path="res://assets/Arts/spritesheets/ExplosionSheet.png" id="1_hxh0q"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u68ua"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_fdfm3"]
+offsets = PackedFloat32Array(0, 0.090379, 0.268222, 0.825073, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.148688, 0.148688, 0.148688, 1, 0.9809, 0.9809, 0.9809, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[node name="CPU_explosion_effect" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_u68ua")
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("1_hxh0q")
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector2(0, 20)
+tangential_accel_min = 10.0
+tangential_accel_max = 20.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_fdfm3")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
