@@ -64,8 +64,8 @@ func _physics_process(delta):
 		move_and_slide()
 
 func set_up_monster():
-	max_hp = monster_data.max_hp
-	damage = monster_data.damage
+	max_hp = monster_data.max_hp + Game_Manager.turn *2
+	damage = monster_data.damage + Game_Manager.turn *1
 	speed = monster_data.speed
 	rush_speed = monster_data.rush_speed
 	cd = monster_data.cd
@@ -76,6 +76,7 @@ func set_up_monster():
 	
 
 func set_up_animation():
+	sprite.sprite_frames = sprite.sprite_frames.duplicate()
 	sprite.sprite_frames.set_frame("default",0,frame_1)
 	sprite.sprite_frames.set_frame("default",1,frame_2)
 	sprite.play("default")
