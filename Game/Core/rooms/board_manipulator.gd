@@ -62,7 +62,7 @@ func push_row(row_index, direction : Directions.DIRECTION):
 func rotate_room(coordinates, direction : Directions.DIRECTION):
 	var facing_dir = grid[coordinates.x][coordinates.y].direction
 	var rotation_dir = true if direction == Directions.DIRECTION.RIGHT else false
-	grid[coordinates.x][coordinates.y].direction = Game_Manager.get_dir_after_rotation(facing_dir, rotation_dir)
+	grid[coordinates.x][coordinates.y].direction = Directions.get_dir_after_rotation(facing_dir, rotation_dir)
 	Events.board_moved.emit();
 
 func get_row(index):

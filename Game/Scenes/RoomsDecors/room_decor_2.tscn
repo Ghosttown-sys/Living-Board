@@ -75,23 +75,27 @@ script = ExtResource("1_dl186")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(38, 39)
 sprite_frames = SubResource("SpriteFrames_k5b0s")
+autoplay = "default"
 frame_progress = 0.157821
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-39, 39)
 sprite_frames = SubResource("SpriteFrames_k5b0s")
+autoplay = "default"
 frame_progress = 0.157821
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-39, -41)
 sprite_frames = SubResource("SpriteFrames_1odxx")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 position = Vector2(39, -41)
 sprite_frames = SubResource("SpriteFrames_1odxx")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]

@@ -40,7 +40,7 @@ const direction_index = {
 
 # true = clockwise, false = anticlockwise
 # Returns the direction after performing a rotation
-func get_dir_after_rotation(initial_dir, rotation) -> DIRECTION:
+static func get_dir_after_rotation(initial_dir, rotation) -> DIRECTION:
 	var dirs = [DIRECTION.UP, DIRECTION.RIGHT, DIRECTION.DOWN, DIRECTION.LEFT]
 	var rotation_dir = 1 if rotation else -1
 	var index = dirs.find(initial_dir)

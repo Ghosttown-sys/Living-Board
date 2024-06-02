@@ -78,21 +78,25 @@ texture = SubResource("AtlasTexture_wy1c4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-40, -33)
 sprite_frames = SubResource("SpriteFrames_gl57n")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(39, -33)
 sprite_frames = SubResource("SpriteFrames_gl57n")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
 position = Vector2(39, 31)
 sprite_frames = SubResource("SpriteFrames_gl57n")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 position = Vector2(-40, 31)
 sprite_frames = SubResource("SpriteFrames_gl57n")
+autoplay = "default"
 speed_scale = 1.09
 
 [node name="Sprite2D6" type="Sprite2D" parent="."]

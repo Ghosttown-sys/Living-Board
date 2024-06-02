@@ -81,7 +81,7 @@ func update_visuals():
 	for layer in range(1,5):
 		var direction = Directions.direction_index[layer - 1]
 		tilemap.set_layer_enabled(layer, openings.has(direction));
-	debug_label.text = str(room_id);
+	debug_label.text = str(room_type);
 
 func get_room_pixel_size():
 	return tilemap.get_used_rect().size * tilemap.rendering_quadrant_size
@@ -99,11 +99,11 @@ func assign_random_room_type():
 	var random_room_type = ROOM_TYPE.Normal
 	var random_int = Game_Manager.RNG.randi_range(0,100)
 	
-	if random_int < 0 and random_int > ROOM_TYPE.Normal:
+	if random_int > 0 and random_int < ROOM_TYPE.Normal:
 		random_room_type = ROOM_TYPE.Normal
-	elif  random_int < ROOM_TYPE.Normal and random_int > ROOM_TYPE.Hazard:
+	elif  random_int > ROOM_TYPE.Normal and random_int < ROOM_TYPE.Hazard:
 		random_room_type = ROOM_TYPE.Hazard
-	elif  random_int < ROOM_TYPE.Hazard and random_int > ROOM_TYPE.Treasure:
+	elif  random_int > ROOM_TYPE.Hazard and random_int < ROOM_TYPE.Treasure:
 		random_room_type = ROOM_TYPE.Treasure
 	
 	room_type = random_room_type
