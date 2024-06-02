@@ -64,6 +64,7 @@ func take_damage(damage:float)->void:
 		if max_hp <= 0:
 			is_dying = true
 			animation_player.play("Death")
+			$explosion_effect.emitting = true
 			await get_tree().create_timer(1).timeout
 			queue_free()
 
