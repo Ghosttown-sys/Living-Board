@@ -4,6 +4,7 @@ class_name Rooms_Decors_Database
 @export var room_normal : Array[PackedScene]
 @export var room_hazards : Array[PackedScene]
 @export var room_treasures : Array[PackedScene]
+@export var room_exit : Array[PackedScene]
 
 func get_decorations(room_type : Room.ROOM_TYPE):
 	match room_type:
@@ -15,3 +16,5 @@ func get_decorations(room_type : Room.ROOM_TYPE):
 			return room_normal
 		Room.ROOM_TYPE.Treasure:
 			return room_treasures
+		Room.ROOM_TYPE.Exit:
+			return room_exit

@@ -6,4 +6,4 @@
 script = ExtResource("1_p0y7e")
 max_hp = 100
 max_sanity = 100
-max_actions = 3
+max_actions = 5

@@ -54,7 +54,8 @@ enum ROOM_TYPE {
 	Normal = 15,
 	Hazard = 45,
 	Combat = 85,
-	Treasure = 100
+	Treasure = 100,
+	Exit = 0
 }
 
 var room_type : ROOM_TYPE
@@ -81,6 +82,17 @@ func force_to_normal_room():
 	var current_decor = get_node("Decor")
 	current_decor.queue_free()
 	room_type = ROOM_TYPE.Normal
+	assign_random_decorations()
+	monster_token_1.hide()
+	monster_token_2.hide()
+	monster_token_3.hide()
+	
+	update_visuals()
+
+func force_to_exit():
+	var current_decor = get_node("Decor")
+	current_decor.queue_free()
+	room_type = ROOM_TYPE.Exit
 	assign_random_decorations()
 	monster_token_1.hide()
 	monster_token_2.hide()

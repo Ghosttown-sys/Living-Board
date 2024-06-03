@@ -14,4 +14,5 @@ signal on_game_started
 
 signal on_move_finished
 
+signal victory
 signal player_died

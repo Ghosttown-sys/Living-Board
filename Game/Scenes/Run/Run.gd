@@ -6,6 +6,7 @@ const COMBAT = preload("res://Game/Scenes/Rooms_Internal/combat.tscn")
 const TREASURE = preload("res://Game/Scenes/Rooms_Internal/treasure.tscn")
 
 const GAME_OVER = preload("res://scenes/ui/game_over.tscn")
+const VICTORY = preload("res://scenes/ui/win.tscn")
 
 @onready var camera :Camera2D= $Camera
 
@@ -27,6 +28,7 @@ func _ready():
 	Game_Manager.hazard_room_entered.connect(hazard_room_found)
 	
 	Events.player_died.connect(game_over)
+	Events.victory.connect(victory)
 	Events.on_move_finished.connect(on_move_finished)
 	Events.on_game_started.emit()
 	var current_enemies : Array[Monster_Data]
@@ -141,3 +143,8 @@ func game_over():
 	AudioManager.play_music(3)
 	var game_over_scene = GAME_OVER.instantiate()
 	add_child(game_over_scene)
+
+func victory():
+	AudioManager.play_music(4)
+	var victory_scene = VICTORY.instantiate()
+	add_child(victory_scene)

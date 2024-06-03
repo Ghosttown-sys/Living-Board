@@ -61,6 +61,8 @@ func initialize_board():
 	player_room.openings = Directions.ALL_DIRECTIONS.duplicate();
 	player_room.force_to_normal_room()
 	
+	rooms.pick_random().pick_random().force_to_exit()
+	
 	update_rooms_activation()
 	
 	Board_Manipulator.grid = rooms;
@@ -244,6 +246,8 @@ func player_move_token():
 		elif player_room.room_type == Room.ROOM_TYPE.Hazard:
 			Game_Manager.hazard_room_entered.emit()
 			Events.on_move_finished.emit()
+		elif player_room.room_type == Room.ROOM_TYPE.Exit:
+			Events.victory.emit()
 		else:
 			Events.on_move_finished.emit()
 
