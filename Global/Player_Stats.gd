@@ -19,6 +19,7 @@ func restore_all_actions():
 	Events.on_player_stats_changed.emit()
 
 func take_damage(damage):
+	AudioManager.take_damage_sfx.play()
 	Events.hp_lost.emit()
 	player_stat.player_health -= damage
 	Events.on_player_stats_changed.emit()

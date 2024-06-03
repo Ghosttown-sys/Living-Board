@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgcgvexpgp6ep"]
+[gd_scene load_steps=14 format=3 uid="uid://bgcgvexpgp6ep"]
 
 [ext_resource type="AudioStream" uid="uid://peqij81ycknb" path="res://assets/audio/sfx/wall_move.wav" id="1_5uymb"]
 [ext_resource type="Script" path="res://Global/audio_manager.gd" id="1_xmgq3"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dslvy1x4ga77x" path="res://assets/audio/music/combat_music.mp3" id="4_guj6m"]
 [ext_resource type="AudioStream" uid="uid://b2axnavxdrgv2" path="res://assets/audio/sfx/PopSound.mp3" id="5_61isu"]
 [ext_resource type="AudioStream" uid="uid://bw8wc0heh23yh" path="res://assets/audio/sfx/ButtonPress.mp3" id="7_w7a8d"]
+[ext_resource type="AudioStream" uid="uid://b7nw7vhcos6nf" path="res://assets/audio/sfx/DamageSound.mp3" id="8_3uo3t"]
 [ext_resource type="AudioStream" uid="uid://bswssvmtuoytj" path="res://assets/audio/music/DeathSound.mp3" id="10_4dlyi"]
 [ext_resource type="AudioStream" uid="uid://by8a26dj17f7m" path="res://assets/audio/music/WinSong.mp3" id="12_8l5t3"]
 
@@ -40,6 +41,10 @@ volume_db = -6.0
 [node name="Button_Press" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("7_w7a8d")
 volume_db = -6.0
+
+[node name="Take_Damage" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_3uo3t")
+volume_db = -12.0
 
 [node name="Music" type="Node2D" parent="."]
 
