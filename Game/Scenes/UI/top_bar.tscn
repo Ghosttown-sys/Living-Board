@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://3gw2w5e3vhdl" path="res://assets/Arts/spritesheets/Circle.png" id="3_fuexm"]
 [ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="4_wom7k"]
 [ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="5_6s1s4"]
-[ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="5_jgvhc"]
 [ext_resource type="Texture2D" uid="uid://d30w3wg34e1dn" path="res://Game/Components/Bullets/VFX/spark_06_rotated.png" id="6_era4p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x58si"]
@@ -56,28 +55,30 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_shfdl"]
 font = ExtResource("4_wom7k")
-font_size = 40
-outline_size = 20
+font_size = 30
+outline_size = 15
 outline_color = Color(0.168627, 0.168627, 0.168627, 1)
-shadow_size = 20
+shadow_size = 15
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nla80"]
 font = ExtResource("4_wom7k")
-font_size = 24
-outline_size = 20
+font_size = 20
+outline_size = 15
 outline_color = Color(0.168627, 0.168627, 0.168627, 1)
-shadow_size = 20
+shadow_size = 15
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_e4sgq"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_67q2d"]
 font = ExtResource("4_wom7k")
-font_size = 24
-outline_size = 20
+font_size = 15
+outline_size = 10
 outline_color = Color(0.168627, 0.168627, 0.168627, 1)
-shadow_size = 20
+shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
@@ -140,7 +141,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_0jr8k")
 
 [node name="Weapon_Holder" type="TextureRect" parent="Menu/Profile/Profile/Avatar_holder"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.631373, 0.631373, 0.631373, 1)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 1
 anchors_preset = 3
@@ -237,7 +238,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
+offset_left = 2.0
+offset_top = -42.0
+offset_right = 2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -257,23 +261,25 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Game_State"]
+self_modulate = Color(0.705882, 0.462745, 0.207843, 0.835294)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -5.0
-offset_right = -4.0
-offset_bottom = 34.0
+offset_top = -6.0
+offset_right = -7.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_jgvhc")
+texture = SubResource("CanvasTexture_e4sgq")
 
 [node name="Action_Holder" type="VBoxContainer" parent="Menu/Game_State"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = 7.0
 offset_bottom = 28.0
 grow_horizontal = 2
 
