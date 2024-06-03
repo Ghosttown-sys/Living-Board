@@ -2,6 +2,9 @@ extends CanvasLayer
 
 @onready var _load_game_dlg = $LoadGameDlg
 
+func _ready():
+	%Score.text = "score: %s" % Game_Manager.score
+
 func _on_load_btn_pressed():
 	_load_game_dlg.show_modal()
 

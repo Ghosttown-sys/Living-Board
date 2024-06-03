@@ -231,7 +231,7 @@ label_settings = SubResource("LabelSettings_shfdl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Turn_Counter2" type="Label" parent="Menu/Turn"]
+[node name="Score_Counter" type="Label" parent="Menu/Turn"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -288,3 +288,14 @@ vertical_alignment = 1
 [node name="Action_Tokens" type="HBoxContainer" parent="Menu/Game_State/Action_Holder"]
 layout_mode = 2
 alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 320)
+offset_left = 778.0
+offset_top = 64.0
+offset_right = 1023.0
+offset_bottom = 64.0
+
+[node name="Score_Board" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

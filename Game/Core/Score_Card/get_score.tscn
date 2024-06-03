@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://gyp6d5bxk07j"]
+
+[ext_resource type="Script" path="res://Game/Core/Score_Card/get_score.gd" id="1_at7o3"]
+
+[node name="Get_Score" type="Label"]
+theme_override_font_sizes/font_size = 32
+text = "score +50"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_at7o3")

@@ -33,4 +33,5 @@ func combat_done():
 	await get_tree().create_timer(1).timeout
 	Game_Manager.leave_room.emit()
 	Events.on_move_finished.emit()
+	Events.add_score.emit(10)
 	queue_free()

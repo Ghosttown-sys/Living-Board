@@ -91,6 +91,8 @@ func take_damage(damage:float)->void:
 			hp_bar.hide()
 			$explosion_effect.emitting = true
 			Game_Manager.monsters_alive -=1
+			var score = 1+Game_Manager.turn
+			Events.add_score.emit(score)
 			await get_tree().create_timer(1).timeout
 			queue_free()
 

@@ -54,6 +54,7 @@ board_width = 5
 room_template = ExtResource("1_evmpu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -1798.0
 offset_top = -1897.0
 offset_right = 4202.0
@@ -62,7 +63,6 @@ mouse_filter = 2
 color = Color(0.105882, 0.0627451, 0.0901961, 1)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Cards_in_hand" parent="." instance=ExtResource("4_exeyq")]

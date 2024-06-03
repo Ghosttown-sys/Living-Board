@@ -20,3 +20,5 @@ signal player_died
 signal hp_lost
 signal sanity_lost
 signal hp_gained
+
+signal add_score(score:int)

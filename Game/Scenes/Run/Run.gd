@@ -13,6 +13,7 @@ const VICTORY = preload("res://scenes/ui/win.tscn")
 @onready var hp = $Top_Bar/Menu/Profile/Profile/Stats/HP
 @onready var sanity = $Top_Bar/Menu/Profile/Profile/Stats/Sanity
 @onready var turn_counter = $Top_Bar/Menu/Turn/Turn_Counter
+@onready var score_counter = $Top_Bar/Menu/Turn/Score_Counter
 @onready var actions = $Top_Bar/Menu/Game_State/Action_Holder/Action_Tokens
 @onready var room_interactions = $Room_Interactions
 
@@ -44,6 +45,7 @@ func _ready():
 
 func on_move_finished():
 	if PlayerStats.player_stat.player_actions <= 0:
+		await get_tree().create_timer(1).timeout
 		$AI_Turn/Label.text ="Dungeon's Turn"
 		$AI_Turn.show()
 		await get_tree().create_timer(1).timeout
@@ -52,6 +54,7 @@ func on_move_finished():
 func _process(delta):
 	hp.value = PlayerStats.player_stat.player_health
 	sanity.value = PlayerStats.player_stat.player_sanity
+	score_counter.text = "score: %s" % Game_Manager.score
 	
 func combat_room_found(enemies : Array[Monster_Data]):
 	current_enemies = enemies
@@ -73,6 +76,7 @@ func hazard_room_found():
 	PlayerStats.take_damage(10)
 	await get_tree().create_timer(1).timeout
 	$AI_Turn.hide()
+	Events.add_score.emit(-10)
 
 func _on_stats_changed():
 	for token in actions.get_children():

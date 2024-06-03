@@ -48,7 +48,6 @@ func _ready():
 	animation_tree.active = true
 	hp = player_stats.max_hp
 	atk = PlayerStats.player_stat.player_attack
-	attack_type = player_stats.attack_type
 	set_weapon()
 
 func _physics_process(delta: float) -> void :
@@ -144,6 +143,8 @@ func return_default():
 	weapon_zone.monitorable = false
 
 func set_weapon():
+	
+	attack_type = player_stats.attack_type
 	match attack_type:
 			Player_Stats_Res.Attack_Type.MELEE:
 				sprite.frame = 0
