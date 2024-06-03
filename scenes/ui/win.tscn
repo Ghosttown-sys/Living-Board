@@ -109,7 +109,8 @@ theme_override_fonts/font = SubResource("FontFile_ksoy5")
 text = "You have escaped"
 label_settings = SubResource("LabelSettings_83l5v")
 
-[node name="Cleared" type="Label" parent="VBoxContainer"]
+[node name="Score" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"title"
 theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
@@ -117,23 +118,12 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = SubResource("FontFile_ksoy5")
-text = "Rooms cleared:"
-label_settings = SubResource("LabelSettings_b5vgy")
-
-[node name="Time" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"title"
-theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 5
-theme_override_constants/shadow_offset_y = 5
-theme_override_fonts/font = SubResource("FontFile_ksoy5")
-text = "Time:"
+text = "Score:"
 label_settings = SubResource("LabelSettings_b5vgy")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(2.08165e-12, 68.2)
 layout_mode = 2
 
 [node name="LoadBtn" type="Button" parent="VBoxContainer"]
@@ -156,7 +146,7 @@ theme_override_colors/font_pressed_color = Color(0.52549, 0.529412, 0, 1)
 theme_override_colors/font_hover_color = Color(0.756863, 0.764706, 0, 1)
 theme_override_colors/font_outline_color = Color(0.309804, 0.231373, 0, 1)
 theme_override_fonts/font = ExtResource("5_xsmdv")
-text = "Main Menu"
+text = "Return to Main Menu"
 flat = true
 alignment = 0
 

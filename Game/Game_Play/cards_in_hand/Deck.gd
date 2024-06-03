@@ -13,4 +13,5 @@ func _on_interact(event):
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
 		if Game_Manager.is_player_turn and PlayerStats.consume_action():
 			hand.add_cards(1)
+			Events.on_move_finished.emit()
 			AudioManager.draw_card_sfx.play()

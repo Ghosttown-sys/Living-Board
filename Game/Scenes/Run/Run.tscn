@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=13 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
@@ -9,10 +9,19 @@
 [ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_yoqht"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="7_8mmna"]
 [ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="8_om7ju"]
+[ext_resource type="Script" path="res://Game/Scenes/Run/Flash_Indicator.gd" id="10_so2id"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ey7b"]
 atlas = ExtResource("7_8mmna")
 region = Rect2(0, 64, 128, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_06pa7"]
+font_size = 80
+outline_size = 2
+outline_color = Color(0.472726, 0.300227, 0.117373, 1)
+shadow_size = 5
+shadow_color = Color(0.099986, 0.099986, 0.099986, 0.972549)
+shadow_offset = Vector2(2, 2)
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_s7tjo")
@@ -134,6 +143,56 @@ theme = ExtResource("5_yoqht")
 theme_override_font_sizes/font_size = 40
 text = " Skip room"
 
+[node name="AI_Turn" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="AI_Turn"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dungeon's Turn"
+label_settings = SubResource("LabelSettings_06pa7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Flash_Indicator" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("10_so2id")
+
+[node name="Sanity_loss" type="ColorRect" parent="Flash_Indicator"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 12, 0)
+
+[node name="Hp_loss" type="ColorRect" parent="Flash_Indicator"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(12, 0, 0, 0)
+
+[node name="Hp_Gained" type="ColorRect" parent="Flash_Indicator"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 12, 0, 0)
+
+[node name="Flash_Timer" type="Timer" parent="Flash_Indicator"]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="pressed" from="Turn_Controler/VBoxContainer/End_Turn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Room_Interactions/NinePatchRect/Enter_Room" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Room_Interactions/NinePatchRect/Skip_room" to="." method="_on_skip_room_pressed"]
+[connection signal="timeout" from="Flash_Indicator/Flash_Timer" to="Flash_Indicator" method="_on_flash_timer_timeout"]

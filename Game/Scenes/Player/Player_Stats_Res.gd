@@ -1,9 +1,23 @@
 extends Resource
 class_name  Player_Stats_Res
 
-const max_hp = 100
-const max_sanity = 100
-const max_actions = 3
+@export var max_hp = 100
+@export var max_sanity = 100
+@export var max_actions = 3
+
+@export var player_attack :int = 2
+
+
+enum Attack_Type{
+	MELEE,
+	RANGED,
+	MAGIC,
+	SEEKER
+}
+
+@export_category("Attack_Type")
+@export var attack_type : Attack_Type = Attack_Type.MELEE
+
 
 var player_name : String
 var player_health : int

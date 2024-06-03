@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgcgvexpgp6ep"]
+[gd_scene load_steps=13 format=3 uid="uid://bgcgvexpgp6ep"]
 
 [ext_resource type="AudioStream" uid="uid://peqij81ycknb" path="res://assets/audio/sfx/wall_move.wav" id="1_5uymb"]
 [ext_resource type="Script" path="res://Global/audio_manager.gd" id="1_xmgq3"]
 [ext_resource type="AudioStream" uid="uid://bld8fr74k7hpa" path="res://assets/audio/music/bg_music.mp3" id="3_niuyc"]
+[ext_resource type="AudioStream" uid="uid://cpphao3q1k4me" path="res://assets/audio/sfx/GameStartSound.mp3" id="3_oux3i"]
 [ext_resource type="AudioStream" uid="uid://cawljqviggtlx" path="res://assets/audio/sfx/FootstepsSound.mp3" id="3_s8tmh"]
 [ext_resource type="AudioStream" uid="uid://btx4wmt8rqvpp" path="res://assets/audio/music/MenuMusic.mp3" id="3_yjljf"]
 [ext_resource type="AudioStream" uid="uid://b530bovye04ux" path="res://assets/audio/sfx/CardDraw.mp3" id="4_dxo1d"]
 [ext_resource type="AudioStream" uid="uid://dslvy1x4ga77x" path="res://assets/audio/music/combat_music.mp3" id="4_guj6m"]
 [ext_resource type="AudioStream" uid="uid://b2axnavxdrgv2" path="res://assets/audio/sfx/PopSound.mp3" id="5_61isu"]
+[ext_resource type="AudioStream" uid="uid://bw8wc0heh23yh" path="res://assets/audio/sfx/ButtonPress.mp3" id="7_w7a8d"]
+[ext_resource type="AudioStream" uid="uid://bswssvmtuoytj" path="res://assets/audio/music/DeathSound.mp3" id="10_4dlyi"]
+[ext_resource type="AudioStream" uid="uid://by8a26dj17f7m" path="res://assets/audio/music/WinSong.mp3" id="12_8l5t3"]
 
 [node name="Audio_Manager" type="Node2D"]
 process_mode = 3
@@ -19,7 +23,8 @@ script = ExtResource("1_xmgq3")
 stream = ExtResource("1_5uymb")
 
 [node name="Game_Start" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("1_5uymb")
+stream = ExtResource("3_oux3i")
+volume_db = -8.0
 
 [node name="Foot_Steps" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("3_s8tmh")
@@ -30,6 +35,10 @@ stream = ExtResource("4_dxo1d")
 
 [node name="Pop" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_61isu")
+volume_db = -6.0
+
+[node name="Button_Press" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_w7a8d")
 volume_db = -6.0
 
 [node name="Music" type="Node2D" parent="."]
@@ -45,3 +54,10 @@ volume_db = -20.0
 [node name="Combat_Music" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("4_guj6m")
 volume_db = -20.0
+
+[node name="Death_Music" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("10_4dlyi")
+
+[node name="Victory_Music" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("12_8l5t3")
+volume_db = -6.0

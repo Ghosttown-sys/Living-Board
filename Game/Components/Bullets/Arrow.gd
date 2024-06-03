@@ -5,7 +5,7 @@ extends Area2D
 
 var direction = Vector2.RIGHT
 var speed = 400
-var bullet_damage := 5
+@export var bullet_damage := 5
 var shotgun: = false
 var range_in_time := 0.2
 var range_in_pixels := 500

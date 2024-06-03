@@ -27,7 +27,7 @@ func _ready():
 	Events.board_moved.connect(board_moved)
 	Events.on_card_hovering_room_enter.connect(_on_mouse_hover_enter_room)
 	Events.on_card_hovering_room_exit.connect(_on_mouse_hover_exit_room)
-	Game_Manager.combat_done.connect(_enemies_defeated)
+	Game_Manager.leave_room.connect(_enemies_defeated)
 	
 	var room_scene = load(room_template.resource_path)
 	# Create rooms
@@ -61,9 +61,11 @@ func initialize_board():
 	player_room.openings = Directions.ALL_DIRECTIONS.duplicate();
 	player_room.force_to_normal_room()
 	
-	update_rooms_activation()
+	rooms.pick_random().pick_random().force_to_exit()
 	
 	Board_Manipulator.grid = rooms;
+	update_rooms_activation()
+	
 	
 # Returns a list of all rooms connected to the room
 func get_connected_rooms(room: Room):
@@ -80,34 +82,6 @@ func get_connected_rooms(room: Room):
 	
 	return connected_rooms
 	
-func find_all_connected_rooms(room : Room):
-	var visited_rooms = []
-	# Recursively find all rooms connected to the centre
-	find_connected_rooms_recursive(room,visited_rooms)
-	return visited_rooms
-
-func find_connected_rooms_recursive(room, visited_rooms):
-	visited_rooms.append(room)
-	for direction in room.get_rotated_openings():
-		var next_room_coordinates = room.coordinates + Directions.d2v[direction];
-		# Check if it's out of bound
-		if next_room_coordinates.x >= board_width || next_room_coordinates.y >= board_height\
-		 || next_room_coordinates.x < 0 || next_room_coordinates.y < 0:
-			room.enable_corridor_fog(direction, true)
-			continue
-		var next_room = rooms[next_room_coordinates.x][next_room_coordinates.y];
-		
-		if next_room.get_rotated_openings().has(Directions.opposite_direction[direction]):
-			# Disable fog between corridors if both ways are connected
-			room.enable_corridor_fog(direction, false)
-			next_room.enable_corridor_fog(Directions.opposite_direction[direction], false)
-			
-			# if it was not visited yet, perform the recursion
-			if not visited_rooms.has(next_room):
-				find_connected_rooms_recursive(next_room, visited_rooms)
-		else:
-			room.enable_corridor_fog(direction, true)
-
 func update_board():
 	for x in rooms.size():
 		for y in rooms[0].size():
@@ -184,7 +158,7 @@ func update_rooms_positions():
 	await Tween_Utilities.await_all(tweens);
 
 func update_rooms_activation():
-	var active_rooms = find_all_connected_rooms(player_room)
+	var active_rooms = Board_Manipulator.find_all_connected_rooms(player_room)
 	
 	for row in rooms:
 		for room in row:
@@ -221,9 +195,6 @@ func update_player_token_room():
 	
 	await get_tree().create_timer(0.2).timeout
 	Game_Manager.camera_relocate.emit(rooms[player_position.x][player_position.y].global_position)
-	
-	if player_room.room_type == Room.ROOM_TYPE.Combat:
-		Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
 
 func room_move_token():
 	update_player_token_room()
@@ -240,7 +211,17 @@ func player_move_token():
 		player_animating = true
 		await tween.tween_property(player_token, "global_position", rooms[player_position.x][player_position.y].global_position, 0.8).set_trans(Tween.TRANS_QUAD).finished
 		player_animating = false
-		
+		if player_room.room_type == Room.ROOM_TYPE.Combat:
+			Game_Manager.combat_room_entered.emit(player_room.hosting_monsters)
+		elif player_room.room_type == Room.ROOM_TYPE.Treasure:
+			Game_Manager.treasure_room_entered.emit()
+		elif player_room.room_type == Room.ROOM_TYPE.Hazard:
+			Game_Manager.hazard_room_entered.emit()
+			Events.on_move_finished.emit()
+		elif player_room.room_type == Room.ROOM_TYPE.Exit:
+			Events.victory.emit()
+		else:
+			Events.on_move_finished.emit()
 
 	
 
@@ -270,24 +251,28 @@ func is_valid_move() -> bool:
 		#_on_down_pressed()
 
 func _on_up_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.UP
 	player_move_token()
 
 
 func _on_left_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position +=Vector2.LEFT
 	player_move_token()
 
 
 func _on_r_ight_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.RIGHT
 	player_move_token()
 
 
 func _on_down_pressed():
+	AudioManager.button_press_sfx.play()
 	new_position = player_position
 	new_position += Vector2.DOWN
 	player_move_token()

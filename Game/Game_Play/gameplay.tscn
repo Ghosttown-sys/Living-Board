@@ -54,6 +54,7 @@ board_width = 5
 room_template = ExtResource("1_evmpu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -1798.0
 offset_top = -1897.0
 offset_right = 4202.0

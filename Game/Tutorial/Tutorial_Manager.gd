@@ -8,7 +8,12 @@ extends Node
 @onready var play_card_arrow = $CanvasLayer/Play_Card_Arrow
 @onready var move_arrow = $CanvasLayer/Move_Arrow
 
+var skip_tutorial = false
+
 func _ready():
+	
+	if skip_tutorial:
+		restore_interactions
 	Events.on_game_started.connect(run_start_game_tutorial)
 	Events.on_dialogue_ended.connect(restore_interactions)
 	Events.on_dialogue_next_line.connect(_on_tutorial_dialogue_new_line)
@@ -40,4 +45,6 @@ func restore_interactions():
 	interactions_blocker.mouse_filter =  Control.MOUSE_FILTER_IGNORE
 
 func block_interactions():
+	if skip_tutorial:
+		return
 	interactions_blocker.mouse_filter =  Control.MOUSE_FILTER_STOP

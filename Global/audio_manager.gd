@@ -5,18 +5,22 @@ extends Node
 @onready var footstepo_sfx = $SFX/Foot_Steps
 @onready var draw_card_sfx = $SFX/Draw_Card
 @onready var pop_sfx = $SFX/Pop
-
+@onready var button_press_sfx = $SFX/Button_Press
 
 @onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music
 @onready var combat_music = $Music/Combat_Music
+@onready var death_music = $Music/Death_Music
+@onready var victory_music = $Music/Victory_Music
 
-@onready var tracks = [menu_music,bg_music,combat_music]
+@onready var tracks = [menu_music,bg_music,combat_music,death_music,victory_music]
 """
 Tracklist:
 	0 - menu_music
 	1 - bg_music
 	2 - combat_music
+	3 - death_music
+	4 - victory_music
 """
 var current_track : int = -1
 

@@ -5,7 +5,7 @@ extends RayCast2D
 
 
 var max_distance = 1000
-
+@export var damage = 0.1
 func _ready():
 	target_position = Vector2(max_distance,0)
 
@@ -16,5 +16,5 @@ func _physics_process(delta):
 		end.position.x = collide_points.x -15
 		var new_collider = get_collider()
 		if new_collider is Monster:
-			new_collider.take_damage(1*delta + 0.1)
+			new_collider.take_damage(1*delta + damage)
 			print(new_collider.max_hp)

@@ -11,3 +11,14 @@ signal on_dialogue_next_line
 signal on_dialogue_ended
 
 signal on_game_started
+
+signal on_move_finished
+
+signal victory
+signal player_died
+
+signal hp_lost
+signal sanity_lost
+signal hp_gained
+
+signal add_score(score:int)

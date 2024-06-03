@@ -66,7 +66,11 @@ func rotate_room(coordinates, direction : Directions.DIRECTION):
 	Events.board_moved.emit();
 
 func light_room(coordinates):
-	grid[coordinates.x][coordinates.y].active = true
+	var lit_rooms = find_all_connected_rooms(grid[coordinates.x][coordinates.y])
+	for row in grid:
+		for room in row:
+			if lit_rooms.has(room):
+				room.active = true
 
 func get_row(index):
 	return grid[index]
@@ -87,3 +91,31 @@ func get_all_columns() -> Array:
 			column.append(grid[row][col])
 		columns.append(column)
 	return columns
+
+func find_all_connected_rooms(room : Room):
+	var visited_rooms = []
+	# Recursively find all rooms connected to the centre
+	find_connected_rooms_recursive(room,visited_rooms)
+	return visited_rooms
+
+func find_connected_rooms_recursive(room, visited_rooms):
+	visited_rooms.append(room)
+	for direction in room.get_rotated_openings():
+		var next_room_coordinates = room.coordinates + Directions.d2v[direction];
+		# Check if it's out of bound
+		if next_room_coordinates.x >= grid_width || next_room_coordinates.y >= grid_height\
+		 || next_room_coordinates.x < 0 || next_room_coordinates.y < 0:
+			room.enable_corridor_fog(direction, true)
+			continue
+		var next_room = grid[next_room_coordinates.x][next_room_coordinates.y];
+		
+		if next_room.get_rotated_openings().has(Directions.opposite_direction[direction]):
+			# Disable fog between corridors if both ways are connected
+			room.enable_corridor_fog(direction, false)
+			next_room.enable_corridor_fog(Directions.opposite_direction[direction], false)
+			
+			# if it was not visited yet, perform the recursion
+			if not visited_rooms.has(next_room):
+				find_connected_rooms_recursive(next_room, visited_rooms)
+		else:
+			room.enable_corridor_fog(direction, true)
