@@ -194,6 +194,8 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = SubResource("FontFile_ylfgu")
 text = "Score:"
 label_settings = SubResource("LabelSettings_oi78g")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LoadBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://m7vov0exfn1"]
+[gd_scene load_steps=27 format=3 uid="uid://m7vov0exfn1"]
 
 [ext_resource type="Texture2D" uid="uid://w0swrg50f00" path="res://assets/Arts/Scrollable_Loading_Background.png" id="1_621d4"]
 [ext_resource type="Script" path="res://Game/Scenes/Rooms_Internal/treasure.gd" id="1_n1b7g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c417ag6i8wmeg" path="res://assets/Arts/spritesheets/0x72_16x16DungeonTileset.v5.png" id="2_fjoj6"]
 [ext_resource type="PackedScene" uid="uid://cl54r7scqb8x2" path="res://Game/Scenes/Player/Player.tscn" id="3_ajk4d"]
 [ext_resource type="Shader" path="res://addons/transition_mgr/transition_mgr.gdshader" id="4_vcveq"]
+[ext_resource type="Texture2D" uid="uid://cwc4erj10i7hv" path="res://assets/Arts/spritesheets/CampfireSheet.png" id="6_30qcg"]
 [ext_resource type="Texture2D" uid="uid://b6kf63xd4kmw0" path="res://assets/images/light.png" id="7_3sbei"]
 [ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="8_oq0q5"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="9_7kwnr"]
@@ -889,6 +890,35 @@ region = Rect2(144, 0, 16, 32)
 atlas = ExtResource("2_5rtul")
 region = Rect2(160, 0, 16, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwbsi"]
+atlas = ExtResource("6_30qcg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxhku"]
+atlas = ExtResource("6_30qcg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v12j"]
+atlas = ExtResource("6_30qcg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlnhj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwbsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxhku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v12j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0scw"]
 atlas = ExtResource("9_7kwnr")
 region = Rect2(0, 64, 128, 32)
@@ -925,7 +955,7 @@ stretch_mode = 1
 tile_set = SubResource("TileSet_oucbu")
 format = 2
 layer_0/tile_data = PackedInt32Array(1114137, 786433, 1, 1114138, 65537, 7, 1179673, 786433, 1, 1179674, 65537, 7, 1245209, 786433, 1, 1245210, 65537, 7, 1310745, 786433, 1, 1310746, 65537, 7, 1376281, 786433, 1, 1376282, 65537, 7, 1441817, 786433, 1, 1441818, 65537, 7, 1507353, 786433, 1, 1507354, 65537, 7, 1572889, 786433, 1, 1572890, 65537, 7, 1638425, 786433, 1, 1638426, 65537, 7, 1114139, 131073, 7, 1114140, 131073, 7, 1179675, 131073, 7, 1179676, 131073, 7, 1245211, 131073, 7, 1245212, 131073, 7, 1310747, 131073, 7, 1310748, 131073, 7, 1376283, 131073, 7, 1376284, 131073, 7, 1441819, 131073, 7, 1441820, 131073, 7, 1507355, 131073, 7, 1507356, 131073, 7, 1572891, 131073, 7, 1572892, 131073, 7, 1638427, 131073, 7, 1638428, 131073, 7, 1114141, 65537, 7, 1114142, 131073, 7, 1179677, 65537, 7, 1179678, 131073, 7, 1245213, 65537, 7, 1245214, 131073, 7, 1310749, 65537, 7, 1310750, 131073, 7, 1376285, 65537, 7, 1376286, 131073, 7, 1441821, 65537, 7, 1441822, 131073, 7, 1507357, 65537, 7, 1507358, 131073, 7, 1572893, 65537, 7, 1572894, 131073, 7, 1638429, 65537, 7, 1638430, 131073, 7, 1114143, 65537, 7, 1114144, 131073, 7, 1179679, 65537, 7, 1179680, 131073, 7, 1245215, 65537, 7, 1245216, 131073, 7, 1310751, 65537, 7, 1310752, 131073, 7, 1376287, 65537, 7, 1376288, 131073, 7, 1441823, 65537, 7, 1441824, 131073, 7, 1507359, 65537, 7, 1507360, 131073, 7, 1572895, 65537, 7, 1572896, 131073, 7, 1638431, 65537, 7, 1638432, 131073, 7, 1114145, 65537, 7, 1114146, 65537, 7, 1179681, 65537, 7, 1179682, 65537, 7, 1245217, 65537, 7, 1245218, 65537, 7, 1310753, 65537, 7, 1310754, 65537, 7, 1376289, 65537, 7, 1376290, 65537, 7, 1441825, 65537, 7, 1441826, 65537, 7, 1507361, 65537, 7, 1507362, 65537, 7, 1572897, 65537, 7, 1572898, 65537, 7, 1638433, 65537, 7, 1638434, 65537, 7, 1114147, 65537, 7, 1179683, 65537, 7, 1245219, 65537, 7, 1310755, 65537, 7, 1376291, 65537, 7, 1441827, 65537, 7, 1507363, 65537, 7, 1572899, 65537, 7, 1638435, 65537, 7, 1703961, 917505, 3, 1703962, 655361, 3, 1703963, 655361, 3, 1703964, 655361, 3, 1703965, 655361, 3, 1703966, 655361, 3, 1703967, 655361, 3, 1703968, 655361, 3, 1703969, 655361, 3, 1703970, 655361, 3, 1703971, 655361, 3, 851993, 786433, 0, 917529, 786433, 1, 983065, 786433, 1, 1048601, 786433, 1, 851994, 65537, 0, 917530, 65537, 1, 983066, 65537, 7, 1048602, 65537, 7, 851995, 65537, 0, 917531, 65537, 1, 983067, 131073, 7, 1048603, 131073, 7, 851996, 65537, 0, 917532, 65537, 1, 983068, 131073, 7, 1048604, 131073, 7, 851997, 65537, 0, 917533, 65537, 1, 983069, 65537, 7, 1048605, 65537, 7, 851998, 65537, 0, 917534, 65537, 1, 983070, 131073, 7, 1048606, 131073, 7, 851999, 65537, 0, 917535, 65537, 1, 983071, 65537, 7, 1048607, 65537, 7, 852000, 65537, 0, 917536, 65537, 1, 983072, 131073, 7, 1048608, 131073, 7, 852001, 65537, 0, 917537, 65537, 1, 983073, 65537, 7, 1048609, 65537, 7, 852002, 65537, 0, 917538, 65537, 1, 983074, 65537, 7, 1048610, 65537, 7, 852003, 65537, 0, 917539, 65537, 1, 983075, 65537, 7, 1048611, 65537, 7, 852005, 65537, 0, 917541, 65537, 1, 983077, 65537, 7, 1048613, 65537, 7, 1114149, 65537, 7, 1179685, 65537, 7, 1245221, 65537, 7, 1310757, 65537, 7, 1376293, 65537, 7, 1441829, 65537, 7, 1507365, 65537, 7, 1572901, 65537, 7, 1638437, 65537, 7, 1703973, 655361, 3, 852006, 65537, 0, 917542, 65537, 1, 983078, 65537, 7, 1048614, 65537, 7, 1114150, 65537, 7, 1179686, 65537, 7, 1245222, 65537, 7, 1310758, 65537, 7, 1376294, 65537, 7, 1441830, 65537, 7, 1507366, 65537, 7, 1572902, 65537, 7, 1638438, 65537, 7, 1703974, 655361, 3, 852007, 851969, 0, 917543, 983041, 1, 983079, 983041, 1, 1048615, 983041, 1, 1114151, 983041, 1, 1179687, 983041, 1, 1245223, 983041, 1, 1310759, 983041, 1, 1376295, 983041, 1, 1441831, 983041, 1, 1507367, 983041, 1, 1572903, 983041, 1, 1638439, 983041, 1, 1703975, 983041, 3, 852004, 65537, 0, 917540, 65537, 1, 983076, 65537, 7, 1048612, 65537, 7, 1114148, 65537, 7, 1179684, 65537, 7, 1245220, 65537, 7, 1310756, 65537, 7, 1376292, 65537, 7, 1441828, 65537, 7, 1507364, 65537, 7, 1572900, 65537, 7, 1638436, 65537, 7, 1703972, 655361, 3)
-layer_1/tile_data = PackedInt32Array()
+layer_1/tile_data = PackedInt32Array(1048607, 458754, 0, 1114143, 524290, 0, 1179679, 524290, 1, 1179678, 524290, 0, 1245213, 458754, 1, 1310749, 524290, 1, 1310752, 524290, 0, 1376288, 458754, 1, 1245217, 458754, 1, 1310754, 458754, 0, 1376289, 458754, 1, 1310753, 524290, 0, 1245218, 458754, 1, 1245219, 458754, 0, 1179683, 458754, 1, 1179682, 524290, 0, 1245220, 458754, 0, 1507357, 524290, 0, 1638436, 524290, 1, 1638426, 458754, 1, 983078, 458754, 1, 983066, 458754, 1, 1114139, 524290, 1)
 layer_2/tile_data = PackedInt32Array(1048613, 2, 2, 1048603, 2, 2, 1572901, 2, 2, 1572891, 2, 2)
 
 [node name="Treasure_Collider" type="Area2D" parent="."]
@@ -948,6 +978,18 @@ shape = SubResource("RectangleShape2D_w6nt4")
 [node name="Sprite2D" type="Sprite2D" parent="Stairs_Collider"]
 position = Vector2(-98, -33)
 texture = SubResource("AtlasTexture_f4nbo")
+
+[node name="Camp_FIre" type="Area2D" parent="."]
+position = Vector2(619, 411)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camp_FIre"]
+position = Vector2(-96, -32.5)
+shape = SubResource("RectangleShape2D_w6nt4")
+
+[node name="fire" type="AnimatedSprite2D" parent="Camp_FIre"]
+position = Vector2(-98, -34)
+sprite_frames = SubResource("SpriteFrames_tlnhj")
+frame_progress = 0.495949
 
 [node name="Lights" type="Node2D" parent="."]
 
@@ -1189,6 +1231,7 @@ vertical_alignment = 1
 
 [connection signal="body_entered" from="Treasure_Collider" to="." method="_on_treasure_collider_body_entered"]
 [connection signal="body_entered" from="Stairs_Collider" to="." method="_on_stairs_collider_body_entered"]
+[connection signal="body_entered" from="Camp_FIre" to="." method="_on_camp_f_ire_body_entered"]
 [connection signal="pressed" from="POP_UP/Weapon_container/Sword/Sword" to="." method="_on_sword_pressed"]
 [connection signal="pressed" from="POP_UP/Weapon_container/Bow/Bow" to="." method="_on_bow_pressed"]
 [connection signal="pressed" from="POP_UP/Weapon_container/Seeker/Seeker" to="." method="_on_seeker_pressed"]

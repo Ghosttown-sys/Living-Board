@@ -10,6 +10,7 @@ var treasure_coord : Array[Vector2] = [Vector2(480,290),Vector2(580,290),Vector2
 func _ready():
 	$Stairs_Collider.global_position = stair_coord.pick_random()
 	$Treasure_Collider.global_position = treasure_coord.pick_random()
+	$Camp_FIre/fire.play("default")
 
 func _on_stairs_collider_body_entered(body):
 	Events.add_score.emit(20)
@@ -67,3 +68,7 @@ func _on_magic_pressed():
 func _on_skip_pressed():
 	player.can_move= true
 	$POP_UP.hide()
+
+
+func _on_camp_f_ire_body_entered(body):
+	PlayerStats.heal()

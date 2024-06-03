@@ -24,6 +24,12 @@ func take_damage(damage):
 	Events.on_player_stats_changed.emit()
 	if player_stat.player_health <= 0:
 		Events.player_died.emit()
+	
+func heal():
+	Events.hp_gained.emit()
+	player_stat.player_health += 20
+	if player_stat.player_health>player_stat.max_hp:
+		player_stat.player_health = player_stat.max_hp
 
 func take_sanity_damage(damage):
 	player_stat.player_sanity -= damage
