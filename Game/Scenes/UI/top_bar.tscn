@@ -1,9 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://ccockq4ssn6uj"]
+[gd_scene load_steps=19 format=3 uid="uid://ccockq4ssn6uj"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Run/Top_Bar.gd" id="1_0gwui"]
 [ext_resource type="Texture2D" uid="uid://cw8nxifob1skn" path="res://Game/Components/Visual_Component/Untitled_05-24-2024_08-29-35_6.png" id="2_3wu0k"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="2_pa1bv"]
+[ext_resource type="Texture2D" uid="uid://3gw2w5e3vhdl" path="res://assets/Arts/spritesheets/Circle.png" id="3_fuexm"]
 [ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="4_wom7k"]
+[ext_resource type="Texture2D" uid="uid://bwghybmnxn5qa" path="res://assets/Arts/spritesheets/WeaponsSheet.png" id="5_6s1s4"]
+[ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="5_jgvhc"]
+[ext_resource type="Texture2D" uid="uid://d30w3wg34e1dn" path="res://Game/Components/Bullets/VFX/spark_06_rotated.png" id="6_era4p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x58si"]
 atlas = ExtResource("2_pa1bv")
@@ -59,6 +63,24 @@ shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nla80"]
+font = ExtResource("4_wom7k")
+font_size = 24
+outline_size = 20
+outline_color = Color(0.168627, 0.168627, 0.168627, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_67q2d"]
+font = ExtResource("4_wom7k")
+font_size = 24
+outline_size = 20
+outline_color = Color(0.168627, 0.168627, 0.168627, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
 [node name="Top_Bar" type="CanvasLayer"]
 script = ExtResource("1_0gwui")
 
@@ -96,10 +118,57 @@ offset_top = 2.82
 offset_right = 256.0
 offset_bottom = 66.82
 
-[node name="Avatar" type="TextureRect" parent="Menu/Profile/Profile"]
+[node name="Avatar_holder" type="TextureRect" parent="Menu/Profile/Profile"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("3_fuexm")
+
+[node name="Avatar" type="TextureRect" parent="Menu/Profile/Profile/Avatar_holder"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("AtlasTexture_0jr8k")
+
+[node name="Weapon_Holder" type="TextureRect" parent="Menu/Profile/Profile/Avatar_holder"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -31.82
+offset_right = 12.0
+offset_bottom = 0.18
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_fuexm")
+
+[node name="Sprite" type="Sprite2D" parent="Menu/Profile/Profile/Avatar_holder/Weapon_Holder"]
+position = Vector2(15, 16)
+texture = ExtResource("5_6s1s4")
+hframes = 4
+frame = 1
+
+[node name="magic" type="Sprite2D" parent="Menu/Profile/Profile/Avatar_holder/Weapon_Holder"]
+position = Vector2(16, 17)
+rotation = 0.598648
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_era4p")
+hframes = 4
+frame = 1
 
 [node name="Labels" type="VBoxContainer" parent="Menu/Profile/Profile"]
 custom_minimum_size = Vector2(90, 0)
@@ -148,16 +217,34 @@ custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 
 [node name="Turn_Counter" type="Label" parent="Menu/Turn"]
-layout_mode = 2
-offset_left = -62.0
-offset_top = 12.0
-offset_right = 130.0
-offset_bottom = 57.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_right = 96.0
+offset_bottom = 45.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Turn 1"
 label_settings = SubResource("LabelSettings_shfdl")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Turn_Counter2" type="Label" parent="Menu/Turn"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Score: 00000"
+label_settings = SubResource("LabelSettings_nla80")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="PLace_holder" type="Label" parent="Menu"]
 layout_mode = 2
@@ -167,34 +254,37 @@ size_flags_vertical = 3
 [node name="Game_State" type="NinePatchRect" parent="Menu"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 
-[node name="Actions" type="Label" parent="Menu/Game_State"]
+[node name="TextureRect" type="TextureRect" parent="Menu/Game_State"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -5.0
+offset_right = -4.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jgvhc")
+
+[node name="Action_Holder" type="VBoxContainer" parent="Menu/Game_State"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Actions" type="Label" parent="Menu/Game_State/Action_Holder"]
 layout_mode = 2
-offset_left = -134.0
-offset_top = 14.0
-offset_right = 26.0
-offset_bottom = 59.0
 theme_override_font_sizes/font_size = 32
-text = "Actions:"
-label_settings = SubResource("LabelSettings_shfdl")
+text = "Actions"
+label_settings = SubResource("LabelSettings_67q2d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Action_Tokens" type="HBoxContainer" parent="Menu/Game_State"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 5.0
-offset_right = 250.0
-offset_bottom = 71.0
-scale = Vector2(0.9, 0.9)
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Game_State"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PLace_holder4" type="Label" parent="Menu"]
-custom_minimum_size = Vector2(20, 0)
+[node name="Action_Tokens" type="HBoxContainer" parent="Menu/Game_State/Action_Holder"]
 layout_mode = 2
-size_flags_vertical = 3
+alignment = 1

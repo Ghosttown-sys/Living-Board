@@ -16,3 +16,7 @@ signal on_move_finished
 
 signal victory
 signal player_died
+
+signal hp_lost
+signal sanity_lost
+signal hp_gained

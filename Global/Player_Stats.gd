@@ -19,6 +19,7 @@ func restore_all_actions():
 	Events.on_player_stats_changed.emit()
 
 func take_damage(damage):
+	Events.hp_lost.emit()
 	player_stat.player_health -= damage
 	Events.on_player_stats_changed.emit()
 	if player_stat.player_health <= 0:
