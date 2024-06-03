@@ -44,14 +44,6 @@ size_flags_vertical = 3
 script = ExtResource("1_3mlof")
 current_player_highlight_color = Color(0.128444, 0.281853, 0.35776, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(43.6718, 19.8815)
-color = Color(1, 0.85723, 0.583982, 1)
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15

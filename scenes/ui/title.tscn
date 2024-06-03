@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene load_steps=20 format=3 uid="uid://d1dowke5fsdap"]
 
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
 [ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
@@ -8,7 +8,10 @@
 [ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_dwkem"]
 [ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="7_cq32e"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="9_v5see"]
+[ext_resource type="Script" path="res://scenes/ui/Insert_name_popup.gd" id="10_0y5go"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="10_5plxi"]
+[ext_resource type="Theme" uid="uid://0ia1ldp8lhlu" path="res://assets/themes/game_ui.tres" id="10_uyq5l"]
+[ext_resource type="StyleBox" uid="uid://c5w6hrwwviphj" path="res://scenes/ui/popup_button.tres" id="11_tllyg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvfs3"]
 bg_color = Color(0.287521, 0.253438, 0.236501, 0.509804)
@@ -20,6 +23,42 @@ corner_radius_bottom_left = 20
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff8ni"]
 atlas = ExtResource("10_5plxi")
 region = Rect2(80, 0, 48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6l0g"]
+bg_color = Color(0, 0, 0, 0.819608)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.129412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5pea"]
+bg_color = Color(0.331672, 0.167073, 0.18197, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5p3b"]
+bg_color = Color(0.17918, 0.0746065, 0.145757, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hwch"]
+bg_color = Color(0.247463, 0.23377, 0.235944, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry2wp"]
+bg_color = Color(0.180392, 0.0745098, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -47,14 +86,16 @@ offset_bottom = -339.0
 score_limit = 5
 current_player_highlight_color = Color(0.388235, 0.227451, 0.113725, 1)
 
-[node name="PanelContainer" parent="LeaderboardUI" index="1"]
+[node name="PanelContainer" parent="LeaderboardUI" index="0"]
 anchors_preset = -1
 anchor_left = 0.106
-anchor_bottom = 0.598
-offset_left = 0.0299985
-offset_top = 7.0
-offset_right = -5.0
-offset_bottom = 41.922
+anchor_top = 0.019
+anchor_right = 0.98
+anchor_bottom = 0.75
+offset_left = 0.0299966
+offset_top = 0.0409997
+offset_right = -0.100005
+offset_bottom = -0.100022
 theme_override_styles/panel = SubResource("StyleBoxFlat_rvfs3")
 
 [node name="TitleLabel" parent="LeaderboardUI/PanelContainer/VBoxContainer" index="0"]
@@ -190,10 +231,81 @@ theme_override_fonts/font = ExtResource("7_cq32e")
 text = "Exit"
 flat = true
 
+[node name="Insert_name" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 186.0
+offset_right = 800.001
+offset_bottom = 451.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6l0g")
+script = ExtResource("10_0y5go")
+
+[node name="Container" type="VBoxContainer" parent="Insert_name"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 267.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Insert_name"]
+layout_mode = 2
+offset_top = 24.0
+offset_right = 450.0
+offset_bottom = 64.0
+theme = ExtResource("10_uyq5l")
+text = "Insert your name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="Insert_name"]
+custom_minimum_size = Vector2(2.08165e-12, 80)
+layout_mode = 2
+offset_left = 31.0
+offset_top = 97.0
+offset_right = 421.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Name"
+alignment = 1
+max_length = 10
+
+[node name="Button" type="Button" parent="Insert_name"]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = -58.0
+offset_right = -162.001
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = ExtResource("11_tllyg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s5pea")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v5p3b")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4hwch")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ry2wp")
+
+[node name="Label" type="Label" parent="Insert_name/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_cq32e")
+theme_override_font_sizes/font_size = 30
+text = "OK"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [connection signal="pressed" from="NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
 [connection signal="pressed" from="LeaderboardBtn" to="." method="_on_LeaderboardBtn_pressed"]
 [connection signal="pressed" from="Sign/CreditsBtn" to="." method="_on_credits_btn_pressed"]
 [connection signal="pressed" from="Sign2/Exit" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="Insert_name/Button" to="." method="on_name_selected"]
 
 [editable path="LeaderboardUI"]
