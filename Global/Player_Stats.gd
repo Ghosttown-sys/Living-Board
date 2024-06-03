@@ -22,8 +22,9 @@ func take_damage(damage):
 	Events.hp_lost.emit()
 	player_stat.player_health -= damage
 	Events.on_player_stats_changed.emit()
-	if player_stat.player_health <= 0:
+	if player_stat.player_health <= 0 and player_stat.player_alive:
 		Events.player_died.emit()
+		player_stat.player_alive = false
 	
 func heal():
 	Events.hp_gained.emit()

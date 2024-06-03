@@ -23,9 +23,12 @@ var player_name : String
 var player_health : int
 var player_sanity : int
 
+var player_alive : bool
+
 var player_actions : int
 
 func reset():
+	player_alive = true
 	player_health = max_hp
 	player_sanity = max_sanity
 	player_actions = max_actions
