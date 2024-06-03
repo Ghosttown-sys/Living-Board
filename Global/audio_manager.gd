@@ -6,6 +6,7 @@ extends Node
 @onready var draw_card_sfx = $SFX/Draw_Card
 @onready var pop_sfx = $SFX/Pop
 @onready var button_press_sfx = $SFX/Button_Press
+@onready var take_damage_sfx = $SFX/Take_Damage
 
 @onready var menu_music = $Music/Menu_Music
 @onready var bg_music = $Music/Bg_Music

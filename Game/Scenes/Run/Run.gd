@@ -158,7 +158,7 @@ func board_random_moves():
 func _on_skip_room_pressed():
 	Events.add_score.emit(-10)
 	AudioManager.button_press_sfx.play()
-	PlayerStats.player_stat.player_sanity -= 20
+	PlayerStats.take_sanity_damage(20)
 	Events.sanity_lost.emit()
 	var tween = get_tree().create_tween()
 	await tween.tween_property(room_interactions, "visible", false, 0.3).set_trans(Tween.TRANS_QUAD).finished
@@ -176,3 +176,5 @@ func victory():
 	var victory_scene = VICTORY.instantiate()
 	add_child(victory_scene)
 
+func _on_leaderboard_refresh_timeout():
+	await Leaderboards.post_guest_score(Game_Manager.leaderboard_Id, Game_Manager.score, Game_Manager.player_name)
