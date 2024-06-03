@@ -9,7 +9,7 @@ script = ExtResource("1_ixjqq")
 
 [node name="Dialogues" type="Node" parent="."]
 script = ExtResource("2_cbpb7")
-lines = Array[String](["Find a way out from this maze", "You have up to 3 actions per turn", "Which you can use to draw a card from you deck", "Play a card from your hand by dragging it onto the board", "Or move your character", "After each turn the catacombs will unleash their wrath and shuffle the rooms to get you trapped", "So hurry up looting this place and find the exit before it's too late!"])
+lines = Array[String](["Find a way out from this maze", "You have up to 3 actions per turn", "Which you can use to draw a card from you deck", "Play a card from your hand by dragging it onto the board", "Or move your character", "Explore around by moving the camera with the arrow keys or by dragging with the scroll wheel to plan your next moves", "After each turn the catacombs will unleash their wrath and shuffle the rooms to get you trapped", "So hurry up looting this place and find the exit before it's too late!"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_priority = 4

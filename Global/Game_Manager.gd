@@ -3,7 +3,7 @@ extends Node
 var seed = hash("help_me!!!")
 var RNG : RandomNumberGenerator;
 
-const leaderboard_Id = "living-board-dev_unique-LD9j"
+const leaderboard_Id = "living-board-highscores-ZXro"
 
 var player_name = ""
 

@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bw8wc0heh23yh" path="res://assets/audio/sfx/ButtonPress.mp3" id="7_w7a8d"]
 [ext_resource type="AudioStream" uid="uid://b7nw7vhcos6nf" path="res://assets/audio/sfx/DamageSound.mp3" id="8_3uo3t"]
 [ext_resource type="AudioStream" uid="uid://bswssvmtuoytj" path="res://assets/audio/music/DeathSound.mp3" id="10_4dlyi"]
-[ext_resource type="AudioStream" uid="uid://by8a26dj17f7m" path="res://assets/audio/music/WinSong.mp3" id="12_8l5t3"]
+[ext_resource type="AudioStream" uid="uid://brp7t08hje06g" path="res://assets/audio/music/WinSong.mp3" id="12_8l5t3"]
 
 [node name="Audio_Manager" type="Node2D"]
 process_mode = 3
