@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pyk8bvao6tou"]
+[gd_scene load_steps=16 format=3 uid="uid://pyk8bvao6tou"]
 
 [ext_resource type="PackedScene" uid="uid://cdk2ksgvsl00o" path="res://Game/Game_Play/gameplay.tscn" id="1_4lixk"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Run.gd" id="1_s7tjo"]
@@ -9,11 +9,31 @@
 [ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_yoqht"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="7_8mmna"]
 [ext_resource type="Texture2D" uid="uid://bhsv8tx05k23s" path="res://assets/Arts/Resource_Arts/Resources/menu_ui.tres" id="8_om7ju"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="10_l87g6"]
 [ext_resource type="Script" path="res://Game/Scenes/Run/Flash_Indicator.gd" id="10_so2id"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ey7b"]
 atlas = ExtResource("7_8mmna")
 region = Rect2(0, 64, 128, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lk7rt"]
+font = ExtResource("10_l87g6")
+font_size = 80
+font_color = Color(0.756863, 0.509804, 0, 1)
+outline_size = 20
+shadow_size = 20
+shadow_color = Color(1, 1, 1, 0.490196)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qd4ty"]
+font = ExtResource("10_l87g6")
+font_size = 40
+font_color = Color(0.603922, 0.403922, 0, 1)
+outline_size = 15
+outline_color = Color(0.85098, 0.85098, 0.85098, 1)
+shadow_size = 15
+shadow_color = Color(0.780392, 0.780392, 0.780392, 0.490196)
+shadow_offset = Vector2(5, 5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_06pa7"]
 font_size = 80
@@ -81,8 +101,10 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("AtlasTexture_4ey7b")
 region_rect = Rect2(1, 1, 126, 30)
-patch_margin_left = 40
-patch_margin_right = 40
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="Panel" type="NinePatchRect" parent="Room_Interactions/NinePatchRect"]
 custom_minimum_size = Vector2(0, 300)
@@ -101,10 +123,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 65.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Combat room ecountered"
+label_settings = SubResource("LabelSettings_lk7rt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -114,12 +139,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -97.0
-offset_bottom = -17.0
+offset_top = -130.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Skiping room will cost sanity !!!"
+label_settings = SubResource("LabelSettings_qd4ty")
 horizontal_alignment = 1
 vertical_alignment = 1
 
