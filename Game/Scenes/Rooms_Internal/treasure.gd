@@ -72,3 +72,5 @@ func _on_skip_pressed():
 
 func _on_camp_f_ire_body_entered(body):
 	PlayerStats.heal()
+	$Camp_FIre.set_deferred("monitorable",false)
+	$Camp_FIre.set_deferred("monitoring",false)
