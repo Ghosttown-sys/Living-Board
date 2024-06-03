@@ -10,15 +10,15 @@ extends Node
 
 var skip_tutorial = false
 
+func _ready():
+	Events.on_game_started.connect(run_start_game_tutorial)
+	Events.on_dialogue_ended.connect(restore_interactions)
+	Events.on_dialogue_next_line.connect(_on_tutorial_dialogue_new_line)
+
 func init():
 	if skip_tutorial:
 		restore_interactions
 	block_interactions()
-	Events.on_game_started.connect(run_start_game_tutorial)
-	Events.on_dialogue_ended.connect(restore_interactions)
-	Events.on_dialogue_next_line.connect(_on_tutorial_dialogue_new_line)
-	
-	await get_tree().create_timer(1).timeout
 	var par = get_parent()
 	par.move_child.call_deferred(self,par.get_child_count())
 
