@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene load_steps=12 format=3 uid="uid://d1dowke5fsdap"]
 
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
 [ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
@@ -7,8 +7,15 @@
 [ext_resource type="Theme" uid="uid://5fedla704eca" path="res://assets/themes/Title.tres" id="4_vh7jk"]
 [ext_resource type="Theme" uid="uid://dm4wd2uyiq7ex" path="res://assets/themes/main_theme.tres" id="5_dwkem"]
 [ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="7_cq32e"]
-[ext_resource type="StyleBox" uid="uid://dwe4g2d51prik" path="res://assets/themes/small_main_menu_button.tres" id="9_2sb8w"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="9_v5see"]
 [ext_resource type="Texture2D" uid="uid://bowoqqi015sm7" path="res://assets/Arts/spritesheets/UISheet.png" id="10_5plxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvfs3"]
+bg_color = Color(0.287521, 0.253438, 0.236501, 0.509804)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff8ni"]
 atlas = ExtResource("10_5plxi")
@@ -32,6 +39,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_1vd5m")
+
+[node name="LeaderboardUI" parent="." instance=ExtResource("9_v5see")]
+layout_mode = 1
+offset_left = 779.0
+offset_bottom = -339.0
+score_limit = 5
+current_player_highlight_color = Color(0.388235, 0.227451, 0.113725, 1)
+
+[node name="PanelContainer" parent="LeaderboardUI" index="1"]
+anchors_preset = -1
+anchor_left = 0.106
+anchor_bottom = 0.598
+offset_left = 0.0299985
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = 41.922
+theme_override_styles/panel = SubResource("StyleBoxFlat_rvfs3")
+
+[node name="TitleLabel" parent="LeaderboardUI/PanelContainer/VBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 35
+text = "Top players"
+
+[node name="Nav" parent="LeaderboardUI/PanelContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="PrevButton" parent="LeaderboardUI/PanelContainer/VBoxContainer/Nav" index="0"]
+theme_override_font_sizes/font_size = 30
+
+[node name="ScoresLabel" parent="LeaderboardUI/PanelContainer/VBoxContainer/Nav" index="1"]
+theme_override_font_sizes/font_size = 30
+
+[node name="NextButton" parent="LeaderboardUI/PanelContainer/VBoxContainer/Nav" index="2"]
+theme_override_font_sizes/font_size = 30
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -80,28 +120,27 @@ expand_icon = true
 
 [node name="LoadGameBtn" type="Button" parent="."]
 layout_mode = 2
-offset_left = 150.0
-offset_top = 292.0
-offset_right = 475.0
-offset_bottom = 361.0
+offset_left = 168.0
+offset_top = 273.0
+offset_right = 493.0
+offset_bottom = 342.0
 rotation = 0.103988
 scale = Vector2(0.66, 0.66)
 focus_mode = 0
 theme = ExtResource("5_dwkem")
 text = "Load Game"
 
-[node name="ExitBtn" type="Button" parent="."]
+[node name="LeaderboardBtn" type="Button" parent="."]
 layout_mode = 2
-offset_left = 40.0
+offset_left = 20.0
 offset_top = 424.0
-offset_right = 365.0
+offset_right = 345.0
 offset_bottom = 493.0
-rotation = -0.0464225
+rotation = -0.130024
 scale = Vector2(0.66, 0.66)
 focus_mode = 0
 theme = ExtResource("5_dwkem")
-theme_override_styles/focus = ExtResource("9_2sb8w")
-text = "Exit"
+text = "Leaderboard"
 
 [node name="Sign" type="TextureRect" parent="."]
 layout_mode = 0
@@ -127,7 +166,34 @@ theme_override_fonts/font = ExtResource("7_cq32e")
 text = "Credits"
 flat = true
 
+[node name="Sign2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 443.0
+offset_right = 311.0
+offset_bottom = 491.0
+rotation = -0.12937
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_ff8ni")
+
+[node name="Exit" type="Button" parent="Sign2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 178.0
+offset_bottom = 70.0
+scale = Vector2(0.22, 0.22)
+focus_mode = 0
+theme = ExtResource("5_dwkem")
+theme_override_colors/font_outline_color = Color(0.472101, 0.281822, 0.147515, 1)
+theme_override_fonts/font = ExtResource("7_cq32e")
+text = "Exit"
+flat = true
+
 [connection signal="pressed" from="NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
-[connection signal="pressed" from="ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="LeaderboardBtn" to="." method="_on_LeaderboardBtn_pressed"]
 [connection signal="pressed" from="Sign/CreditsBtn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="Sign2/Exit" to="." method="_on_ExitBtn_pressed"]
+
+[editable path="LeaderboardUI"]

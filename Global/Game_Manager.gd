@@ -3,6 +3,10 @@ extends Node
 var seed = hash("help_me!!!")
 var RNG : RandomNumberGenerator;
 
+const leaderboard_Id = "living-board-dev-PeoE"
+
+var player_name = ""
+
 var storyTelled = false
 
 signal camera_relocate(pos:Vector2)
@@ -24,3 +28,13 @@ var ai_moves: int = 3
 func _ready():
 	RNG = RandomNumberGenerator.new()
 	#RNG.seed = seed;
+
+func add_score(temp_score:int)->void:
+	score+= temp_score
+	if score<=0:
+		score = 0
+
+func reset():
+	turn = 0
+	score = 0
+	is_player_turn = true

@@ -25,7 +25,8 @@ func _ready():
 	for i in PlayerStats.player_stat.max_actions:
 		var instance = action_token_scene.instantiate()
 		actions.add_child(instance)
-	
+	Game_Manager.reset()
+	PlayerStats.reset_player()
 	Events.on_player_stats_changed.connect(_on_stats_changed)
 	_on_stats_changed()
 

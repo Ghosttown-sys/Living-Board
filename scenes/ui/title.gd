@@ -6,14 +6,21 @@ func _ready():
 	AudioManager.play_music(0)
 
 func _on_NewGameBtn_pressed():
-	Game_Manager.storyTelled = false
-	GameStateService.new_game()
-	TransitionMgr.transition_to("res://Game/Scenes/Run/Run.tscn")
+	AudioManager.button_press_sfx.play()
+	if Game_Manager.player_name == "":
+		pass
+	else:
+		Game_Manager.storyTelled = false
+		GameStateService.new_game()
+		TransitionMgr.transition_to("res://Game/Scenes/Run/Run.tscn")
 
 
 func _on_LoadGameBtn_pressed():
 	_load_game_dlg.show_modal()
 
+func _on_LeaderboardBtn_pressed():
+	AudioManager.button_press_sfx.play()
+	get_tree().change_scene_to_file("res://scenes/ui/leaderboard.tscn")
 
 func _on_ExitBtn_pressed():
 	get_tree().quit()

@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmi7bgvn7seme"]
+
+[ext_resource type="Script" path="res://scenes/ui/leaderboard.gd" id="1_n74g3"]
+[ext_resource type="Shader" path="res://addons/transition_mgr/transition_mgr.gdshader" id="2_87n8m"]
+[ext_resource type="Texture2D" uid="uid://w0swrg50f00" path="res://assets/Arts/Scrollable_Loading_Background.png" id="3_5lekl"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="4_2xq2o"]
+[ext_resource type="FontFile" uid="uid://cehuy778740x6" path="res://assets/fonts/Pixellari.ttf" id="4_fclct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlje7"]
+shader = ExtResource("2_87n8m")
+
+[node name="Scoreboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n74g3")
+
+[node name="ScrollBackground" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_hlje7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5lekl")
+stretch_mode = 1
+
+[node name="Back_Btn" type="Button" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 198.0
+offset_bottom = 108.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.788235, 0.435294, 0.0117647, 1)
+theme_override_colors/font_pressed_color = Color(0.501961, 0.266667, 0.00392157, 1)
+theme_override_colors/font_hover_color = Color(0.980392, 0.54902, 0.0588235, 1)
+theme_override_colors/font_focus_color = Color(0.980392, 0.54902, 0.0588235, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.501961, 0.266667, 0.00392157, 1)
+theme_override_colors/font_disabled_color = Color(0.788235, 0.435294, 0.0117647, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("4_fclct")
+theme_override_font_sizes/font_size = 80
+text = "Back"
+flat = true
+
+[node name="LeaderboardUI" parent="." instance=ExtResource("4_2xq2o")]
+layout_mode = 1
+offset_left = 207.0
+offset_top = 49.0
+offset_right = -141.0
+offset_bottom = -36.0
+current_player_highlight_color = Color(0.685437, 0.395278, 0.148729, 1)
+
+[connection signal="pressed" from="Back_Btn" to="." method="_on_back_btn_pressed"]

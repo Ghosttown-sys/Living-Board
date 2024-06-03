@@ -32,7 +32,8 @@ func _on_tutorial_dialogue_new_line():
 		
 
 func run_start_game_tutorial():
-	await get_tree().create_timer(1).timeout
+	if skip_tutorial:
+		return
 	DialogueMgr.start_dialogue(dialogues.lines)
 
 func restore_interactions():
