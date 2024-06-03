@@ -63,9 +63,9 @@ func initialize_board():
 	
 	rooms.pick_random().pick_random().force_to_exit()
 	
+	Board_Manipulator.grid = rooms;
 	update_rooms_activation()
 	
-	Board_Manipulator.grid = rooms;
 	
 # Returns a list of all rooms connected to the room
 func get_connected_rooms(room: Room):
@@ -82,34 +82,6 @@ func get_connected_rooms(room: Room):
 	
 	return connected_rooms
 	
-func find_all_connected_rooms(room : Room):
-	var visited_rooms = []
-	# Recursively find all rooms connected to the centre
-	find_connected_rooms_recursive(room,visited_rooms)
-	return visited_rooms
-
-func find_connected_rooms_recursive(room, visited_rooms):
-	visited_rooms.append(room)
-	for direction in room.get_rotated_openings():
-		var next_room_coordinates = room.coordinates + Directions.d2v[direction];
-		# Check if it's out of bound
-		if next_room_coordinates.x >= board_width || next_room_coordinates.y >= board_height\
-		 || next_room_coordinates.x < 0 || next_room_coordinates.y < 0:
-			room.enable_corridor_fog(direction, true)
-			continue
-		var next_room = rooms[next_room_coordinates.x][next_room_coordinates.y];
-		
-		if next_room.get_rotated_openings().has(Directions.opposite_direction[direction]):
-			# Disable fog between corridors if both ways are connected
-			room.enable_corridor_fog(direction, false)
-			next_room.enable_corridor_fog(Directions.opposite_direction[direction], false)
-			
-			# if it was not visited yet, perform the recursion
-			if not visited_rooms.has(next_room):
-				find_connected_rooms_recursive(next_room, visited_rooms)
-		else:
-			room.enable_corridor_fog(direction, true)
-
 func update_board():
 	for x in rooms.size():
 		for y in rooms[0].size():
@@ -186,7 +158,7 @@ func update_rooms_positions():
 	await Tween_Utilities.await_all(tweens);
 
 func update_rooms_activation():
-	var active_rooms = find_all_connected_rooms(player_room)
+	var active_rooms = Board_Manipulator.find_all_connected_rooms(player_room)
 	
 	for row in rooms:
 		for room in row:
