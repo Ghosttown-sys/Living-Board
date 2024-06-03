@@ -119,7 +119,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "ZY"
+text = "Zy"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator" type="HSeparator" parent="Credits"]
@@ -134,7 +134,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "UI/UX designer / pixel artist:
+text = "UI/UX designer / Pixel artist:
 "
 label_settings = SubResource("LabelSettings_sm0r5")
 
@@ -160,7 +160,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "character designer / pixel artist:
+text = "Character designer / Pixel artist:
 "
 label_settings = SubResource("LabelSettings_sm0r5")
 
@@ -171,7 +171,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "snoopeyxd"
+text = "Snoopeyxd"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="HSeparator2" type="HSeparator" parent="Credits"]
@@ -197,7 +197,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("3_hbu8t")
-text = "danyb0i"
+text = "Danyb0i"
 label_settings = SubResource("LabelSettings_nyra8")
 
 [node name="Story" type="TextureRect" parent="."]

@@ -28,6 +28,7 @@ func _ready():
 	Game_Manager.treasure_room_entered.connect(treasure_room_found)
 	Game_Manager.hazard_room_entered.connect(hazard_room_found)
 	
+	Tutorial.init()
 	Events.player_died.connect(game_over)
 	Events.victory.connect(victory)
 	Events.on_move_finished.connect(on_move_finished)
