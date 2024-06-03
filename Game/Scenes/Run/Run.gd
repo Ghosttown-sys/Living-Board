@@ -176,3 +176,5 @@ func victory():
 	var victory_scene = VICTORY.instantiate()
 	add_child(victory_scene)
 
+func _on_leaderboard_refresh_timeout():
+	await Leaderboards.post_guest_score(Game_Manager.leaderboard_Id, Game_Manager.score, Game_Manager.player_name)

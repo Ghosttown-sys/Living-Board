@@ -218,7 +218,12 @@ color = Color(0, 12, 0, 0)
 wait_time = 0.1
 one_shot = true
 
+[node name="Leaderboard_Refresh" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="pressed" from="Turn_Controler/VBoxContainer/End_Turn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Room_Interactions/NinePatchRect/Enter_Room" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Room_Interactions/NinePatchRect/Skip_room" to="." method="_on_skip_room_pressed"]
 [connection signal="timeout" from="Flash_Indicator/Flash_Timer" to="Flash_Indicator" method="_on_flash_timer_timeout"]
+[connection signal="timeout" from="Leaderboard_Refresh" to="." method="_on_leaderboard_refresh_timeout"]
