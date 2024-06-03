@@ -21,7 +21,7 @@ const z_index_rooms = 20
 var monsters_alive := 0
 
 var turn: int = 0
-
+var score:int = 0
 var is_player_turn = true
 
 var ai_moves: int = 3
