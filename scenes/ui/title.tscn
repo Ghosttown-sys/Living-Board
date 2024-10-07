@@ -32,15 +32,8 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_color = Color(0, 0, 0, 0.129412)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5pea"]
-bg_color = Color(0.331672, 0.167073, 0.18197, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5p3b"]
-bg_color = Color(0.17918, 0.0746065, 0.145757, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry2wp"]
+bg_color = Color(0.180392, 0.0745098, 0.145098, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -53,8 +46,15 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry2wp"]
-bg_color = Color(0.180392, 0.0745098, 0.145098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5pea"]
+bg_color = Color(0.331672, 0.167073, 0.18197, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5p3b"]
+bg_color = Color(0.17918, 0.0746065, 0.145757, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -282,11 +282,11 @@ offset_right = -162.001
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/normal = ExtResource("11_tllyg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ry2wp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4hwch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s5pea")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_v5p3b")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_4hwch")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ry2wp")
+theme_override_styles/normal = ExtResource("11_tllyg")
 
 [node name="Label" type="Label" parent="Insert_name/Button"]
 layout_mode = 1

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Cards_Database" load_steps=9 format=3 uid="uid://b47c2n3qohcnh"]
+[gd_resource type="Resource" script_class="Cards_Database" load_steps=10 format=3 uid="uid://b47c2n3qohcnh"]
 
 [ext_resource type="Script" path="res://Game/Core/cards/cards_database.gd" id="1_rxmkj"]
+[ext_resource type="Script" path="res://Game/Core/cards/Card_Effect.gd" id="1_sdmo1"]
 [ext_resource type="Resource" uid="uid://bov1krs5bkhje" path="res://Game/Core/cards/move_board_effects/rotate_room_anticlockwise.tres" id="2_2f6wl"]
 [ext_resource type="Resource" uid="uid://c0fbltr1x6lbb" path="res://Game/Core/cards/move_board_effects/move_colum_down.tres" id="3_2e8nn"]
 [ext_resource type="Resource" uid="uid://bgl44a8vws3uo" path="res://Game/Core/cards/move_board_effects/move_colum_up.tres" id="4_g8ol0"]
@@ -11,4 +12,4 @@
 
 [resource]
 script = ExtResource("1_rxmkj")
-card_effects = Array[Resource("res://Game/Core/cards/Card_Effect.gd")]([ExtResource("5_q7wca"), ExtResource("2_2f6wl"), ExtResource("3_2e8nn"), ExtResource("4_g8ol0"), ExtResource("5_ctmiw"), ExtResource("6_lkrud"), ExtResource("7_bipnq")])
+card_effects = Array[ExtResource("1_sdmo1")]([ExtResource("5_q7wca"), ExtResource("2_2f6wl"), ExtResource("3_2e8nn"), ExtResource("4_g8ol0"), ExtResource("5_ctmiw"), ExtResource("6_lkrud"), ExtResource("7_bipnq")])
